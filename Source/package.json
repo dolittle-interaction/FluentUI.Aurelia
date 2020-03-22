@@ -25,14 +25,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/dolittle-interaction/javascript.components.aurelia.git"
+        "url": "git+https://github.com/dolittle-interaction/fluentui.aurelia.git"
     },
     "author": "",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/dolittle-interaction/javascript.components.aurelia/issues"
+        "url": "https://github.com/dolittle/home/issues"
     },
-    "homepage": "https://github.com/dolittle-interaction/javascript.components.aurelia#readme",
+    "homepage": "https://github.com/dolittle-interaction/fluentui.aurelia#readme",
     "dependencies": {
         "aurelia-framework": "^1.3.1",
         "aurelia-pal": "^1.8.2",
