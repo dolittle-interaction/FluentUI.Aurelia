@@ -1,7 +1,9 @@
 # Fluent UI for Aurelia
 
-This project is a wrapper of the official [React components for Fluent UI from Microsoft](https://developer.microsoft.com/en-us/fabric#/controls/web).
-Enabling them to be idiomatically used in Aurelia.
+[![Build Status](https://dolittle.visualstudio.com/Dolittle%20open-source%20repositories/_apis/build/status/dolittle-interaction.FluentUI.Aurelia?branchName=master)](https://dolittle.visualstudio.com/Dolittle%20open-source%20repositories/_build/latest?definitionId=72&branchName=master)
+
+This project is a wrapper of the official [React components for Fluent UI from Microsoft](https://developer.microsoft.com/en-us/fabric#/controls/web)
+bringing it to [Aurelia](https://aurelia.io).
 
 ## Using
 
