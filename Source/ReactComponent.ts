@@ -8,11 +8,14 @@ import { inlineView } from 'aurelia-framework';
 
 import { ComponentBindables } from './ComponentBindables';
 
+import { ReactStateWrapper } from './ReactStateWrapper';
+
 type Constructor<T extends {} = {}> = new (...args: any[]) => T;
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export abstract class ReactComponent<T extends React.Component<TProps, any>, TProps> {
-    static propertiesSet: false;
+    private _actualComponent: ReactStateWrapper | undefined;
+    //React.Component<TProps, any, any> | undefined;
 
     static bindables<TProps>(properties: TProps) {
         ComponentBindables.configureFor(this, properties);
@@ -28,12 +31,24 @@ export abstract class ReactComponent<T extends React.Component<TProps, any>, TPr
         ReactDom.unmountComponentAtNode(this._element);
     }
 
+    propertyChanged(property: string, newValue: any) {
+        const state: any = {};
+        state[property] = newValue;
+        (this as any)[property] = newValue;
+        this._actualComponent?.setState(state);
+    }
+
     attached() {
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
         const properties = ComponentBindables.getFor((this as any).constructor);
-        const reactElement = React.createElement(this._type, properties);
-        const reactComponent = ReactDom.render(reactElement, container);
+
+        //properties.text = (this as any)['text'];
+        const newProperties = JSON.parse(JSON.stringify(properties));
+        newProperties._componentType = this._type;
+
+        const reactElement = React.createElement(ReactStateWrapper, newProperties);
+        this._actualComponent = ReactDom.render(reactElement, container);
     }
 }

@@ -5,4 +5,11 @@ import { autoinject } from 'aurelia-dependency-injection';
 
 @autoinject
 export class Index {
+    textForButton: string = '';
+
+    constructor() {
+        setTimeout(() => {
+            this.textForButton = 'Blah blah';
+        }, 2000);
+    }
 }
