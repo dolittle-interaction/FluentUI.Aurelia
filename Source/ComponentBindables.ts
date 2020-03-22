@@ -13,12 +13,16 @@ export class ComponentBindables {
         propertiesPerTarget.set(target, properties);
 
         const propertyNames = Object.getOwnPropertyNames(properties);
+        console.log(propertyNames);
+
         propertyNames.forEach((property) => {
-            bindable({
-                name: property,
-                attribute: camelToKebab(property),
-                defaultBindingMode: bindingMode.twoWay
-            })(target);
+            try {
+                bindable({
+                    name: property,
+                    attribute: camelToKebab(property),
+                    defaultBindingMode: bindingMode.twoWay
+                })(target);
+            } catch { }
         });
     }
 
