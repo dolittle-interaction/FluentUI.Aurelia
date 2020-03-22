@@ -36,6 +36,17 @@ $ yarn
 
 At the root of the project.
 
+## Building
+
+Both for publishing and for working locally one needs to build on change. This can be done by doing:
+
+```shell
+$ yarn build
+```
+
+For VSCode users there is a default [tasks.json](./vscode/tasks.json) file with a default build task.
+This means you can use the default keystroke for building (CMD+SHIFT+B on Mac, CTRL+SHIFT+B on Windows/Linux).
+
 ## Components Gallery
 
 The purpose of the components gallery is to enable a simple place to go to for reference on how to use a component.
@@ -47,11 +58,10 @@ $ yarn start
 ```
 
 This will start the Webpack DevServer and it will react to any changes, also those happening from the build.
+It depends on the package in `Source` having been built first.
 
-## Building
+## Issues and Contributing
 
-Both for publishing and for working locally one needs to build on change. This can be done by doing:
+To learn how to contribute please read our [contributing](https://dolittle.io/contributing/) guide.
 
-```shell
-$ yarn build
-```
+File issues to our [Home](https://github.com/dolittle/Home/issues) repository.
