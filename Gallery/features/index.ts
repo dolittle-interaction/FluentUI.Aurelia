@@ -8,8 +8,9 @@ export class Index {
     textForButton: string = '';
 
     constructor() {
-        setTimeout(() => {
-            this.textForButton = 'Blah blah';
-        }, 2000);
+        let counter = 0;
+        setInterval(() => {
+            this.textForButton = `Blah blah ${counter++}`;
+        }, 1000);
     }
 }
