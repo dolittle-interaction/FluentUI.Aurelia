@@ -4,7 +4,6 @@
         "rootDir": ".",
         "baseUrl": "./features",
         "sourceRoot": "./features",
-        "allowJs": true,
         "declaration": false,
     }
 }
