@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ComponentBindables } from '../ComponentBindables';
+import { ComponentProperties } from '../ComponentProperties';
 
 describe('when configuring for and getting', () => {
     const target = 'MyTarget';
@@ -10,9 +10,9 @@ describe('when configuring for and getting', () => {
         second: 42
     };
 
-    ComponentBindables.configureFor(target, properties);
+    ComponentProperties.configureFor(target, properties);
 
-    const resultingProperties = ComponentBindables.getFor(target);
+    const resultingProperties = ComponentProperties.getFor(target);
 
     it('should return same properties', () => resultingProperties.should.equal(properties));
 });

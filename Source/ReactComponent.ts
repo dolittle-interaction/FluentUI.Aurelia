@@ -6,7 +6,8 @@ import * as ReactDom from 'react-dom';
 
 import { inlineView } from 'aurelia-framework';
 
-import { ComponentBindables } from './ComponentBindables';
+import { ComponentProperties } from './ComponentProperties';
+import { ComponentState } from './ComponentState';
 
 import { ReactStateWrapper } from './ReactStateWrapper';
 
@@ -15,10 +16,9 @@ type Constructor<T extends {} = {}> = new (...args: any[]) => T;
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export abstract class ReactComponent<T extends React.Component<TProps, any>, TProps> {
     private _actualComponent: ReactStateWrapper | undefined;
-    //React.Component<TProps, any, any> | undefined;
 
-    static bindables<TProps>(properties: TProps) {
-        ComponentBindables.configureFor(this, properties);
+    static properties<TProps>(properties: TProps) {
+        ComponentProperties.configureFor(this, properties);
     }
 
     uniqueIdentifier: string;
@@ -42,13 +42,10 @@ export abstract class ReactComponent<T extends React.Component<TProps, any>, TPr
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
-        const properties = ComponentBindables.getFor((this as any).constructor);
+        const properties = ComponentState.createFor(this);
+        properties._componentType = this._type;
 
-        //properties.text = (this as any)['text'];
-        const newProperties = JSON.parse(JSON.stringify(properties));
-        newProperties._componentType = this._type;
-
-        const reactElement = React.createElement(ReactStateWrapper, newProperties);
+        const reactElement = React.createElement(ReactStateWrapper, properties);
         this._actualComponent = ReactDom.render(reactElement, container);
     }
 }

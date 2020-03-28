@@ -16,9 +16,9 @@ export class AuPrimaryButton extends ReactComponent<PrimaryButton, IButtonProps>
     }
 }
 
-AuPrimaryButton.bindables<IButtonProps>({
-    href: '',
-    text: 'Something',
-    primary: <any> {},
-    onClick: () => alert('hello')
+AuPrimaryButton.properties<IButtonProps>({
+    href: {} as any,
+    text: {} as any,
+    primary: {} as any,
+    onClick: () => {}
 });

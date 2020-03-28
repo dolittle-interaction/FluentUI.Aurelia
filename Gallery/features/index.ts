@@ -13,4 +13,12 @@ export class Index {
             this.textForButton = `Blah blah ${counter++}`;
         }, 1000);
     }
+
+    clicked() {
+        alert('clicked');
+    }
+
+    otherClicked() {
+        alert('Other clicked');
+    }
 }

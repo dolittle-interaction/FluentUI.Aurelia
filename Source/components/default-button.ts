@@ -14,9 +14,9 @@ export class AuDefaultButton extends ReactComponent<DefaultButton, IButtonProps>
     }
 }
 
-AuDefaultButton.bindables<IButtonProps>({
-    href: '',
-    text: 'Default',
-    primary: false,
-    onClick: () => alert('hello')
+AuDefaultButton.properties<IButtonProps>({
+    href: {} as any,
+    text: {} as any,
+    primary: {} as any,
+    onClick: () => {}
 });
