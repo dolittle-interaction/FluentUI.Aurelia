@@ -6,7 +6,12 @@ import { PLATFORM } from 'aurelia-pal';
 
 export function configure(aurelia: FrameworkConfiguration, config: any) {
     aurelia.globalResources([
-        PLATFORM.moduleName('./components/default-button'),
-        PLATFORM.moduleName('./components/primary-button')
+
+        // Basic
+        PLATFORM.moduleName('./components/basic/default-button'),
+        PLATFORM.moduleName('./components/basic/primary-button'),
+
+        // Items
+        PLATFORM.moduleName('./components/items/details-list'),
     ]);
 }

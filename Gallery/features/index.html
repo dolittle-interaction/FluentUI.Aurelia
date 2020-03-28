@@ -3,8 +3,17 @@
 <template>
     <require from="./index.scss"></require>
 
+    <!--
     <primary-button text.bind="textForButton" click.delegate="clicked()"></primary-button>
     <primary-button text="Blah" click.delegate="otherClicked()"></primary-button>
     <default-button text="First"></default-button>
     <default-button text="Second"></default-button>
+    -->
+
+    <details-list items.bind="items">
+        <columns>
+            <column key="first" name="First Header" field-name="first" min-width="100" max-width="200" is-resizable="true"></column>
+            <column key="second" name="Second header" field-name="second" min-width="100" max-width="200" is-resizable="true"></column>
+        </columns>
+    </details-list>
 </template>

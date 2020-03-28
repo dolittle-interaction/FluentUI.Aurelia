@@ -6,11 +6,24 @@ import { autoinject } from 'aurelia-dependency-injection';
 @autoinject
 export class Index {
     textForButton: string = '';
+    items: any[] = [{
+        first: 'First column',
+        second: 'Second column',
+    }, {
+        first: 'First column',
+        second: 'Second column',
+    }];
 
     constructor() {
         let counter = 0;
         setInterval(() => {
-            this.textForButton = `Blah blah ${counter++}`;
+            counter++;
+            this.textForButton = `Blah blah ${counter}`;
+
+            this.items.push({
+                first: `First ${counter}`,
+                second: `Second ${counter * 2}`
+            });
         }, 1000);
     }
 

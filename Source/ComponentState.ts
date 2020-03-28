@@ -3,6 +3,7 @@
 
 import { ComponentProperties } from './ComponentProperties';
 import { ComponentProperty } from './ComponentProperty';
+import { parseValue } from './parseValue';
 
 export class ComponentState {
 
@@ -17,7 +18,7 @@ export class ComponentState {
                     state[property.reactName] = targetValue.bind(target);
                 }
             } else if (targetValue) {
-                state[property.reactName] = targetValue;
+                state[property.reactName] = parseValue(targetValue);
             }
         });
 

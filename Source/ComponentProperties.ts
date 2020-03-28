@@ -35,7 +35,7 @@ export class ComponentProperties {
         });
     }
 
-    static getFor(target: any): any {
-        return propertiesPerTarget.get(target);
+    static getFor(target: any): ComponentProperty[] {
+        return propertiesPerTarget.get(target) || [];
     }
 }
