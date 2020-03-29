@@ -2,23 +2,20 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { customElement, inject } from 'aurelia-framework';
-import { ReactComponent } from '../../ReactComponent';
 
 import { IButtonProps, CommandBarButton, IContextualMenuProps } from 'office-ui-fabric-react';
 
-import { iconProperty } from '../../iconProperty';
 import ButtonProps from './ButtonProps';
 
 import { ContextualMenuItem } from '../commands/contextual-menu-item';
 import { CallbackItemHandlingStrategy } from '../../CallbackItemHandlingStrategy';
 import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
 import { IComponent } from '../../IComponent';
-
+import { ButtonBase } from './ButtonBase';
 
 @inject(Element)
-@iconProperty()
 @customElement('command-bar-button')
-export class AuCommandBarButton extends ReactComponent<CommandBarButton, IButtonProps> implements IButtonProps {
+export class AuCommandBarButton extends ButtonBase<CommandBarButton> {
     hidden: boolean = false;
 
     constructor(element: Element) {

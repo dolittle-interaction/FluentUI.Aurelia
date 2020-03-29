@@ -2,16 +2,14 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { customElement, inject } from 'aurelia-framework';
-import { ReactComponent } from '../../ReactComponent';
 
 import { IButtonProps, CompoundButton } from 'office-ui-fabric-react';
+import { ButtonBase } from './ButtonBase';
 import ButtonProps from './ButtonProps';
 
 @inject(Element)
 @customElement('compound-button')
-export class AuCompoundButton extends ReactComponent<CompoundButton, IButtonProps> implements IButtonProps {
-    hidden: boolean = false;
-
+export class AuCompoundButton extends ButtonBase<CompoundButton> {
     constructor(element: Element) {
         super(element, CompoundButton);
     }
