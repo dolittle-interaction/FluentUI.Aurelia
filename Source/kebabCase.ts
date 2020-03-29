@@ -1,4 +1,4 @@
-export function camelToKebab(input: string): string {
+export function kebabCase(input: string): string {
     // Matches all places where a two upper case chars followed by a lower case char are and split them with an hyphen
     return input
         .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
