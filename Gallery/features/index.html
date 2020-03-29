@@ -3,22 +3,24 @@
 <template>
     <require from="./index.scss"></require>
 
-    
     <!--<primary-button text.bind="textForButton" checked="true" click.delegate="clicked()" secondary-text="This is the secondary text"></primary-button>-->
     <!--<compound-button text.bind="textForButton" checked="true" click.delegate="clicked()" secondary-text="This is the secondary text"></compound-button>-->
 
-    
+
     <command-bar-button text="New item" icon="Add">
-        <contextual-menu-item key="emailMessage" text="Email message"></contextual-menu-item>
+        <contextual-menu-item key="emailMessage" text="Email message" click.delegate="clicked()"></contextual-menu-item>
         <contextual-menu-item key="calendarItem" text="Calendar item"></contextual-menu-item>
     </command-bar-button>
-    
 
+
+
+    <!--
     <a href="#" ref="link" click.delegate="toggleContextMenu()">Click for context menu</a>
     <contextual-menu visible.bind="contextMenuVisible" target="link">
         <contextual-menu-item key="emailMessage" text="Email message" click.delegate="clicked()"></contextual-menu-item>
         <contextual-menu-item key="calendarItem" text="Calendar item"></contextual-menu-item>
     </contextual-menu>
+    -->
 
     <!--<default-button text="First" checked="true"></default-button>-->
     <!--
@@ -29,9 +31,8 @@
 
     <!--
     <details-list items.bind="items">
-        <columns>
-            <column key="first" name="First Header" field-name="first" min-width="100" max-width="200" is-resizable="true"></column>
-            <column key="second" name="Second header" field-name="second" min-width="100" max-width="200" is-resizable="true"></column>
-        </columns>
-    </details-list>-->
+        <column key="first" name="First Header" field-name="first" min-width="100" max-width="200" is-resizable="true"></column>
+        <column key="second" name="Second header" field-name="second" min-width="100" max-width="200" is-resizable="true"></column>
+    </details-list>
+    -->
 </template>

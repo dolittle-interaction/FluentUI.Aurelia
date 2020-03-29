@@ -7,11 +7,12 @@ import { ReactComponent } from '../../ReactComponent';
 import { IButtonProps, CommandBarButton, IContextualMenuProps } from 'office-ui-fabric-react';
 
 import { iconProperty } from '../../iconProperty';
-import { childCollection } from '../../childCollection';
 import ButtonProps from './ButtonProps';
 
-import { ItemSelector } from '../../ItemSelector';
 import { ContextualMenuItem } from '../commands/contextual-menu-item';
+import { CallbackItemHandlingStrategy } from '../../CallbackItemHandlingStrategy';
+import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
+import { IComponent } from '../../IComponent';
 
 
 @inject(Element)
@@ -24,11 +25,20 @@ export class AuCommandBarButton extends ReactComponent<CommandBarButton, IButton
         super(element, CommandBarButton);
     }
 
-    getItemSelectors(): ItemSelector[] {
-        return[{
-            targetProperty: 'items',
-            type: ContextualMenuItem
-        }];
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
+        return [new CallbackItemHandlingStrategy(ContextualMenuItem, this.handleContextualMenuItem)];
+    }
+
+    private handleContextualMenuItem(target: IComponent, item: any) {
+        const buttonProps = this as IButtonProps;
+        if (!buttonProps.menuProps) {
+            buttonProps.menuProps = {
+                items: []
+            } as IContextualMenuProps;
+        }
+
+        buttonProps.menuProps.items.push(item);
+        target.propertyChanged('menuProps', buttonProps.menuProps);
     }
 }
 

@@ -12,13 +12,13 @@ import { ComponentState } from './ComponentState';
 import { ReactStateWrapper } from './ReactStateWrapper';
 import { Constructor } from './Constructor';
 import { uniqueIdentifier } from './uniqueIdentifier';
-import { ItemSelector } from './ItemSelector';
-import { parseValue } from './parseValue';
+import { IItemHandlingStrategy } from './IItemHandlingStrategy';
+import { IComponent } from './IComponent';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
-export abstract class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> {
+export abstract class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> implements IComponent {
     private _actualComponent: ReactStateWrapper | undefined;
-    private _itemSelectors: ItemSelector[] = [];
+    private _itemHandlingStrategies: IItemHandlingStrategy[] = [];
 
     static properties<TProps>(properties: TProps) {
         ComponentProperties.configureFor(this, properties);
@@ -35,7 +35,21 @@ export abstract class ReactComponent<T extends React.Component<TProps, any> | Re
         }
 
         this.uniqueIdentifier = uniqueIdentifier();
-        this._itemSelectors = this.getItemSelectors();
+        this._itemHandlingStrategies = this.getItemHandlingStrategies();
+    }
+
+    beforeRender(properties: TProps) {
+    }
+
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
+        return [];
+    }
+
+    addChildItem(itemViewModel: any, item: any) {
+        const filtered = this._itemHandlingStrategies.filter(_ => _.type === itemViewModel.constructor);
+        if (filtered.length === 1) {
+            filtered[0].handle(this, item);
+        }
     }
 
     created(owningView: View, view: View) {
@@ -58,41 +72,6 @@ export abstract class ReactComponent<T extends React.Component<TProps, any> | Re
         ReactDom.unmountComponentAtNode(this._element);
     }
 
-    propertyChanged(property: string, newValue: any) {
-        const state: any = {};
-        state[property] = newValue;
-        (this as any)[property] = newValue;
-        this.handleVisibilityProperty(state);
-        this._actualComponent?.setState(state);
-    }
-
-    beforeRender(properties: TProps) {
-    }
-
-    getItemSelectors(): ItemSelector[] {
-        return [];
-    }
-
-    addItem(itemViewModel: any, item: any) {
-        const filtered = this._itemSelectors.filter(_ => _.type === itemViewModel.constructor);
-        if (filtered.length === 1) {
-            const itemSelector = filtered[0];
-
-            const thisAsAny = this as any;
-
-            if (!thisAsAny[itemSelector.targetProperty]) {
-                thisAsAny[itemSelector.targetProperty] = [];
-            }
-            if (Object.prototype.toString.call(thisAsAny[itemSelector.targetProperty]) !== '[object Array]') {
-                throw new Error(`Property '${itemSelector.targetProperty}' on '${itemSelector.type}' is not an array. Can't add items.`);
-            }
-
-            thisAsAny[itemSelector.targetProperty].push(item);
-
-            this.propertyChanged(itemSelector.targetProperty, thisAsAny[itemSelector.targetProperty]);
-        }
-    }
-
     attached() {
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
@@ -106,6 +85,14 @@ export abstract class ReactComponent<T extends React.Component<TProps, any> | Re
 
         const reactElement = React.createElement(ReactStateWrapper, properties);
         this._actualComponent = ReactDom.render(reactElement, container);
+    }
+
+    propertyChanged(property: string, newValue: any) {
+        const state: any = {};
+        state[property] = newValue;
+        (this as any)[property] = newValue;
+        this.handleVisibilityProperty(state);
+        this._actualComponent?.setState(state);
     }
 
     private handleVisibilityProperty(properties: any) {

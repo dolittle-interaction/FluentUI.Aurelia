@@ -4,6 +4,7 @@
 import { ComponentProperties } from './ComponentProperties';
 import { uniqueIdentifier } from './uniqueIdentifier';
 import { ComponentState } from './ComponentState';
+import { IComponent } from './IComponent';
 
 export abstract class ReactItem<TItem> {
     static properties<TProps>(properties: TProps) {
@@ -20,10 +21,10 @@ export abstract class ReactItem<TItem> {
     }
 
     attached() {
-        const viewModel = (this._element.parentElement as any)?.au?.controller?.viewModel;
-        if (viewModel && viewModel.addItem) {
+        const viewModel = (this._element.parentElement as any)?.au?.controller?.viewModel as IComponent;
+        if (viewModel) {
             const properties = ComponentState.createFor(this);
-            viewModel.addItem(this, properties);
+            viewModel.addChildItem(this, properties);
         }
     }
 }

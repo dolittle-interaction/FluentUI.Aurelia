@@ -18,6 +18,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/commands/contextual-menu-item'),
 
         // Items
+        PLATFORM.moduleName('./components/items/column'),
         PLATFORM.moduleName('./components/items/details-list'),
     ]);
 }

@@ -7,7 +7,7 @@ import { customElement, inject } from 'aurelia-framework';
 import { ReactComponent } from '../../ReactComponent';
 
 import { IContextualMenuProps, IContextualMenuItem, ContextualMenu } from 'office-ui-fabric-react';
-import { ItemSelector } from '../../ItemSelector';
+import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
 import { ContextualMenuItem } from './contextual-menu-item';
 
 @inject(Element)
@@ -20,11 +20,8 @@ export class AuContextualMenu extends ReactComponent<React.FunctionComponent<ICo
         super(element, ContextualMenu.prototype);
     }
 
-    getItemSelectors(): ItemSelector[] {
-        return[{
-            targetProperty: 'items',
-            type: ContextualMenuItem
-        }];
+    getItemHandlingStrategies(): TargetPropertyItemHandlingStrategy[] {
+        return [new TargetPropertyItemHandlingStrategy(ContextualMenuItem, 'items')];
     }
 }
 

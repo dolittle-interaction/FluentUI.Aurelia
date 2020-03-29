@@ -5,17 +5,22 @@ import * as React from 'react';
 
 import { customElement, inject } from 'aurelia-framework';
 
-import { childCollection } from '../../childCollection';
 import { ReactComponent } from '../../ReactComponent';
 
-import { DetailsList, IDetailsListProps } from 'office-ui-fabric-react';
+import { DetailsList, IDetailsListProps, IColumn } from 'office-ui-fabric-react';
+import { Column } from './column';
+import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
+import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
 
 @inject(Element)
 @customElement('details-list')
-@childCollection('columns', 'column', 'columns')
 export class AuDetailsList extends ReactComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
     constructor(element: Element) {
         super(element, DetailsList.prototype);
+    }
+
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
+        return[new TargetPropertyItemHandlingStrategy(Column, 'columns')];
     }
 }
 
