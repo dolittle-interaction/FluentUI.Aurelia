@@ -37,7 +37,7 @@ export class AuCommandBarButton extends ReactComponent<CommandBarButton, IButton
             } as IContextualMenuProps;
         }
 
-        buttonProps.menuProps.items.push(item);
+        buttonProps.menuProps.items = [...buttonProps.menuProps.items, item];
         target.propertyChanged('menuProps', buttonProps.menuProps);
     }
 }

@@ -22,7 +22,7 @@ export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy
             throw new Error(`Property '${this.targetProperty}' on '${this.type}' is not an array. Can't add items.`);
         }
 
-        targetAsAny[this.targetProperty].push(item);
-        target.propertyChanged(this.targetProperty, targetAsAny[this.targetProperty]);
+        const items = [...targetAsAny[this.targetProperty], item];
+        target.propertyChanged(this.targetProperty, items);
     }
 }
