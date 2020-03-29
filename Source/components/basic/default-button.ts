@@ -4,7 +4,8 @@
 import { customElement, inject } from 'aurelia-framework';
 import { ReactComponent } from '../../ReactComponent';
 
-import { DefaultButton, IButtonProps } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton, IButtonProps } from 'office-ui-fabric-react';
+import ButtonProps from './ButtonProps';
 
 @inject(Element)
 @customElement('default-button')
@@ -14,9 +15,4 @@ export class AuDefaultButton extends ReactComponent<DefaultButton, IButtonProps>
     }
 }
 
-AuDefaultButton.properties<IButtonProps>({
-    href: {} as any,
-    text: {} as any,
-    primary: {} as any,
-    onClick: () => {}
-});
+AuDefaultButton.properties<IButtonProps>(ButtonProps);
