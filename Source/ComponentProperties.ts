@@ -3,7 +3,7 @@
 
 import { bindable, bindingMode } from 'aurelia-framework';
 
-import { camelToKebab } from './camelToKebab';
+import { kebabCase } from './kebabCase';
 import { ComponentProperty } from './ComponentProperty';
 
 const propertiesPerTarget: Map<any, ComponentProperty[]> = new Map<any, ComponentProperty[]>();
@@ -20,7 +20,7 @@ export class ComponentProperties {
                 isFunction = true;
             }
 
-            return new ComponentProperty(name, camelToKebab(name), reactName, isFunction);
+            return new ComponentProperty(name, kebabCase(name), reactName, isFunction);
         });
         propertiesPerTarget.set(target, componentProperties);
 
