@@ -9,6 +9,8 @@ import environment from './environment';
 export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
+        .feature(PLATFORM.moduleName('resources/index'))
+        .plugin(PLATFORM.moduleName('aurelia-animator-css'))
         .plugin(PLATFORM.moduleName('@dolittle/fluentui.aurelia'));
 
     if (environment.debug) {

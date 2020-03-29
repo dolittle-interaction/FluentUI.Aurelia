@@ -16,13 +16,16 @@
     "devDependencies": {
       "@dolittle/typescript.webpack.aurelia": "^1.1.0",
       "dotenv": "^6.1.0",
-      "webpack-notifier": "^1.7.0"
+      "webpack-notifier": "^1.7.0",
+      "office-ui-fabric-core": "^11.0.0"
     },
     "dependencies": {
       "aurelia-bootstrapper": "^2.3.3",
       "aurelia-framework": "^1.3.1",
       "aurelia-pal": "^1.8.2",
-      "@dolittle/fluentui.aurelia": "^1.0.0"
+      "aurelia-animator-css": "^1.0.4",
+      "@dolittle/fluentui.aurelia": "^1.0.0",
+      "@uifabric/icons": "7.3.20"
     }
   }
   
