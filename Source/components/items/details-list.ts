@@ -8,7 +8,7 @@ import { customElement, inject } from 'aurelia-framework';
 import { childCollection } from '../../childCollection';
 import { ReactComponent } from '../../ReactComponent';
 
-import { DetailsList, IDetailsListProps } from 'office-ui-fabric-react/lib/DetailsList';
+import { DetailsList, IDetailsListProps } from 'office-ui-fabric-react';
 
 @inject(Element)
 @customElement('details-list')
