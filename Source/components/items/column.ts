@@ -3,13 +3,13 @@
 
 import { IColumn } from 'office-ui-fabric-react';
 
-import { ReactItem } from '../../ReactItem';
+import { ReactChildItem } from '../../ReactChildItem';
 import { autoinject, noView, customElement } from 'aurelia-framework';
 
 @autoinject
 @noView
 @customElement('column')
-export class Column extends ReactItem<IColumn> {
+export class Column extends ReactChildItem<IColumn> {
     constructor(element: Element) {
         super(element);
     }
