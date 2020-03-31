@@ -11,54 +11,25 @@ import { ComponentState } from './ComponentState';
 
 import { ReactStateWrapper } from './ReactStateWrapper';
 import { Constructor } from './Constructor';
-import { uniqueIdentifier } from './uniqueIdentifier';
-import { IItemHandlingStrategy } from './IItemHandlingStrategy';
-import { IComponent } from './IComponent';
-import { PropertyConverter } from './PropertyConverter';
 
-import { IIconProps } from 'office-ui-fabric-react';
+import { ReactBase } from './ReactBase';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
-export abstract class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> implements IComponent {
+export class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase {
     private _actualComponent: ReactStateWrapper | undefined;
-    private _itemHandlingStrategies: IItemHandlingStrategy[] = [];
-    private _propertyConverters: PropertyConverter[] = [];
-
-    static properties<TProps>(properties: TProps) {
-        ComponentProperties.configureFor(this, properties);
-    }
-
-    uniqueIdentifier: string;
 
     @bindable
     visible: boolean = true;
 
     constructor(private _element: Element, private _type: Constructor<T>) {
+        super();
+
         if (typeof _type === 'object') {
             this._type = (_type as any).constructor;
         }
-
-        this.uniqueIdentifier = uniqueIdentifier();
-        this._itemHandlingStrategies = this.getItemHandlingStrategies();
-        this._propertyConverters = this.getPropertyConverters();
     }
 
     beforeRender(properties: TProps) {
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [];
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [];
-    }
-
-    addChildItem(itemViewModel: any, item: any) {
-        const filtered = this._itemHandlingStrategies.filter(_ => _.type === itemViewModel.constructor);
-        if (filtered.length === 1) {
-            filtered[0].handle(this, item);
-        }
     }
 
     created(owningView: View, view: View) {
@@ -101,22 +72,10 @@ export abstract class ReactComponent<T extends React.Component<TProps, any> | Re
         state[property] = newValue;
         (this as any)[property] = newValue;
         this.handleVisibilityProperty(state);
-
-        const filtered = this._propertyConverters.filter((converter) => converter.propertyName === property);
-        if (filtered.length === 1) {
-            state[filtered[0].targetPropertyName] = filtered[0].typeConverter.convert(property);
-        }
-
+        this.handlePropertyConvertersForState(property, newValue, state);
         this._actualComponent?.setState(state);
     }
 
-    private handlePropertyConverters() {
-        const thisAsAny = this as any;
-        this._propertyConverters.forEach((converter) => {
-            const converted = converter.typeConverter.convert(thisAsAny[converter.propertyName]);
-            thisAsAny[converter.targetPropertyName] = converted;
-        });
-    }
 
     private handleVisibilityProperty(properties: any) {
         if (properties.hasOwnProperty('visible')) {
