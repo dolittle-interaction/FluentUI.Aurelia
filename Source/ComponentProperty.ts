@@ -6,11 +6,13 @@ export class ComponentProperty {
     readonly attribute: string;
     readonly reactName: string;
     readonly isFunction: boolean;
+    readonly isEvent: boolean;
 
-    constructor(name: string, attribute: string, reactName: string, isFunction: boolean) {
+    constructor(name: string, attribute: string, reactName: string, isFunction: boolean, isEvent: boolean) {
         this.name = name;
         this.attribute = attribute;
         this.reactName = reactName;
         this.isFunction = isFunction;
+        this.isEvent = isEvent;
     }
 }

@@ -24,7 +24,6 @@ export class ContextualMenuItem extends ReactChildItem<IContextualMenuItem> {
     getPropertyConverters(): PropertyConverter[] {
         return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
     }
-
 }
 
 ContextualMenuItem.properties<IContextualMenuItem>({

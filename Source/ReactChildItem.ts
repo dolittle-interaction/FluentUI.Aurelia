@@ -4,8 +4,9 @@
 import { ComponentState } from './ComponentState';
 import { IComponent } from './IComponent';
 import { ReactBase } from './ReactBase';
-import { Constructor } from './Constructor';
+import { noView } from 'aurelia-framework';
 
+@noView
 export class ReactChildItem<TItem> extends ReactBase {
     constructor(private _element: Element) {
         super();
@@ -18,7 +19,7 @@ export class ReactChildItem<TItem> extends ReactBase {
         this.handlePropertyConverters();
         const viewModel = (this._element.parentElement as any)?.au?.controller?.viewModel as IComponent;
         if (viewModel) {
-            const properties = ComponentState.createFor(this);
+            const properties = ComponentState.createFor(this, this._element, true);
             viewModel.addChildItem(this, properties);
         }
     }

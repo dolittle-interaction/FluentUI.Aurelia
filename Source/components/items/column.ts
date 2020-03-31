@@ -4,10 +4,9 @@
 import { IColumn } from 'office-ui-fabric-react';
 
 import { ReactChildItem } from '../../ReactChildItem';
-import { autoinject, noView, customElement } from 'aurelia-framework';
+import { autoinject, customElement } from 'aurelia-framework';
 
 @autoinject
-@noView
 @customElement('column')
 export class Column extends ReactChildItem<IColumn> {
     constructor(element: Element) {

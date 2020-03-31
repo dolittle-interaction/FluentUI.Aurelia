@@ -15,12 +15,14 @@ export class ComponentProperties {
         const componentProperties = propertyNames.map((name) => {
             const reactName = name;
             let isFunction = false;
+            let isEvent = false;
             if (name.indexOf('on') === 0) {
                 name = `${name[2].toLowerCase()}${name.substr(3)}`;
                 isFunction = true;
+                isEvent = true;
             }
 
-            return new ComponentProperty(name, kebabCase(name), reactName, isFunction);
+            return new ComponentProperty(name, kebabCase(name), reactName, isFunction, isEvent);
         });
         propertiesPerTarget.set(target, componentProperties);
 

@@ -32,22 +32,6 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
     beforeRender(properties: TProps) {
     }
 
-    created(owningView: View, view: View) {
-        const properties = ComponentProperties.getFor((this as any).constructor);
-
-        if ((owningView as any).hasOwnProperty('resources')) {
-            const resources = ((owningView as any).resources) as ViewResources;
-            const values = (resources as any).values;
-            if (values) {
-                for (const key in values) {
-                    if (properties.some((p) => p.name === key)) {
-                        (this as any)[key] = values[key];
-                    }
-                }
-            }
-        }
-    }
-
     unbind() {
         ReactDom.unmountComponentAtNode(this._element);
     }
@@ -56,7 +40,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
-        const properties = ComponentState.createFor(this);
+        const properties = ComponentState.createFor(this, this._element);
         properties._componentType = this._type;
 
         this.beforeRender(properties);
