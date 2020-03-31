@@ -4,15 +4,27 @@
 import { IContextualMenuItem } from 'office-ui-fabric-react';
 
 import { ReactItem } from '../../ReactItem';
-import { autoinject, noView, customElement } from 'aurelia-framework';
+
+import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
+
+import { PropertyConverter } from '../../PropertyConverter';
+import { IconTypeConverter } from '../../IconTypeConverter';
 
 @autoinject
 @noView
 @customElement('contextual-menu-item')
 export class ContextualMenuItem extends ReactItem<IContextualMenuItem> {
+    @bindable
+    icon: string = '';
+
     constructor(element: Element) {
         super(element);
     }
+
+    getPropertyConverters(): PropertyConverter[] {
+        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
+    }
+
 }
 
 ContextualMenuItem.properties<IContextualMenuItem>({
