@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, autoinject } from 'aurelia-framework';
 
 import { ReactComponent } from '../../ReactComponent';
 
@@ -12,7 +12,7 @@ import { Column } from './column';
 import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
 import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
 
-@inject(Element)
+@autoinject
 @customElement('details-list')
 export class AuDetailsList extends ReactComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
     constructor(element: Element) {
