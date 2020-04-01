@@ -4,10 +4,14 @@
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
 
 export interface IComponent {
+    isRenderRoot: boolean;
+    renderRoot: IComponent;
 
     getItemHandlingStrategies(): IItemHandlingStrategy[];
 
     addChildItem(itemViewModel: any, item: any): void;
 
     propertyChanged(property: string, newValue: any): void;
+
+    childStateChanged(): void;
 }

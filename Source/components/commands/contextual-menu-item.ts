@@ -13,7 +13,9 @@ import { IconTypeConverter } from '../../IconTypeConverter';
 @autoinject
 @noView
 @customElement('contextual-menu-item')
-export class ContextualMenuItem extends ReactChildItem<IContextualMenuItem> {
+export class ContextualMenuItem extends ReactChildItem<IContextualMenuItem> implements IContextualMenuItem {
+    key: string = '';
+
     @bindable
     icon: string = '';
 

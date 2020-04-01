@@ -3,14 +3,16 @@
 
 import * as React from 'react';
 
-import { customElement, inject } from 'aurelia-framework';
+import { customElement, autoinject } from 'aurelia-framework';
 import { ReactComponent } from '../../ReactComponent';
 
 import { IContextualMenuProps, IContextualMenuItem, ContextualMenu } from 'office-ui-fabric-react';
 import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
+import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
+
 import { ContextualMenuItem } from './contextual-menu-item';
 
-@inject(Element)
+@autoinject
 @customElement('contextual-menu')
 export class AuContextualMenu extends ReactComponent<React.FunctionComponent<IContextualMenuProps>, IContextualMenuProps> implements IContextualMenuProps {
     hidden: boolean = false;
@@ -20,7 +22,7 @@ export class AuContextualMenu extends ReactComponent<React.FunctionComponent<ICo
         super(element, ContextualMenu.prototype);
     }
 
-    getItemHandlingStrategies(): TargetPropertyItemHandlingStrategy[] {
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
         return [new TargetPropertyItemHandlingStrategy(ContextualMenuItem, 'items')];
     }
 }

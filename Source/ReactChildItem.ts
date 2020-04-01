@@ -9,18 +9,29 @@ import { noView } from 'aurelia-framework';
 @noView
 export class ReactChildItem<TItem> extends ReactBase {
     constructor(private _element: Element) {
-        super();
+        super(_element);
     }
 
     propertyChanged(property: string, newValue: any) {
+        (this as any)[property] = newValue;
     }
 
     attached() {
+        super.attached();
         this.handlePropertyConverters();
-        const viewModel = (this._element.parentElement as any)?.au?.controller?.viewModel as IComponent;
+        let parentElement = this._element.parentElement as any;
+        if (parentElement.tagName.toLowerCase() === 'au-content') {
+            parentElement = parentElement.parentElement;
+        }
+
+        const viewModel = (parentElement as any)?.au?.controller?.viewModel as IComponent;
         if (viewModel) {
             const properties = ComponentState.createFor(this, this._element, true);
-            viewModel.addChildItem(this, properties);
+            for (const property in properties) {
+                (this as any)[property] = properties[property];
+            }
+
+            viewModel.addChildItem(this, this);
         }
     }
 }

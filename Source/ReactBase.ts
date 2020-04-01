@@ -16,14 +16,21 @@ export class ReactBase implements IComponent {
     private _propertyConverters: PropertyConverter[] = [];
 
     uniqueIdentifier: string;
+    isRenderRoot: boolean = false;
 
-    constructor() {
+    renderRoot: IComponent;
+
+    constructor(private _baseElement: Element) {
         this.uniqueIdentifier = uniqueIdentifier();
         this._itemHandlingStrategies = this.getItemHandlingStrategies();
         this._propertyConverters = this.getPropertyConverters();
+        this.renderRoot = this as IComponent;
     }
 
     propertyChanged(property: string, newValue: any): void {
+    }
+
+    childStateChanged(): void {
     }
 
     getPropertyConverters(): PropertyConverter[] {
@@ -36,8 +43,13 @@ export class ReactBase implements IComponent {
 
     addChildItem(itemViewModel: any, item: any) {
         const filtered = this._itemHandlingStrategies.filter(_ => _.type === itemViewModel.constructor);
+
         if (filtered.length === 1) {
             filtered[0].handle(this as IComponent, item);
+        }
+
+        if (!this.isRenderRoot) {
+            this.renderRoot.childStateChanged();
         }
     }
 
@@ -54,5 +66,19 @@ export class ReactBase implements IComponent {
         if (filtered.length === 1) {
             state[filtered[0].targetPropertyName] = filtered[0].typeConverter.convert(value);
         }
+    }
+
+    attached() {
+        let renderRoot: IComponent = this;
+        let currentElement: Element | null | undefined = this._baseElement;
+        while (renderRoot && !renderRoot.isRenderRoot) {
+            currentElement = currentElement?.parentElement;
+            if (currentElement?.tagName.toLowerCase() === 'au-content') {
+                currentElement = currentElement?.parentElement;
+            }
+
+            renderRoot = (currentElement as any)?.au?.controller?.viewModel as IComponent;
+        }
+        this.renderRoot = renderRoot;
     }
 }

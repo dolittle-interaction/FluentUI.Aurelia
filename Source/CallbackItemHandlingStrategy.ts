@@ -15,7 +15,7 @@ export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
         this.callback = callback;
     }
 
-    handle(target: any, item: any): void {
+    handle(target: IComponent, item: any): void {
         this.callback(target, item);
     }
 }

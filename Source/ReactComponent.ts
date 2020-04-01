@@ -21,8 +21,10 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
     @bindable
     visible: boolean = true;
 
+    isRenderRoot: boolean = true;
+
     constructor(private _element: Element, private _type: Constructor<T>) {
-        super();
+        super(_element);
 
         if (typeof _type === 'object') {
             this._type = (_type as any).constructor;
@@ -37,6 +39,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
     }
 
     attached() {
+        super.attached();
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
