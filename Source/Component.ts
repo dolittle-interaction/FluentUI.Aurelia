@@ -15,7 +15,7 @@ import { Constructor } from './Constructor';
 import { ReactBase } from './ReactBase';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
-export class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase {
+export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase {
     actualComponent: ReactStateWrapper | undefined;
 
     @bindable
@@ -23,7 +23,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
 
     isRenderRoot: boolean = true;
 
-    constructor(private _element: Element, private _type: Constructor<T>) {
+    constructor(private _element: Element, private _type: Constructor<TComponent>) {
         super(_element);
 
         if (typeof _type === 'object') {

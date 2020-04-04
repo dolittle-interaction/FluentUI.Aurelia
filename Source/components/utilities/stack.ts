@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { ReactComponent } from '../../ReactComponent';
+import { ContentComponent } from '../../ContentComponent';
 
 import { IStackProps, IStackItemProps, Stack } from 'office-ui-fabric-react';
 import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
@@ -13,7 +13,7 @@ import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
 
 @autoinject
 @customElement('stack')
-export class AuStack extends ReactComponent<React.FunctionComponent<IStackProps>, IStackProps> {
+export class AuStack extends ContentComponent<React.FunctionComponent<IStackProps>, IStackProps> {
     constructor(element: Element) {
         super(element, Stack.prototype);
     }

@@ -5,7 +5,8 @@ import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { ReactComponent } from '../../ReactComponent';
+import { ItemsComponent } from '../../ItemsComponent';
+
 
 import { DetailsList, IDetailsListProps, IColumn } from 'office-ui-fabric-react';
 import { Column } from './column';
@@ -14,7 +15,7 @@ import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
 
 @autoinject
 @customElement('details-list')
-export class AuDetailsList extends ReactComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
+export class AuDetailsList extends ItemsComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
     constructor(element: Element) {
         super(element, DetailsList.prototype);
     }

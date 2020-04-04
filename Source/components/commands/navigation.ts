@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
-import { ReactComponent } from '../../ReactComponent';
+import { Component } from '../../Component';
 
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
@@ -13,7 +13,7 @@ import { NavigationLinkGroup } from './navigation-link-group';
 
 @autoinject
 @customElement('navigation')
-export class AuNavigation extends ReactComponent<React.FunctionComponent<INavProps>, INavProps> implements INavProps {
+export class AuNavigation extends Component<React.FunctionComponent<INavProps>, INavProps> implements INavProps {
     hidden: boolean = false;
     groups: INavLinkGroup[] | null = null;
 
