@@ -15,6 +15,7 @@ export class App {
             { route: ['', '/'], name: 'Index', moduleId: PLATFORM.moduleName('index'), nav: true },
             { route: '/components/basic/button', name: 'Button', moduleId: PLATFORM.moduleName('./components/basic/button/index'), nav: true },
             { route: '/components/basic/checkbox', name: 'Checkbox', moduleId: PLATFORM.moduleName('./components/basic/checkbox/index'), nav: true },
+            { route: '/components/basic/choice-group', name: 'ChoiceGroup', moduleId: PLATFORM.moduleName('./components/basic/choice-group/index'), nav: true },
             { route: '/components/utilities/stack', name: 'stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true }
         ]);
 

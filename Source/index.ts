@@ -15,6 +15,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/action-button'),
         PLATFORM.moduleName('./components/basic/checkbox'),
         PLATFORM.moduleName('./components/basic/toggle'),
+        PLATFORM.moduleName('./components/basic/choice-group'),
+        PLATFORM.moduleName('./components/basic/choice-group-option'),
 
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/contextual-menu'),
