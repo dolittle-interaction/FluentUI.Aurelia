@@ -1,0 +1,15 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <require from="./example-card.scss"></require>
+
+    <div class="example-card">
+        <div class="header">
+            <span class="ms-fontSize-20">${title}</span>
+            <div class="buttons">
+                <action-button text="Show code" icon="Embed"></action-button>
+            </div>
+        </div>
+    </div>
+
+    <slot></slot>
+</template>
