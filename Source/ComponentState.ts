@@ -9,6 +9,17 @@ export class ComponentState {
 
     static updateFor(component: IComponent, state: any): void {
         const properties = ComponentProperties.getFor(component.constructor);
+        const attributesWithoutValue: string[] = [];
+
+        for (let i = 0; i < component.element.attributes.length; i++) {
+            const attribute = component.element.attributes.item(i);
+            if (attribute) {
+                const value = attribute.value;
+                if (!value || value === '') {
+                    attributesWithoutValue.push(attribute.name);
+                }
+            }
+        }
 
         properties.forEach(property => {
             const targetValue = (component as any)[property.name];
@@ -20,6 +31,10 @@ export class ComponentState {
                 }
             } else if (targetValue) {
                 state[property.reactName] = parseValue(targetValue);
+            } else {
+                if (attributesWithoutValue.some(_ => _ === property.attribute)) {
+                    state[property.reactName] = true;
+                }
             }
         });
     }
