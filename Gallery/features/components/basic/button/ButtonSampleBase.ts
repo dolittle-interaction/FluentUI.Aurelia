@@ -1,9 +1,12 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ButtonSampleBase } from './ButtonSampleBase';
+import globals from './globals';
 
-export class CompoundButtonSample extends ButtonSampleBase {
-    clicked() {
+export class ButtonSampleBase {
+    globals: any;
+
+    constructor() {
+        this.globals = globals;
     }
 }

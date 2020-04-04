@@ -4,6 +4,9 @@
     <require from="./compound-button-sample"></require>
     <require from="./command-bar-button-sample"></require>
 
+    <toggle label="Disable buttons" changed.bind="disabledToggled"></toggle>
+    <toggle label="Mark as checked" changed.bind="checkedToggled"></toggle>
+
     <example-card title="Default Button">
         <default-button-sample></default-button-sample>
     </example-card>

@@ -1,7 +1,9 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-export class CommandBarButtonSample {
+import { ButtonSampleBase } from './ButtonSampleBase';
+
+export class CommandBarButtonSample extends ButtonSampleBase {
     clicked() {
 
     }

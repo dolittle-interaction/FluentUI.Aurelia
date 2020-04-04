@@ -1,6 +1,8 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+import Globals from './globals';
+
 export class index {
     textForButton: string = 'Waiting for binding';
 
@@ -18,6 +20,14 @@ export class index {
 
     otherClicked() {
         alert('Other clicked');
+    }
+
+    disabledToggled(checked: boolean) {
+        Globals.disabled = checked;
+    }
+
+    checkedToggled(checked: boolean) {
+        Globals.checked = checked;
     }
 
 }
