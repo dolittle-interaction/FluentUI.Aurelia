@@ -4,7 +4,7 @@
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
 import { IComponent } from './IComponent';
 
-export type HandleItem = (target: IComponent, item: any) => void;
+export type HandleItem = (target: IComponent, item: IComponent) => void;
 
 export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
     readonly type: Function;
@@ -15,7 +15,7 @@ export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
         this.callback = callback;
     }
 
-    handle(target: IComponent, item: any): void {
+    handle(target: IComponent, item: IComponent): void {
         this.callback(target, item);
     }
 }

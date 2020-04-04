@@ -6,5 +6,5 @@ import { IComponent } from './IComponent';
 export interface IItemHandlingStrategy {
     readonly type: Function;
 
-    handle(target: IComponent, item: any): void;
+    handle(target: IComponent, item: IComponent): void;
 }

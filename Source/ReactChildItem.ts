@@ -8,12 +8,16 @@ import { noView } from 'aurelia-framework';
 
 @noView
 export class ReactChildItem<TItem> extends ReactBase {
+    hidden: boolean = false;
+
     constructor(private _element: Element) {
         super(_element);
     }
 
     propertyChanged(property: string, newValue: any) {
         (this as any)[property] = newValue;
+        this.state[property] = newValue;
+        this.childStateChanged();
     }
 
     attached() {
@@ -26,12 +30,9 @@ export class ReactChildItem<TItem> extends ReactBase {
 
         const viewModel = (parentElement as any)?.au?.controller?.viewModel as IComponent;
         if (viewModel) {
-            const properties = ComponentState.createFor(this, this._element, true);
-            for (const property in properties) {
-                (this as any)[property] = properties[property];
-            }
-
-            viewModel.addChildItem(this, this);
+            ComponentState.updateFor(this, this.state, this._element, true);
+            this.hidden = false;
+            viewModel.addChildItem(this);
         }
     }
 }

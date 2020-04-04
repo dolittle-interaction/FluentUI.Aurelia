@@ -13,7 +13,7 @@ export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy
         this.type = type;
     }
 
-    handle(target: IComponent, item: any): void {
+    handle(target: IComponent, item: IComponent): void {
         const targetAsAny = target as any;
         if (!targetAsAny[this.targetProperty]) {
             targetAsAny[this.targetProperty] = [];
@@ -22,7 +22,7 @@ export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy
             throw new Error(`Property '${this.targetProperty}' on '${this.type}' is not an array. Can't add items.`);
         }
 
-        const items = [...targetAsAny[this.targetProperty], item];
+        const items = [...targetAsAny[this.targetProperty], item.state];
         target.propertyChanged(this.targetProperty, items);
     }
 }

@@ -6,9 +6,8 @@ import { parseValue } from './parseValue';
 
 export class ComponentState {
 
-    static createFor(target: any, element: Element, child: boolean = false): any {
+    static updateFor(target: any, state: any, element: Element, child: boolean = false): void {
         const properties = ComponentProperties.getFor(target.constructor);
-        const state: any = {};
 
         properties.forEach(property => {
             const targetValue = target[property.name];
@@ -22,7 +21,5 @@ export class ComponentState {
                 state[property.reactName] = parseValue(targetValue);
             }
         });
-
-        return state;
     }
 }

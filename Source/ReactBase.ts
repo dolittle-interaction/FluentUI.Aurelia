@@ -20,6 +20,8 @@ export class ReactBase implements IComponent {
 
     renderRoot: IComponent;
 
+    state: any = {};
+
     constructor(private _baseElement: Element) {
         this.uniqueIdentifier = uniqueIdentifier();
         this._itemHandlingStrategies = this.getItemHandlingStrategies();
@@ -41,8 +43,8 @@ export class ReactBase implements IComponent {
         return [];
     }
 
-    addChildItem(itemViewModel: any, item: any) {
-        const filtered = this._itemHandlingStrategies.filter(_ => _.type === itemViewModel.constructor);
+    addChildItem(item: IComponent) {
+        const filtered = this._itemHandlingStrategies.filter(_ => _.type === item.constructor);
 
         if (filtered.length === 1) {
             filtered[0].handle(this as IComponent, item);

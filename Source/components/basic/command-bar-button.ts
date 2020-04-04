@@ -26,7 +26,7 @@ export class AuCommandBarButton extends ButtonBase<CommandBarButton> {
         return [new CallbackItemHandlingStrategy(ContextualMenuItem, this.handleContextualMenuItem)];
     }
 
-    private handleContextualMenuItem(target: IComponent, item: any) {
+    private handleContextualMenuItem(target: IComponent, item: IComponent) {
         const buttonProps = this as IButtonProps;
         if (!buttonProps.menuProps) {
             buttonProps.menuProps = {
@@ -34,7 +34,7 @@ export class AuCommandBarButton extends ButtonBase<CommandBarButton> {
             } as IContextualMenuProps;
         }
 
-        buttonProps.menuProps.items = [...buttonProps.menuProps.items, item];
+        buttonProps.menuProps.items = [...buttonProps.menuProps.items, item.state];
         target.propertyChanged('menuProps', buttonProps.menuProps);
     }
 }

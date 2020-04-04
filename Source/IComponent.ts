@@ -7,9 +7,11 @@ export interface IComponent {
     isRenderRoot: boolean;
     renderRoot: IComponent;
 
+    state: any;
+
     getItemHandlingStrategies(): IItemHandlingStrategy[];
 
-    addChildItem(itemViewModel: any, item: any): void;
+    addChildItem(item: IComponent): void;
 
     propertyChanged(property: string, newValue: any): void;
 

@@ -31,7 +31,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         }
     }
 
-    beforeRender(properties: TProps) {
+    beforeRender() {
     }
 
     unbind() {
@@ -43,14 +43,14 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
-        const properties = ComponentState.createFor(this, this._element);
-        properties._componentType = this._type;
+        ComponentState.updateFor(this, this.state, this._element);
+        this.state._componentType = this._type;
 
-        this.beforeRender(properties);
+        this.beforeRender();
         this.handlePropertyConverters();
-        this.handleVisibilityProperty(properties);
+        this.handleVisibilityProperty(this.state);
 
-        const reactElement = React.createElement(ReactStateWrapper, properties);
+        const reactElement = React.createElement(ReactStateWrapper, this.state);
         this._actualComponent = ReactDom.render(reactElement, container);
     }
 
@@ -58,11 +58,11 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         const state: any = {};
         state[property] = newValue;
         (this as any)[property] = newValue;
+        this.state[property] = newValue;
         this.handleVisibilityProperty(state);
         this.handlePropertyConvertersForState(property, newValue, state);
         this._actualComponent?.setState(state);
     }
-
 
     private handleVisibilityProperty(properties: any) {
         if (properties.hasOwnProperty('visible')) {
