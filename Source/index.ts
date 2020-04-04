@@ -25,5 +25,9 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         // Items
         PLATFORM.moduleName('./components/items/column'),
         PLATFORM.moduleName('./components/items/details-list'),
+
+        // Utilities
+        PLATFORM.moduleName('./components/utilities/stack'),
+        PLATFORM.moduleName('./components/utilities/stack-tokens'),
     ]);
 }

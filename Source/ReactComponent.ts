@@ -16,7 +16,7 @@ import { ReactBase } from './ReactBase';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class ReactComponent<T extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase {
-    private _actualComponent: ReactStateWrapper | undefined;
+    actualComponent: ReactStateWrapper | undefined;
 
     @bindable
     visible: boolean = true;
@@ -51,7 +51,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         this.handleVisibilityProperty(this.state);
 
         const reactElement = React.createElement(ReactStateWrapper, this.state);
-        this._actualComponent = ReactDom.render(reactElement, container);
+        this.actualComponent = ReactDom.render(reactElement, container);
     }
 
     propertyChanged(property: string, newValue: any) {
@@ -61,7 +61,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         this.state[property] = newValue;
         this.handleVisibilityProperty(state);
         this.handlePropertyConvertersForState(property, newValue, state);
-        this._actualComponent?.setState(state);
+        this.actualComponent?.setState(state);
     }
 
     private handleVisibilityProperty(properties: any) {
