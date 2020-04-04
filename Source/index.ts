@@ -12,6 +12,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/primary-button'),
         PLATFORM.moduleName('./components/basic/compound-button'),
         PLATFORM.moduleName('./components/basic/command-bar-button'),
+        PLATFORM.moduleName('./components/basic/action-button'),
 
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/contextual-menu'),

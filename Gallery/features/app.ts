@@ -12,7 +12,8 @@ export class App {
     configureRouter(config: RouterConfiguration, router: Router) {
         config.options.pushState = true;
         config.map([
-            { route: ['', '/'], name: 'Index', moduleId: PLATFORM.moduleName('index'), nav: true }
+            { route: ['', '/'], name: 'Index', moduleId: PLATFORM.moduleName('index'), nav: true },
+            { route: '/components/basic/button', name: 'Button', moduleId: PLATFORM.moduleName('./components/basic/button/index'), nav: true }
         ]);
 
         this.router = router;

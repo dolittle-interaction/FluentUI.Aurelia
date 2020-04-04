@@ -10,6 +10,7 @@ export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .feature(PLATFORM.moduleName('resources/index'))
+        .feature(PLATFORM.moduleName('components/index'))
         .plugin(PLATFORM.moduleName('aurelia-animator-css'))
         .plugin(PLATFORM.moduleName('@dolittle/fluentui.aurelia'));
 

@@ -5,7 +5,6 @@ import { autoinject } from 'aurelia-dependency-injection';
 
 @autoinject
 export class Index {
-    textForButton: string = 'Waiting for binding';
     items: any[] = [{
         first: 'First column',
         second: 'Second column',
@@ -20,7 +19,6 @@ export class Index {
         let counter = 0;
         setInterval(() => {
             counter++;
-            this.textForButton = `Blah blah ${counter}`;
 
             this.items.push({
                 first: `First ${counter}`,
@@ -29,13 +27,6 @@ export class Index {
         }, 1000);
     }
 
-    clicked() {
-        alert('clicked');
-    }
-
-    otherClicked() {
-        alert('Other clicked');
-    }
 
     toggleContextMenu() {
         this.contextMenuVisible = !this.contextMenuVisible;
