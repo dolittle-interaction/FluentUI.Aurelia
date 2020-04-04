@@ -20,13 +20,16 @@ export class ReactBase implements IComponent {
 
     renderRoot: IComponent;
 
+    element: Element;
+
     state: any = {};
 
-    constructor(private _baseElement: Element) {
+    constructor(element: Element) {
         this.uniqueIdentifier = uniqueIdentifier();
         this._itemHandlingStrategies = this.getItemHandlingStrategies();
         this._propertyConverters = this.getPropertyConverters();
         this.renderRoot = this as IComponent;
+        this.element = element;
     }
 
     propertyChanged(property: string, newValue: any): void {
@@ -72,7 +75,7 @@ export class ReactBase implements IComponent {
 
     attached() {
         let renderRoot: IComponent = this;
-        let currentElement: Element | null | undefined = this._baseElement;
+        let currentElement: Element | null | undefined = this.element;
         while (renderRoot && !renderRoot.isRenderRoot) {
             currentElement = currentElement?.parentElement;
             if (currentElement?.tagName.toLowerCase() === 'au-content') {

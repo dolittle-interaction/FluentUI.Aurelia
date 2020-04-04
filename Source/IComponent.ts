@@ -4,6 +4,8 @@
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
 
 export interface IComponent {
+    element: Element;
+
     isRenderRoot: boolean;
     renderRoot: IComponent;
 

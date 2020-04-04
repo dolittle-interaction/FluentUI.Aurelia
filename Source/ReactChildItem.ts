@@ -30,7 +30,7 @@ export class ReactChildItem<TItem> extends ReactBase {
 
         const viewModel = (parentElement as any)?.au?.controller?.viewModel as IComponent;
         if (viewModel) {
-            ComponentState.updateFor(this, this.state, this._element, true);
+            ComponentState.updateFor(this, this.state);
             this.hidden = false;
             viewModel.addChildItem(this);
         }

@@ -43,7 +43,7 @@ export class ReactComponent<T extends React.Component<TProps, any> | React.Funct
         ReactDom.unmountComponentAtNode(this._element);
         const container = document.getElementById(this.uniqueIdentifier);
 
-        ComponentState.updateFor(this, this.state, this._element);
+        ComponentState.updateFor(this, this.state);
         this.state._componentType = this._type;
 
         this.beforeRender();

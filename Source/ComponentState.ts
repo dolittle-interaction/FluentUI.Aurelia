@@ -7,16 +7,16 @@ import { IComponent } from './IComponent';
 
 export class ComponentState {
 
-    static updateFor(target: IComponent, state: any, element: Element, child: boolean = false): void {
-        const properties = ComponentProperties.getFor(target.constructor);
+    static updateFor(component: IComponent, state: any): void {
+        const properties = ComponentProperties.getFor(component.constructor);
 
         properties.forEach(property => {
-            const targetValue = (target as any)[property.name];
-            if (property.isEvent && child) {
-                state[property.reactName] = (args: any) => element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: args }));
+            const targetValue = (component as any)[property.name];
+            if (property.isEvent && !component.isRenderRoot) {
+                state[property.reactName] = (args: any) => component.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: args }));
             } else if (property.isFunction) {
                 if (typeof targetValue === 'function') {
-                    state[property.reactName] = targetValue.bind(target);
+                    state[property.reactName] = targetValue.bind(component);
                 }
             } else if (targetValue) {
                 state[property.reactName] = parseValue(targetValue);
