@@ -5,6 +5,7 @@ import { ComponentProperties } from './ComponentProperties';
 import { IUIElement } from './IUIElement';
 import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
+import { Controller } from 'aurelia-framework';
 
 export class UIElement implements IUIElement {
     static properties<TProps>(properties: TProps) {
@@ -16,7 +17,7 @@ export class UIElement implements IUIElement {
     uniqueIdentifier: string;
     isRenderRoot: boolean = false;
 
-    parent: UIElement | undefined;
+    parent: UIElement | null = null;
     renderRoot: UIElement;
 
     element: Element;
@@ -62,25 +63,23 @@ export class UIElement implements IUIElement {
 
     private getRenderRoot(): UIElement {
         let renderRoot: UIElement = this;
-        let currentElement: Element | null | undefined = this.element;
-        while (renderRoot && !renderRoot.isRenderRoot) {
-            currentElement = currentElement?.parentElement;
-            if (currentElement?.tagName.toLowerCase() === 'au-content') {
-                currentElement = currentElement?.parentElement;
-            }
+        const controller = (this.element as any).au?.controller as Controller;
+        let container = controller.view.container;
 
-            renderRoot = (currentElement as any)?.au?.controller?.viewModel as UIElement;
+        while (renderRoot && !renderRoot.isRenderRoot && container) {
+            container = container.parent;
+            renderRoot = (container as any)?.viewModel as UIElement;
         }
         return renderRoot;
     }
 
-    private getParent(): UIElement {
-        let parentElement = this.element.parentElement as any;
-        if (parentElement.tagName.toLowerCase() === 'au-content') {
-            parentElement = parentElement.parentElement;
+    private getParent(): UIElement | null {
+        const controller = (this.element as any).au?.controller as Controller;
+        if (controller) {
+            const parent = (controller.view.container.parent as any)?.viewModel as UIElement;
+            return parent;
         }
 
-        const viewModel = (parentElement as any)?.au?.controller?.viewModel;
-        return viewModel;
+        return null;
     }
 }

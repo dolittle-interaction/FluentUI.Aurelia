@@ -10,7 +10,6 @@ import { inlineView, bindable } from 'aurelia-framework';
 import { Constructor } from './Constructor';
 import { ComponentState } from './ComponentState';
 import { UIElement } from './UIElement';
-import { IUIElement } from './IUIElement';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
