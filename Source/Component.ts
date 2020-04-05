@@ -57,9 +57,8 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
             this.actualComponent = ReactDom.render(reactElement, container);
         } else {
             if (this.renderRoot) {
-                const parent = this.getParent();
-                if (parent && (parent as any).addChildItem) {
-                    (parent as any).addChildItem(this);
+                if (this.parent && (this.parent as any).addChildItem) {
+                    (this.parent as any).addChildItem(this);
                     this.renderRoot.childStateChanged();
                 }
             }
@@ -81,15 +80,5 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
             delete properties.visible;
         }
         properties.hidden = !this.visible;
-    }
-
-    private getParent(): IUIElement {
-        let parentElement = this._element.parentElement as any;
-        if (parentElement.tagName.toLowerCase() === 'au-content') {
-            parentElement = parentElement.parentElement;
-        }
-
-        const viewModel = (parentElement as any)?.au?.controller?.viewModel;
-        return viewModel;
     }
 }

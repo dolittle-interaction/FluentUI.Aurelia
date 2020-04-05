@@ -3,7 +3,7 @@
 
 import { ComponentProperties } from './ComponentProperties';
 import { IUIElement } from './IUIElement';
-import { PropertyConverter } from './PropertyConverter';
+import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
 
 export class UIElement implements IUIElement {
@@ -16,6 +16,7 @@ export class UIElement implements IUIElement {
     uniqueIdentifier: string;
     isRenderRoot: boolean = false;
 
+    parent: UIElement | undefined;
     renderRoot: UIElement;
 
     element: Element;
@@ -55,6 +56,11 @@ export class UIElement implements IUIElement {
     }
 
     attached() {
+        this.renderRoot = this.getRenderRoot();
+        this.parent = this.getParent();
+    }
+
+    private getRenderRoot(): UIElement {
         let renderRoot: UIElement = this;
         let currentElement: Element | null | undefined = this.element;
         while (renderRoot && !renderRoot.isRenderRoot) {
@@ -65,6 +71,16 @@ export class UIElement implements IUIElement {
 
             renderRoot = (currentElement as any)?.au?.controller?.viewModel as UIElement;
         }
-        this.renderRoot = renderRoot;
+        return renderRoot;
+    }
+
+    private getParent(): UIElement {
+        let parentElement = this.element.parentElement as any;
+        if (parentElement.tagName.toLowerCase() === 'au-content') {
+            parentElement = parentElement.parentElement;
+        }
+
+        const viewModel = (parentElement as any)?.au?.controller?.viewModel;
+        return viewModel;
     }
 }
