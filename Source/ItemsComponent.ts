@@ -36,8 +36,4 @@ export class ItemsComponent<TProps, TComponent extends React.Component<TProps, a
             this.renderRoot.childStateChanged();
         }
     }
-
-    attached() {
-        super.attached();
-    }
 }

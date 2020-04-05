@@ -64,11 +64,12 @@ export class UIElement implements IUIElement {
     private getRenderRoot(): UIElement {
         let renderRoot: UIElement = this;
         const controller = (this.element as any).au?.controller as Controller;
-        let container = controller.view.container;
-
-        while (renderRoot && !renderRoot.isRenderRoot && container) {
-            container = container.parent;
-            renderRoot = (container as any)?.viewModel as UIElement;
+        let container = (controller as any).container;
+        if (container) {
+            while (renderRoot && !renderRoot.isRenderRoot && container) {
+                container = container.parent;
+                renderRoot = (container as any)?.viewModel as UIElement;
+            }
         }
         return renderRoot;
     }
@@ -76,8 +77,10 @@ export class UIElement implements IUIElement {
     private getParent(): UIElement | null {
         const controller = (this.element as any).au?.controller as Controller;
         if (controller) {
-            const parent = (controller.view.container.parent as any)?.viewModel as UIElement;
-            return parent;
+            const container = (controller as any).container;
+            if (container) {
+                return container.parent?.viewModel as UIElement;
+            }
         }
 
         return null;
