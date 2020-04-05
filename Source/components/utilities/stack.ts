@@ -19,10 +19,6 @@ export class AuStack extends ContentComponent<React.FunctionComponent<IStackProp
         super(element, Stack.prototype);
     }
 
-    attached() {
-        super.attached();
-    }
-
     getConfigurationHandlingStrategies(): IConfigurationHandlingStrategy[] {
         return [new TargetPropertyConfigurationHandlingStrategy(StackTokens, 'tokens')];
     }
