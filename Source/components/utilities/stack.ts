@@ -5,11 +5,9 @@ import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { ContentComponent } from '../../ContentComponent';
-
 import { IStackProps, IStackItemProps, Stack } from 'office-ui-fabric-react';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
-import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
+
+import { ContentComponent } from '../../index';
 
 @autoinject
 @customElement('stack')

@@ -1,14 +1,12 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { IChoiceGroupOption, setVirtualParent } from 'office-ui-fabric-react';
+import { IChoiceGroupOption } from 'office-ui-fabric-react';
 
 import { noView, autoinject, customElement, bindable } from 'aurelia-framework';
 import { ReactChildItem } from '../../ReactChildItem';
 
-import { PropertyConverter } from '../../PropertyConverter';
-import { IconTypeConverter } from '../../IconTypeConverter';
-
+import { IconTypeConverter, PropertyConverter } from '../../index';
 
 @autoinject
 @noView

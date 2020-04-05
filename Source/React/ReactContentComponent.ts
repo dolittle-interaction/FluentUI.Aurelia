@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-export class ReactStateWrapper extends React.Component {
+export class ReactContentComponent extends React.Component {
     private _type: any;
 
     constructor(properties: any) {

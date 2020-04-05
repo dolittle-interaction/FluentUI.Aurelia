@@ -3,10 +3,12 @@
 
 import { autoinject } from 'aurelia-framework';
 
-import { ReactChildItem } from '../../ReactChildItem';
 import { INavLinkGroup, INavLink } from 'office-ui-fabric-react';
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
+
+import { ReactChildItem } from '../../ReactChildItem';
+
+import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+
 import { NavigationLink } from './navigation-link';
 
 @autoinject

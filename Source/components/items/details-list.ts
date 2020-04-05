@@ -5,13 +5,11 @@ import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { ItemsComponent } from '../../ItemsComponent';
-
-
 import { DetailsList, IDetailsListProps, IColumn } from 'office-ui-fabric-react';
+
+import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+
 import { Column } from './column';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
-import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
 
 @autoinject
 @customElement('details-list')

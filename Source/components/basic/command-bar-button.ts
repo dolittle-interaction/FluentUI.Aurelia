@@ -5,13 +5,12 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IButtonProps, CommandBarButton, IContextualMenuProps } from 'office-ui-fabric-react';
 
-import ButtonProps from './ButtonProps';
-
 import { ContextualMenuItem } from '../commands/contextual-menu-item';
-import { CallbackItemHandlingStrategy } from '../../CallbackItemHandlingStrategy';
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
-import { IComponent } from '../../IComponent';
+
+import { CallbackItemHandlingStrategy, IComponent, IItemHandlingStrategy } from '../../index';
+
 import { ButtonBase } from './ButtonBase';
+import ButtonProps from './ButtonProps';
 
 @autoinject
 @customElement('command-bar-button')

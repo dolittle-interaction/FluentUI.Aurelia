@@ -5,8 +5,7 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { ICheckboxProps, Checkbox } from 'office-ui-fabric-react';
 
-import { Component } from '../../Component';
-
+import { Component } from '../../index';
 
 @autoinject
 @customElement('checkbox')

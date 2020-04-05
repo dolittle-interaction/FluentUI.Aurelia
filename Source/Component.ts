@@ -3,20 +3,17 @@
 
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
+import { ReactContentComponent } from './React/ReactContentComponent';
 
-import { inlineView, View, ViewResources, bindable, camelCase } from 'aurelia-framework';
+import { inlineView, bindable } from 'aurelia-framework';
 
-import { ComponentProperties } from './ComponentProperties';
-import { ComponentState } from './ComponentState';
-
-import { ReactStateWrapper } from './ReactStateWrapper';
 import { Constructor } from './Constructor';
-
-import { ReactBase } from './ReactBase';
+import { ComponentState } from './ComponentState';
+import { UIElement } from './UIElement';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
-export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase {
-    actualComponent: ReactStateWrapper | undefined;
+export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
+    actualComponent: ReactContentComponent | undefined;
 
     @bindable
     visible: boolean = true;
@@ -50,7 +47,7 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
         this.handlePropertyConverters();
         this.handleVisibilityProperty(this.state);
 
-        const reactElement = React.createElement(ReactStateWrapper, this.state);
+        const reactElement = React.createElement(ReactContentComponent, this.state);
         this.actualComponent = ReactDom.render(reactElement, container);
     }
 

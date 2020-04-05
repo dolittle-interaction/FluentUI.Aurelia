@@ -7,8 +7,8 @@ import { Component } from '../../Component';
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
+import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+
 import { NavigationLinkGroup } from './navigation-link-group';
 
 @autoinject

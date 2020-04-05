@@ -3,8 +3,9 @@
 
 import { IStackTokens } from 'office-ui-fabric-react';
 
-import { ReactChildItem } from '../../ReactChildItem';
 import { autoinject, customElement } from 'aurelia-framework';
+
+import { ReactChildItem } from '../../ReactChildItem';
 
 @autoinject
 @customElement('stack-tokens')

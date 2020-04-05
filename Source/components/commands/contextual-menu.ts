@@ -4,17 +4,16 @@
 import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
-import { Component } from '../../Component';
 
 import { IContextualMenuProps, IContextualMenuItem, ContextualMenu } from 'office-ui-fabric-react';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
+
+import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
 
 import { ContextualMenuItem } from './contextual-menu-item';
 
 @autoinject
 @customElement('contextual-menu')
-export class AuContextualMenu extends Component<React.FunctionComponent<IContextualMenuProps>, IContextualMenuProps> implements IContextualMenuProps {
+export class AuContextualMenu extends ItemsComponent<React.FunctionComponent<IContextualMenuProps>, IContextualMenuProps> implements IContextualMenuProps {
     hidden: boolean = false;
     items: IContextualMenuItem[] = [];
 

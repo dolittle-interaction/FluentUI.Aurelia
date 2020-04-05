@@ -1,13 +1,14 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ComponentState } from './ComponentState';
-import { IComponent } from './IComponent';
-import { ReactBase } from './ReactBase';
 import { noView } from 'aurelia-framework';
 
+import { ComponentState } from './ComponentState';
+import { IComponent } from './IComponent';
+import { UIElement } from './UIElement';
+
 @noView
-export class ReactChildItem<TItem> extends ReactBase {
+export class ReactChildItem<TItem> extends UIElement {
     hidden: boolean = false;
 
     constructor(private _element: Element) {

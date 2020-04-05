@@ -4,6 +4,7 @@
 import { customElement, autoinject } from 'aurelia-framework';
 
 import { DefaultButton, IButtonProps } from 'office-ui-fabric-react';
+
 import { ButtonBase } from './ButtonBase';
 import ButtonProps from './ButtonProps';
 

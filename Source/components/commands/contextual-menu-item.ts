@@ -7,8 +7,7 @@ import { ReactChildItem } from '../../ReactChildItem';
 
 import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
 
-import { PropertyConverter } from '../../PropertyConverter';
-import { IconTypeConverter } from '../../IconTypeConverter';
+import { IconTypeConverter, PropertyConverter } from '../../index';
 
 @autoinject
 @noView

@@ -2,12 +2,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { ComponentProperties } from './ComponentProperties';
-import { PropertyConverter } from './PropertyConverter';
-import { IItemHandlingStrategy } from './IItemHandlingStrategy';
-import { IComponent } from './IComponent';
+import { IComponent } from 'IComponent';
+import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
+import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
 
-export class ReactBase implements IComponent {
+export class UIElement implements IComponent {
     static properties<TProps>(properties: TProps) {
         ComponentProperties.configureFor(this, properties);
     }

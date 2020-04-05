@@ -5,8 +5,7 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IToggleProps, Toggle } from 'office-ui-fabric-react';
 
-import { Component } from '../../Component';
-
+import { Component } from '../../index';
 
 @autoinject
 @customElement('toggle')
@@ -29,6 +28,5 @@ AuToggle.properties<IToggleProps>({
     inlineLabel: {} as any,
     role: {} as any,
 
-    onChange: () => {},
-    onChanged: () => {}
+    onChange: () => {}
 });

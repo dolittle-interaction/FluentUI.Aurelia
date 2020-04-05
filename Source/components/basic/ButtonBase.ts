@@ -3,12 +3,10 @@
 
 import { bindable } from 'aurelia-framework';
 
-import { ContentComponent } from '../../ContentComponent';
 
 import { IButtonProps } from 'office-ui-fabric-react';
 
-import { PropertyConverter } from '../../PropertyConverter';
-import { IconTypeConverter } from '../../IconTypeConverter';
+import { ContentComponent, PropertyConverter, IconTypeConverter } from '../../index';
 
 export class ButtonBase<TComponent extends React.Component<IButtonProps, any>> extends ContentComponent<TComponent, IButtonProps> implements IButtonProps {
     hidden: boolean = false;

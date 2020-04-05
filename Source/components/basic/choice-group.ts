@@ -5,10 +5,8 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IChoiceGroupProps, ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
 
-import { ItemsComponent } from '../../ItemsComponent';
+import { IItemHandlingStrategy, ItemsComponent, TargetPropertyItemHandlingStrategy } from '../../index';
 
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
 import { ChoiceGroupOption } from './choice-group-option';
 
 
@@ -33,6 +31,5 @@ AuChoiceGroup.properties<IChoiceGroupProps>({
     defaultSelectedKey: {} as any,
     selectedKey: {} as any,
 
-    onChange: () => {},
-    onChanged: () => {}
+    onChange: () => {}
 });

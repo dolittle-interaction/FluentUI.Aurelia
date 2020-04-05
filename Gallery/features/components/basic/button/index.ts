@@ -5,8 +5,10 @@ import Globals from './globals';
 
 export class index {
     textForButton: string = 'Waiting for binding';
+    globals: any;
 
     constructor() {
+        this.globals = Globals;
         let counter = 0;
         setInterval(() => {
             counter++;
@@ -22,12 +24,11 @@ export class index {
         alert('Other clicked');
     }
 
-    disabledToggled(checked: boolean) {
+    disabledToggled(sender: any, checked: boolean) {
         Globals.disabled = checked;
     }
 
-    checkedToggled(checked: boolean) {
+    checkedToggled(sender: any, checked: boolean) {
         Globals.checked = checked;
     }
-
 }

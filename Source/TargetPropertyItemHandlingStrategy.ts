@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
-import { IComponent } from './IComponent';
+import { IComponent } from './IComponent';
 
 export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy {
     readonly targetProperty: string;

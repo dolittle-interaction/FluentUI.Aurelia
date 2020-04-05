@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ComponentProperties } from '../ComponentProperties';
+import { ComponentProperties } from '../index';
 
 describe('when configuring for and getting', () => {
     const target = 'MyTarget';

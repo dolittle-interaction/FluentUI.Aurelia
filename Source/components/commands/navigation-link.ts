@@ -2,11 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { autoinject } from 'aurelia-framework';
-import { ReactChildItem } from '../../ReactChildItem';
 import { INavLink } from 'office-ui-fabric-react';
-import { IItemHandlingStrategy } from '../../IItemHandlingStrategy';
-import { TargetPropertyItemHandlingStrategy } from '../../TargetPropertyItemHandlingStrategy';
-import { IComponent } from '../../IComponent';
+
+import { ReactChildItem } from '../../ReactChildItem';
+
+import { IComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
 
 @autoinject
 export class NavigationLink extends ReactChildItem<INavLink> implements INavLink {

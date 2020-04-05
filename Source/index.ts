@@ -1,6 +1,26 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+
+export * from './CallbackItemHandlingStrategy';
+export * from './Component';
+export * from './ComponentProperties';
+export * from './ComponentProperty';
+export * from './ComponentState';
+export * from './ContentComponent';
+export * from './Constructor';
+export * from './IComponent';
+export * from './IconTypeConverter';
+export * from './IItemHandlingStrategy';
+export * from './ItemsComponent';
+export * from './ITypeConverter';
+export * from './kebabCase';
+export * from './parseValue';
+export * from './PropertyConverter';
+export * from './TargetPropertyItemHandlingStrategy';
+export * from './UIElement';
+export * from './uniqueIdentifier';
+
 import { FrameworkConfiguration } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
@@ -34,3 +54,4 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/utilities/stack-tokens'),
     ]);
 }
+

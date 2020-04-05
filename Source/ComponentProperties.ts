@@ -3,8 +3,8 @@
 
 import { bindable, bindingMode } from 'aurelia-framework';
 
-import { kebabCase } from './kebabCase';
 import { ComponentProperty } from './ComponentProperty';
+import { kebabCase } from './kebabCase';
 
 const propertiesPerTarget: Map<any, ComponentProperty[]> = new Map<any, ComponentProperty[]>();
 

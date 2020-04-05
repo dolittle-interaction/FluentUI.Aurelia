@@ -2,8 +2,8 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { ComponentProperties } from './ComponentProperties';
-import { parseValue } from './parseValue';
-import { IComponent } from './IComponent';
+import { IComponent } from './IComponent';
+import { parseValue } from './parseValue';
 
 export class ComponentState {
 
