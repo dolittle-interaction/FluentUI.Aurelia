@@ -5,11 +5,11 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { ICheckboxProps, Checkbox } from 'office-ui-fabric-react';
 
-import { Component } from '../../index';
+import { ContentComponent } from '../../index';
 
 @autoinject
 @customElement('checkbox')
-export class AuCheckbox extends Component<React.FunctionComponent<ICheckboxProps>, ICheckboxProps> {
+export class AuCheckbox extends ContentComponent<React.FunctionComponent<ICheckboxProps>, ICheckboxProps> {
     constructor(element: Element) {
         super(element, Checkbox.prototype);
     }

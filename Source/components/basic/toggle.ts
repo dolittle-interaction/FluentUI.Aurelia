@@ -5,11 +5,11 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IToggleProps, Toggle } from 'office-ui-fabric-react';
 
-import { Component } from '../../index';
+import { ContentComponent } from '../../index';
 
 @autoinject
 @customElement('toggle')
-export class AuToggle extends Component<React.FunctionComponent<IToggleProps>, IToggleProps> {
+export class AuToggle extends ContentComponent<React.FunctionComponent<IToggleProps>, IToggleProps> {
     constructor(element: Element) {
         super(element, Toggle.prototype);
     }
