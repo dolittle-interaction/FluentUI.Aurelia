@@ -3,16 +3,14 @@
 
 import { IContextualMenuItem } from 'office-ui-fabric-react';
 
-import { ReactChildItem } from '../../ReactChildItem';
-
 import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, PropertyConverter } from '../../index';
+import { IconTypeConverter, ItemsComponent, PropertyConverter } from '../../index';
 
 @autoinject
 @noView
 @customElement('contextual-menu-item')
-export class ContextualMenuItem extends ReactChildItem<IContextualMenuItem> implements IContextualMenuItem {
+export class ContextualMenuItem extends ItemsComponent<IContextualMenuItem> implements IContextualMenuItem {
     key: string = '';
 
     @bindable

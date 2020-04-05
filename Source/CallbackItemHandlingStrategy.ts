@@ -1,10 +1,11 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { IComponent } from './IComponent';
+import { UIElement } from './UIElement';
+import { IItemsComponent } from './IItemsComponent';
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
 
-export type HandleItem = (target: IComponent, item: IComponent) => void;
+export type HandleItem = (target: IItemsComponent, item: UIElement) => void;
 
 export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
     readonly type: Function;
@@ -15,7 +16,7 @@ export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
         this.callback = callback;
     }
 
-    handle(target: IComponent, item: IComponent): void {
+    handle(target: IItemsComponent, item: UIElement): void {
         this.callback(target, item);
     }
 }

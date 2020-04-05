@@ -5,11 +5,11 @@ import { IColumn } from 'office-ui-fabric-react';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { ReactChildItem } from '../../ReactChildItem';
+import { ItemsComponent } from '../../index';
 
 @autoinject
 @customElement('column')
-export class Column extends ReactChildItem<IColumn> {
+export class Column extends ItemsComponent<IColumn> {
     constructor(element: Element) {
         super(element);
     }

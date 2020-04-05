@@ -5,14 +5,12 @@ import { autoinject } from 'aurelia-framework';
 
 import { INavLinkGroup, INavLink } from 'office-ui-fabric-react';
 
-import { ReactChildItem } from '../../ReactChildItem';
-
-import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
 
 import { NavigationLink } from './navigation-link';
 
 @autoinject
-export class NavigationLinkGroup extends ReactChildItem<INavLinkGroup> implements INavLinkGroup {
+export class NavigationLinkGroup extends ItemsComponent<INavLinkGroup> implements INavLinkGroup {
     links: INavLink[] = [];
 
     constructor(element: Element) {

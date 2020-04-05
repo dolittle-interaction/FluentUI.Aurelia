@@ -3,11 +3,37 @@
 
 import * as React from 'react';
 
-import { inlineView } from 'aurelia-framework';
+import { inlineView, autoinject } from 'aurelia-framework';
 
 import { Component } from './Component';
+import { Constructor } from './Constructor';
+import { IItemsComponent } from './IItemsComponent';
+import { IItemHandlingStrategy } from './IItemHandlingStrategy';
+import { UIElement } from './UIElement';
 
-
+@autoinject
 @inlineView('<template><span id.bind="uniqueIdentifier"></span></template>')
-export class ItemsComponent<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends Component<TComponent, TProps> {
+export class ItemsComponent<TProps, TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps> | any = {}> extends Component<TComponent, TProps> implements IItemsComponent {
+    private _itemHandlingStrategies: IItemHandlingStrategy[] = [];
+
+    constructor(element: Element, type?: Constructor<TComponent>) {
+        super(element, type);
+        this._itemHandlingStrategies = this.getItemHandlingStrategies();
+    }
+
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
+        return [];
+    }
+
+    addChildItem(item: UIElement) {
+        const filtered = this._itemHandlingStrategies.filter(_ => _.type === item.constructor);
+
+        if (filtered.length === 1) {
+            filtered[0].handle(this, item);
+        }
+
+        if (!this.isRenderRoot) {
+            this.renderRoot.childStateChanged();
+        }
+    }
 }

@@ -7,7 +7,7 @@ import { IButtonProps, CommandBarButton, IContextualMenuProps } from 'office-ui-
 
 import { ContextualMenuItem } from '../commands/contextual-menu-item';
 
-import { CallbackItemHandlingStrategy, IComponent, IItemHandlingStrategy } from '../../index';
+import { CallbackItemHandlingStrategy, IItemsComponent, IItemHandlingStrategy, UIElement } from '../../index';
 
 import { ButtonBase } from './ButtonBase';
 import ButtonProps from './ButtonProps';
@@ -25,7 +25,7 @@ export class AuCommandBarButton extends ButtonBase<CommandBarButton> {
         return [new CallbackItemHandlingStrategy(ContextualMenuItem, this.handleContextualMenuItem)];
     }
 
-    private handleContextualMenuItem(target: IComponent, item: IComponent) {
+    private handleContextualMenuItem(target: IItemsComponent, item: UIElement) {
         const buttonProps = this as IButtonProps;
         if (!buttonProps.menuProps) {
             buttonProps.menuProps = {

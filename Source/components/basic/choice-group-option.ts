@@ -4,14 +4,13 @@
 import { IChoiceGroupOption } from 'office-ui-fabric-react';
 
 import { noView, autoinject, customElement, bindable } from 'aurelia-framework';
-import { ReactChildItem } from '../../ReactChildItem';
 
-import { IconTypeConverter, PropertyConverter } from '../../index';
+import { IconTypeConverter, PropertyConverter, ItemsComponent } from '../../index';
 
 @autoinject
 @noView
 @customElement('choice-group-option')
-export class ChoiceGroupOption extends ReactChildItem<IChoiceGroupOption> implements IChoiceGroupOption {
+export class ChoiceGroupOption extends ItemsComponent<IChoiceGroupOption> implements IChoiceGroupOption {
     key: string = '';
     text: string = '';
 

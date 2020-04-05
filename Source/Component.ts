@@ -8,8 +8,9 @@ import { ReactContentComponent } from './React/ReactContentComponent';
 import { inlineView, bindable } from 'aurelia-framework';
 
 import { Constructor } from './Constructor';
-import { ComponentState } from './ComponentState';
-import { UIElement } from './UIElement';
+import { ComponentState } from './ComponentState';
+import { UIElement } from './UIElement';
+import { IUIElement } from './IUIElement';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
@@ -18,13 +19,17 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
     @bindable
     visible: boolean = true;
 
-    isRenderRoot: boolean = true;
-
-    constructor(private _element: Element, private _type: Constructor<TComponent>) {
+    constructor(private _element: Element, private _type?: Constructor<TComponent>) {
         super(_element);
 
         if (typeof _type === 'object') {
             this._type = (_type as any).constructor;
+        }
+
+        if (!_type) {
+            this.isRenderRoot = false;
+        } else {
+            this.isRenderRoot = true;
         }
     }
 
@@ -41,14 +46,24 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
         const container = document.getElementById(this.uniqueIdentifier);
 
         ComponentState.updateFor(this, this.state);
-        this.state._componentType = this._type;
 
         this.beforeRender();
         this.handlePropertyConverters();
         this.handleVisibilityProperty(this.state);
 
-        const reactElement = React.createElement(ReactContentComponent, this.state);
-        this.actualComponent = ReactDom.render(reactElement, container);
+        if (this.isRenderRoot) {
+            this.state._componentType = this._type;
+            const reactElement = React.createElement(ReactContentComponent, this.state);
+            this.actualComponent = ReactDom.render(reactElement, container);
+        } else {
+            if (this.renderRoot) {
+                const parent = this.getParent();
+                if (parent && (parent as any).addChildItem) {
+                    (parent as any).addChildItem(this);
+                    this.renderRoot.childStateChanged();
+                }
+            }
+        }
     }
 
     propertyChanged(property: string, newValue: any) {
@@ -66,5 +81,15 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
             delete properties.visible;
         }
         properties.hidden = !this.visible;
+    }
+
+    private getParent(): IUIElement {
+        let parentElement = this._element.parentElement as any;
+        if (parentElement.tagName.toLowerCase() === 'au-content') {
+            parentElement = parentElement.parentElement;
+        }
+
+        const viewModel = (parentElement as any)?.au?.controller?.viewModel;
+        return viewModel;
     }
 }

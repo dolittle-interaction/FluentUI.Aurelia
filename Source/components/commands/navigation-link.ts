@@ -4,12 +4,10 @@
 import { autoinject } from 'aurelia-framework';
 import { INavLink } from 'office-ui-fabric-react';
 
-import { ReactChildItem } from '../../ReactChildItem';
-
-import { IComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+import { IItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
 
 @autoinject
-export class NavigationLink extends ReactChildItem<INavLink> implements INavLink {
+export class NavigationLink extends ItemsComponent<INavLink> implements INavLink {
     url: string = '';
     name: string = '';
     links: INavLink[] = [];
@@ -26,7 +24,7 @@ export class NavigationLink extends ReactChildItem<INavLink> implements INavLink
             parentElement = parentElement.parentElement;
         }
 
-        const parentViewModel = (parentElement as any)?.au?.controller?.viewModel as IComponent;
+        const parentViewModel = (parentElement as any)?.au?.controller?.viewModel as IItemsComponent;
         if (parentViewModel) {
             parentViewModel.propertyChanged('groups', [...(parentViewModel as any).groups]);
         }

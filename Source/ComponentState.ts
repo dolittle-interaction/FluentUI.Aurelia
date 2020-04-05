@@ -2,12 +2,12 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { ComponentProperties } from './ComponentProperties';
-import { IComponent } from './IComponent';
 import { parseValue } from './parseValue';
+import { UIElement } from './UIElement';
 
 export class ComponentState {
 
-    static updateFor(component: IComponent, state: any): void {
+    static updateFor(component: UIElement, state: any): void {
         const properties = ComponentProperties.getFor(component.constructor);
         const attributesWithoutValue: string[] = [];
 

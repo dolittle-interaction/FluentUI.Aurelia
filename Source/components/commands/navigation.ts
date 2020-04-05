@@ -7,13 +7,13 @@ import { Component } from '../../Component';
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
 
 import { NavigationLinkGroup } from './navigation-link-group';
 
 @autoinject
 @customElement('navigation')
-export class AuNavigation extends Component<React.FunctionComponent<INavProps>, INavProps> implements INavProps {
+export class AuNavigation extends ItemsComponent<INavProps, React.FunctionComponent<INavProps>> implements INavProps {
     hidden: boolean = false;
     groups: INavLinkGroup[] | null = null;
 

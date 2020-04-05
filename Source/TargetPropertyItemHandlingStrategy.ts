@@ -1,8 +1,9 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+import { UIElement } from './UIElement';
+import { IItemsComponent } from './IItemsComponent';
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
-import { IComponent } from './IComponent';
 
 export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy {
     readonly targetProperty: string;
@@ -13,7 +14,7 @@ export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy
         this.type = type;
     }
 
-    handle(target: IComponent, item: IComponent): void {
+    handle(target: IItemsComponent, item: UIElement): void {
         const targetAsAny = target as any;
         if (!targetAsAny[this.targetProperty]) {
             targetAsAny[this.targetProperty] = [];

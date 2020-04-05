@@ -2,23 +2,21 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { ComponentProperties } from './ComponentProperties';
-import { IComponent } from 'IComponent';
-import { IItemHandlingStrategy } from 'IItemHandlingStrategy';
+import { IUIElement } from './IUIElement';
 import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
 
-export class UIElement implements IComponent {
+export class UIElement implements IUIElement {
     static properties<TProps>(properties: TProps) {
         ComponentProperties.configureFor(this, properties);
     }
 
-    private _itemHandlingStrategies: IItemHandlingStrategy[] = [];
     private _propertyConverters: PropertyConverter[] = [];
 
     uniqueIdentifier: string;
     isRenderRoot: boolean = false;
 
-    renderRoot: IComponent;
+    renderRoot: UIElement;
 
     element: Element;
 
@@ -26,36 +24,19 @@ export class UIElement implements IComponent {
 
     constructor(element: Element) {
         this.uniqueIdentifier = uniqueIdentifier();
-        this._itemHandlingStrategies = this.getItemHandlingStrategies();
         this._propertyConverters = this.getPropertyConverters();
-        this.renderRoot = this as IComponent;
+        this.renderRoot = this;
         this.element = element;
-    }
-
-    propertyChanged(property: string, newValue: any): void {
     }
 
     childStateChanged(): void {
     }
 
+    propertyChanged(property: string, newValue: any): void {
+    }
+
     getPropertyConverters(): PropertyConverter[] {
         return [];
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [];
-    }
-
-    addChildItem(item: IComponent) {
-        const filtered = this._itemHandlingStrategies.filter(_ => _.type === item.constructor);
-
-        if (filtered.length === 1) {
-            filtered[0].handle(this as IComponent, item);
-        }
-
-        if (!this.isRenderRoot) {
-            this.renderRoot.childStateChanged();
-        }
     }
 
     handlePropertyConverters() {
@@ -74,7 +55,7 @@ export class UIElement implements IComponent {
     }
 
     attached() {
-        let renderRoot: IComponent = this;
+        let renderRoot: UIElement = this;
         let currentElement: Element | null | undefined = this.element;
         while (renderRoot && !renderRoot.isRenderRoot) {
             currentElement = currentElement?.parentElement;
@@ -82,7 +63,7 @@ export class UIElement implements IComponent {
                 currentElement = currentElement?.parentElement;
             }
 
-            renderRoot = (currentElement as any)?.au?.controller?.viewModel as IComponent;
+            renderRoot = (currentElement as any)?.au?.controller?.viewModel as UIElement;
         }
         this.renderRoot = renderRoot;
     }
