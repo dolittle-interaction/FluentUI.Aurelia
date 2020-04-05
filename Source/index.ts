@@ -4,11 +4,14 @@
 
 export * from './CallbackItemHandlingStrategy';
 export * from './Component';
+export * from './ComponentConfiguration';
 export * from './ComponentProperties';
 export * from './ComponentProperty';
 export * from './ComponentState';
 export * from './ContentComponent';
 export * from './Constructor';
+export * from './FrameworkElement';
+export * from './IConfigurationHandlingStrategy';
 export * from './IconTypeConverter';
 export * from './IItemsComponent';
 export * from './IItemHandlingStrategy';
@@ -17,6 +20,7 @@ export * from './ITypeConverter';
 export * from './kebabCase';
 export * from './parseValue';
 export * from './PropertyConverter';
+export * from './TargetPropertyConfigurationHandlingStrategy';
 export * from './TargetPropertyItemHandlingStrategy';
 export * from './UIElement';
 export * from './uniqueIdentifier';

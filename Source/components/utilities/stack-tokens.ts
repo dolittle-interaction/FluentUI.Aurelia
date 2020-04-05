@@ -5,13 +5,13 @@ import { IStackTokens } from 'office-ui-fabric-react';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { ItemsComponent } from '../../index';
+import { ComponentConfiguration } from '../../index';
 
 @autoinject
 @customElement('stack-tokens')
-export class StackTokens extends ItemsComponent<IStackTokens> {
+export class StackTokens extends ComponentConfiguration<IStackTokens> {
     constructor(element: Element) {
-        super(element);
+        super(element, StackTokens);
     }
 }
 

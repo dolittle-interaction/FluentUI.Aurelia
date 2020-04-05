@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
-import { inlineView, bindable } from 'aurelia-framework';
+import { inlineView } from 'aurelia-framework';
 
 import { Constructor } from './Constructor';
 import { ComponentState } from './ComponentState';
@@ -13,7 +13,6 @@ import { UIElement } from './UIElement';
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
     actualComponent: React.Component | undefined;
-
 
     constructor(private _element: Element, private _type?: Constructor<TComponent>, private _wrapperType?: any) {
         super(_element);

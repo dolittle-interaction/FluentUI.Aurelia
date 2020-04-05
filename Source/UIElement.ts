@@ -1,26 +1,22 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ComponentProperties } from './ComponentProperties';
+
+import { Controller, bindable } from 'aurelia-framework';
+
 import { IUIElement } from './IUIElement';
 import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
-import { Controller, bindable } from 'aurelia-framework';
+import { FrameworkElement } from './FrameworkElement';
+import { IConfigurationHandlingStrategy } from './IConfigurationHandlingStrategy';
+import { IComponentConfiguration } from './IComponentConfiguration';
 
-export class UIElement implements IUIElement {
-    static properties<TProps>(properties: TProps) {
-        ComponentProperties.configureFor(this, properties);
-    }
-
+export class UIElement extends FrameworkElement implements IUIElement {
+    private _configurationHandlingStrategies: IConfigurationHandlingStrategy[] = [];
     private _propertyConverters: PropertyConverter[] = [];
 
     uniqueIdentifier: string;
-    isRenderRoot: boolean = false;
-
-    parent: UIElement | null = null;
     renderRoot: UIElement;
-
-    element: Element;
 
     @bindable
     visible: boolean = true;
@@ -28,10 +24,13 @@ export class UIElement implements IUIElement {
     state: any = {};
 
     constructor(element: Element) {
+        super(element);
+
+        this._configurationHandlingStrategies = this.getConfigurationHandlingStrategies();
+
         this.uniqueIdentifier = uniqueIdentifier();
         this._propertyConverters = this.getPropertyConverters();
         this.renderRoot = this;
-        this.element = element;
     }
 
     childStateChanged(): void {
@@ -43,6 +42,22 @@ export class UIElement implements IUIElement {
     getPropertyConverters(): PropertyConverter[] {
         return [];
     }
+
+    getConfigurationHandlingStrategies(): IConfigurationHandlingStrategy[] {
+        return [];
+    }
+
+    handleConfigurationObject(type: Function, configuration: any) {
+        const filtered = this._configurationHandlingStrategies.filter(_ => _.type === type);
+        if (filtered.length === 1) {
+            filtered[0].handle(this, configuration);
+        }
+
+        if (!this.isRenderRoot) {
+            this.renderRoot.childStateChanged();
+        }
+    }
+
 
     handlePropertyConverters() {
         const thisAsAny = this as any;
@@ -60,8 +75,8 @@ export class UIElement implements IUIElement {
     }
 
     attached() {
+        super.attached();
         this.renderRoot = this.getRenderRoot();
-        this.parent = this.getParent();
     }
 
     private getRenderRoot(): UIElement {
@@ -75,17 +90,5 @@ export class UIElement implements IUIElement {
             }
         }
         return renderRoot;
-    }
-
-    private getParent(): UIElement | null {
-        const controller = (this.element as any).au?.controller as Controller;
-        if (controller) {
-            const container = (controller as any).container;
-            if (container) {
-                return container.parent?.viewModel as UIElement;
-            }
-        }
-
-        return null;
     }
 }

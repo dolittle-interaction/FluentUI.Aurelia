@@ -5,19 +5,26 @@ import * as React from 'react';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { IStackProps, IStackItemProps, Stack } from 'office-ui-fabric-react';
+import { IStackProps, Stack } from 'office-ui-fabric-react';
 
-import { ContentComponent } from '../../index';
+import { ContentComponent, IConfigurationHandlingStrategy, TargetPropertyConfigurationHandlingStrategy } from '../../index';
+
+import { StackTokens } from './stack-tokens';
 
 @autoinject
 @customElement('stack')
 export class AuStack extends ContentComponent<React.FunctionComponent<IStackProps>, IStackProps> {
+
     constructor(element: Element) {
         super(element, Stack.prototype);
     }
 
     attached() {
         super.attached();
+    }
+
+    getConfigurationHandlingStrategies(): IConfigurationHandlingStrategy[] {
+        return [new TargetPropertyConfigurationHandlingStrategy(StackTokens, 'tokens')];
     }
 }
 

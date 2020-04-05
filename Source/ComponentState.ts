@@ -3,16 +3,16 @@
 
 import { ComponentProperties } from './ComponentProperties';
 import { parseValue } from './parseValue';
-import { UIElement } from './UIElement';
+import { FrameworkElement } from './FrameworkElement';
 
 export class ComponentState {
 
-    static updateFor(component: UIElement, state: any): void {
-        const properties = ComponentProperties.getFor(component.constructor);
+    static updateFor(frameworkElement: FrameworkElement, state: any): void {
+        const properties = ComponentProperties.getFor(frameworkElement.constructor);
         const attributesWithoutValue: string[] = [];
 
-        for (let i = 0; i < component.element.attributes.length; i++) {
-            const attribute = component.element.attributes.item(i);
+        for (let i = 0; i < frameworkElement.element.attributes.length; i++) {
+            const attribute = frameworkElement.element.attributes.item(i);
             if (attribute) {
                 const value = attribute.value;
                 if (!value || value === '') {
@@ -22,12 +22,12 @@ export class ComponentState {
         }
 
         properties.forEach(property => {
-            const targetValue = (component as any)[property.name];
-            if (property.isEvent && !component.isRenderRoot) {
-                state[property.reactName] = (args: any) => component.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: args }));
+            const targetValue = (frameworkElement as any)[property.name];
+            if (property.isEvent && !frameworkElement.isRenderRoot) {
+                state[property.reactName] = (args: any) => frameworkElement.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: args }));
             } else if (property.isFunction) {
                 if (typeof targetValue === 'function') {
-                    state[property.reactName] = targetValue.bind(component);
+                    state[property.reactName] = targetValue.bind(frameworkElement);
                 }
             } else if (targetValue) {
                 state[property.reactName] = parseValue(targetValue);
