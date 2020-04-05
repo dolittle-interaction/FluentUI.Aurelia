@@ -5,8 +5,10 @@ import * as React from 'react';
 
 import { UIElement } from '../UIElement';
 
+import { uniqueIdentifier } from '../uniqueIdentifier';
+
 export class ReactContentComponent extends React.Component {
-    private _inneridReact: string;
+    private _uniqueIdentifier: string;
     private _type: any;
     private _uiElement: UIElement;
 
@@ -16,7 +18,7 @@ export class ReactContentComponent extends React.Component {
         this._uiElement = state._uiElement;
         this._type = state._componentType;
 
-        this._inneridReact = 'react' + Math.round(Math.random() * 10000000000000000);
+        this._uniqueIdentifier = uniqueIdentifier('react');
         this.state = { ...state };
     }
 
@@ -25,7 +27,7 @@ export class ReactContentComponent extends React.Component {
             this._type,
             this.state,
             React.createElement('span', {
-                id: this._inneridReact,
+                id: this._uniqueIdentifier,
                 ref: (parent: HTMLElement | null) => {
                     if (!this._uiElement.visible) {
                         return;
