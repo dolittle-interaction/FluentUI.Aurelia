@@ -6,7 +6,14 @@ import * as React from 'react';
 import { inlineView } from 'aurelia-framework';
 
 import { Component } from './Component';
+import { ReactContentComponent } from './React/ReactContentComponent';
+import { Constructor } from './Constructor';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class ContentComponent<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends Component<TComponent, TProps> {
+
+    constructor(element: Element, type: Constructor<TComponent>) {
+        super(element, type, ReactContentComponent);
+    }
+
 }

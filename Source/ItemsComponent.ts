@@ -10,6 +10,7 @@ import { Constructor } from './Constructor';
 import { IItemsComponent } from './IItemsComponent';
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
 import { UIElement } from './UIElement';
+import { ReactItemsComponent } from './React/ReactItemsComponent';
 
 @autoinject
 @inlineView('<template><span id.bind="uniqueIdentifier"></span></template>')
@@ -17,7 +18,7 @@ export class ItemsComponent<TProps, TComponent extends React.Component<TProps, a
     private _itemHandlingStrategies: IItemHandlingStrategy[] = [];
 
     constructor(element: Element, type?: Constructor<TComponent>) {
-        super(element, type);
+        super(element, type, ReactItemsComponent);
         this._itemHandlingStrategies = this.getItemHandlingStrategies();
     }
 
