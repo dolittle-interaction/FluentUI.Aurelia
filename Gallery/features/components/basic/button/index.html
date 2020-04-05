@@ -4,8 +4,32 @@
     <require from="./compound-button-sample"></require>
     <require from="./command-bar-button-sample"></require>
 
+
+    <div class="ms-depth-8" style="transition-delay: 1s;">
+        <h2 class="ms-fontSize-24">Overview</h2>
+        <div innerhtml.one-time="overview"></div>
+    </div>
+
+    <div class="ms-depth-8" style="transition-delay: 1s;">
+        <h2 class="ms-fontSize-24">Best Practices</h2>
+
+        <div class="ms-Grid" dir="ltr">
+            <div class="ms-Grid-row">               
+                <div class="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
+                    <h3 class="ms-fontSize-20">Do</h2>
+                    <div innerhtml.one-time="dos"></div>
+                </div>
+                <div class="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
+                    <h3 class="ms-fontSize-20">Don't</h2>
+                    <div innerhtml.one-time="donts"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <toggle label="Disable buttons" change.bind="disabledToggled"></toggle>
     <toggle label="Mark as checked" change.bind="checkedToggled"></toggle>
+
 
     <example-card title="Default Button">
         <default-button-sample></default-button-sample>

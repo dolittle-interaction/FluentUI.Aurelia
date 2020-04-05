@@ -13,6 +13,20 @@ module.exports = () => {
     config.devServer = {
         historyApiFallback: true,
         port: 8080
-      };
-    return config;    
+    };
+
+    config.module.rules.push({
+        test: /\.md$/,
+        use: [
+            {
+                loader: "html-loader"
+            },
+            {
+                loader: "markdown-loader",
+                options: {
+                }
+            }
+        ]
+    });
+    return config;
 };
