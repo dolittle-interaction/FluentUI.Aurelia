@@ -62,8 +62,10 @@ export class UIElement extends FrameworkElement implements IUIElement {
     handlePropertyConverters() {
         const thisAsAny = this as any;
         this._propertyConverters.forEach((converter) => {
-            const converted = converter.typeConverter.convert(thisAsAny[converter.propertyName]);
-            thisAsAny[converter.targetPropertyName] = converted;
+            if (thisAsAny[converter.propertyName]) {
+                const converted = converter.typeConverter.convert(thisAsAny[converter.propertyName]);
+                thisAsAny[converter.targetPropertyName] = converted;
+            }
         });
     }
 
