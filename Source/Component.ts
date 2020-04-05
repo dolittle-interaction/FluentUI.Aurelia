@@ -13,12 +13,12 @@ import { UIElement } from './UIElement';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
-    actualComponent: ReactContentComponent | undefined;
+    actualComponent: React.Component | undefined;
 
     @bindable
     visible: boolean = true;
 
-    constructor(private _element: Element, private _type?: Constructor<TComponent>) {
+    constructor(private _element: Element, private _type?: Constructor<TComponent>, private _wrapperType?: any) {
         super(_element);
 
         if (typeof _type === 'object') {
@@ -50,9 +50,9 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
         this.handlePropertyConverters();
         this.handleVisibilityProperty(this.state);
 
-        if (this.isRenderRoot) {
+        if (this.isRenderRoot && this._wrapperType) {
             this.state._componentType = this._type;
-            const reactElement = React.createElement(ReactContentComponent, this.state);
+            const reactElement = React.createElement(this._wrapperType, this.state);
             this.actualComponent = ReactDom.render(reactElement, container);
         } else {
             if (this.renderRoot) {
