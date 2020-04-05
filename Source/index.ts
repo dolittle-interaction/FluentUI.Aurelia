@@ -38,6 +38,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/command-bar-button'),
         PLATFORM.moduleName('./components/basic/action-button'),
         PLATFORM.moduleName('./components/basic/checkbox'),
+        PLATFORM.moduleName('./components/basic/combo-box'),
+        PLATFORM.moduleName('./components/basic/combo-box-option'),
         PLATFORM.moduleName('./components/basic/toggle'),
         PLATFORM.moduleName('./components/basic/choice-group'),
         PLATFORM.moduleName('./components/basic/choice-group-option'),
