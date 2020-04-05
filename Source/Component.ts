@@ -3,7 +3,6 @@
 
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { ReactContentComponent } from './React/ReactContentComponent';
 
 import { inlineView, bindable } from 'aurelia-framework';
 
@@ -15,8 +14,6 @@ import { UIElement } from './UIElement';
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
     actualComponent: React.Component | undefined;
 
-    @bindable
-    visible: boolean = true;
 
     constructor(private _element: Element, private _type?: Constructor<TComponent>, private _wrapperType?: any) {
         super(_element);
@@ -49,6 +46,8 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
         this.beforeRender();
         this.handlePropertyConverters();
         this.handleVisibilityProperty(this.state);
+
+        this.state._uiElement = this;
 
         if (this.isRenderRoot && this._wrapperType) {
             this.state._componentType = this._type;

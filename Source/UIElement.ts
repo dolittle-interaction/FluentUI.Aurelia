@@ -5,7 +5,7 @@ import { ComponentProperties } from './ComponentProperties';
 import { IUIElement } from './IUIElement';
 import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
-import { Controller } from 'aurelia-framework';
+import { Controller, bindable } from 'aurelia-framework';
 
 export class UIElement implements IUIElement {
     static properties<TProps>(properties: TProps) {
@@ -21,6 +21,9 @@ export class UIElement implements IUIElement {
     renderRoot: UIElement;
 
     element: Element;
+
+    @bindable
+    visible: boolean = true;
 
     state: any = {};
 
