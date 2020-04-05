@@ -25,7 +25,8 @@
       "aurelia-pal": "^1.8.2",
       "aurelia-animator-css": "^1.0.4",
       "@dolittle/fluentui.aurelia": "^1.0.0",
-      "@uifabric/icons": "7.3.20"
+      "@uifabric/icons": "7.3.20",
+      "@uifabric/example-data": "7.0.9"
     }
   }
   
