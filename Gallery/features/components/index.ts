@@ -6,4 +6,5 @@ import { PLATFORM } from 'aurelia-pal';
 
 export function configure(config: FrameworkConfiguration) {
     config.globalResources(PLATFORM.moduleName('./example-card'));
+    config.globalResources(PLATFORM.moduleName('./component-info'));
 }
