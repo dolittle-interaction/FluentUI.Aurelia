@@ -77,10 +77,12 @@ $app_header-height: 3rem;
 body {
     background-color: #2b2f34;
     padding: $app_header-height 0 0 0;
+    height: 100%;
 }
 html {
   margin: 0;
   padding: 0;
+  height: 100%;
 }
 .loading {
   align-items: center;
@@ -91,4 +93,15 @@ html {
   justify-content: center;
 }
 
+.navigation {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #515151;
+}
 
+.section {
+    @extend .ms-depth-8;
+    padding: 28px;
+    margin-bottom: 28px;
+}

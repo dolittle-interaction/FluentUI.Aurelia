@@ -1,0 +1,45 @@
+// Copyright (c) Dolittle. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+.doList {
+    ul>li {
+        font-size: 14px;
+        list-style: none !important;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    ul>li:before {        
+        left: -24px;
+        font-weight: bolder;
+        font-family: FabricMDL2Icons;
+        display:block;
+        position: absolute;
+        top: 1px;
+        content: '\E8FB';
+        color: #107c10;    
+    }
+}
+
+.dontList {
+    ul>li {
+        font-size: 14px;
+        list-style: none !important;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    
+    ul>li:before {        
+        left: -24px;
+        font-weight: bolder;
+        font-family: FabricMDL2Icons;
+        display:block;
+        position: absolute;
+        top: 1px;
+        content: '\E711';
+        color: #e81123    
+    }
+}
+
+
+
