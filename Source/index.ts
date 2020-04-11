@@ -40,6 +40,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/checkbox'),
         PLATFORM.moduleName('./components/basic/combo-box'),
         PLATFORM.moduleName('./components/basic/combo-box-option'),
+        PLATFORM.moduleName('./components/basic/dropdown'),
+        PLATFORM.moduleName('./components/basic/dropdown-option'),
         PLATFORM.moduleName('./components/basic/label'),
         PLATFORM.moduleName('./components/basic/link'),
         PLATFORM.moduleName('./components/basic/toggle'),

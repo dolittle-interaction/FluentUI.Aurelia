@@ -13,7 +13,7 @@ import { Column } from './column';
 
 @autoinject
 @customElement('details-list')
-export class AuDetailsList extends ItemsComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
+export class AuDetailsList extends ItemsComponent<IDetailsListProps, React.FunctionComponent<IDetailsListProps>> {
     constructor(element: Element) {
         super(element, DetailsList.prototype);
     }
