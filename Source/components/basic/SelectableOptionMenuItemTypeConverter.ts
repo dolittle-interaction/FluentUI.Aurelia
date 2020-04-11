@@ -3,7 +3,7 @@
 
 import { ITypeConverter } from '../../ITypeConverter';
 
-import { SelectableOptionMenuItemType, DropdownMenuItemType } from 'office-ui-fabric-react';
+import { SelectableOptionMenuItemType } from 'office-ui-fabric-react';
 
 export class SelectableOptionMenuItemTypeConverter implements ITypeConverter {
     convert(value: any) {

@@ -20,6 +20,7 @@ export class App {
             { route: '/components/basic/dropdown', name: 'Dropdown', moduleId: PLATFORM.moduleName('./components/basic/dropdown/index'), nav: true },
             { route: '/components/basic/label', name: 'Label', moduleId: PLATFORM.moduleName('./components/basic/label/index'), nav: true },
             { route: '/components/basic/link', name: 'Link', moduleId: PLATFORM.moduleName('./components/basic/link/index'), nav: true },
+            { route: '/components/basic/rating', name: 'Rating', moduleId: PLATFORM.moduleName('./components/basic/rating/index'), nav: true },
             { route: '/components/utilities/stack', name: 'stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true }
         ]);
 

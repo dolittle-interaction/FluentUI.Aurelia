@@ -44,6 +44,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/dropdown-option'),
         PLATFORM.moduleName('./components/basic/label'),
         PLATFORM.moduleName('./components/basic/link'),
+        PLATFORM.moduleName('./components/basic/rating'),
         PLATFORM.moduleName('./components/basic/toggle'),
         PLATFORM.moduleName('./components/basic/choice-group'),
         PLATFORM.moduleName('./components/basic/choice-group-option'),
