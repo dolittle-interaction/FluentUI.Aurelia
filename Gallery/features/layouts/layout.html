@@ -3,9 +3,12 @@
 <template>
     <require from="./layout.scss"></require>
 
-    <component-info></component-info>
+    <div class="content">
 
-    <div class="section">
-        <slot></slot>
+        <component-info></component-info>
+
+        <div class="section">
+            <slot></slot>
+        </div>
     </div>
 </template>

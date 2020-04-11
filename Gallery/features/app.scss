@@ -73,9 +73,10 @@ $ms-color-white:                #2b2f34;
 @import '~office-ui-fabric-core/src/sass/Fabric.scss';
 
 $app_header-height: 3rem;
+$content-color: #282828;
 
 body {
-    background-color: #2b2f34;
+    background-color: $content-color;
     padding: $app_header-height 0 0 0;
     height: 100%;
 }
@@ -100,8 +101,13 @@ html {
     background-color: #515151;
 }
 
+.content {
+    padding-left: 28px;
+}
+
 .section {
     @extend .ms-depth-8;
     padding: 28px;
     margin-bottom: 28px;
+    background-color: $ms-color-white
 }

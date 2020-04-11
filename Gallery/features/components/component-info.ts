@@ -13,10 +13,19 @@ export class ComponentInfo {
     overview: string = '';
 
     @bindable
+    hasOverview: boolean = false;
+
+    @bindable
     dos: string = '';
 
     @bindable
+    hasDos: boolean = false
+
+    @bindable
     donts: string = '';
+
+    @bindable
+    hasDonts: boolean = false
 
     constructor(private _router: Router, private _httpClient: HttpClient) {
     }
@@ -31,18 +40,21 @@ export class ComponentInfo {
             .then(response => response.text())
             .then(data => {
                 this.overview = data;
+                this.hasOverview = true;
             });
 
         this._httpClient.fetch(dosPath)
             .then(response => response.text())
             .then(data => {
                 this.dos = marked.parse(data);
+                this.hasDos = true;
             });
 
         this._httpClient.fetch(dontsPath)
             .then(response => response.text())
             .then(data => {
                 this.donts = marked.parse(data);
+                this.hasDonts = true;
             });
 
     }
