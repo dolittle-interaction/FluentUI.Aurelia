@@ -12,16 +12,22 @@ import { UIElement } from './UIElement';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
-    actualComponent: React.Component | undefined;
+    actualElement: React.CElement<any, React.Component<any, any, any>> | undefined;
+    actualComponent: React.Component<any, any, any> | undefined;
+    container: Element;
+    componentType: Constructor<TComponent> | undefined;
 
-    constructor(private _element: Element, private _type?: Constructor<TComponent>, private _wrapperType?: any) {
+    constructor(private _element: Element, componentType?: Constructor<TComponent>, private _wrapperType?: any) {
         super(_element);
 
-        if (typeof _type === 'object') {
-            this._type = (_type as any).constructor;
+        this.container = document.createElement('span');
+        this.componentType = componentType;
+
+        if (typeof componentType === 'object') {
+            this.componentType = (componentType as any).constructor;
         }
 
-        if (!_type) {
+        if (!componentType) {
             this.isRenderRoot = false;
         } else {
             this.isRenderRoot = true;
@@ -31,6 +37,20 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
     beforeRender() {
     }
 
+    render() {
+    }
+
+    createElement() {
+        if (this._wrapperType) {
+            return React.createElement(this._wrapperType, this.state);
+        } else {
+            return React.createElement('span') as any;
+        }
+    }
+
+    afterRender() {
+    }
+
     unbind() {
         ReactDom.unmountComponentAtNode(this._element);
     }
@@ -38,7 +58,10 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
     attached() {
         super.attached();
         ReactDom.unmountComponentAtNode(this._element);
-        const container = document.getElementById(this.uniqueIdentifier);
+        const container = this.element.querySelector(`#${this.uniqueIdentifier}`);
+        if (container) {
+            this.container = container;
+        }
 
         ComponentState.updateFor(this, this.state);
 
@@ -48,18 +71,22 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
 
         this.state._uiElement = this;
 
-        if (this.isRenderRoot && this._wrapperType) {
-            this.state._componentType = this._type;
-            const reactElement = React.createElement(this._wrapperType, this.state);
-            this.actualComponent = ReactDom.render(reactElement, container);
-        } else {
-            if (this.renderRoot) {
-                if (this.parent && (this.parent as any).addChildItem) {
-                    (this.parent as any).addChildItem(this);
-                    this.renderRoot.childStateChanged();
-                }
-            }
+        if (this.isRenderRoot) {
+            this.state._componentType = this.componentType;
+            this.actualElement = this.createElement();
         }
+
+        this.render();
+
+        if (this.parent && (this.parent as any).addChildItem) {
+            (this.parent as any).addChildItem(this);
+        }
+
+        if (this.renderRoot) {
+            this.renderRoot.childStateChanged();
+        }
+
+        this.afterRender();
     }
 
     propertyChanged(property: string, newValue: any) {

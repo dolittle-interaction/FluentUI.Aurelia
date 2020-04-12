@@ -5,16 +5,16 @@ import * as React from 'react';
 
 import { customElement, autoinject, containerless } from 'aurelia-framework';
 
-import { IStackItemProps, Stack } from 'office-ui-fabric-react';
+import { IStackItemProps, StackItem } from 'office-ui-fabric-react';
 
-import { ContentComponent } from '../../index';
+import { ChildComponent } from '../../index';
 
 @autoinject
 @customElement('stack-item')
-export class AuStackItem extends ContentComponent<React.FunctionComponent<IStackItemProps>, IStackItemProps> {
+export class AuStackItem extends ChildComponent<React.FunctionComponent<IStackItemProps>, IStackItemProps> {
 
     constructor(element: Element) {
-        super(element, Stack.prototype);
+        super(element, StackItem.prototype);
     }
 }
 

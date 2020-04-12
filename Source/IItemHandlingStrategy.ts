@@ -5,7 +5,6 @@ import { IItemsComponent } from './IItemsComponent';
 import { UIElement } from './UIElement';
 
 export interface IItemHandlingStrategy {
-    readonly type: Function;
-
+    canHandle(item: UIElement): boolean;
     handle(target: IItemsComponent, item: UIElement): void;
 }

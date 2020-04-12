@@ -28,6 +28,8 @@ export class UIElement extends FrameworkElement implements IUIElement {
 
         this._configurationHandlingStrategies = this.getConfigurationHandlingStrategies();
 
+        this.state.key = uniqueIdentifier();
+
         this.uniqueIdentifier = uniqueIdentifier();
         this._propertyConverters = this.getPropertyConverters();
         this.renderRoot = this;

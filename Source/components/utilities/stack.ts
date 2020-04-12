@@ -7,9 +7,10 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IStackProps, Stack } from 'office-ui-fabric-react';
 
-import { ContentComponent, IConfigurationHandlingStrategy, TargetPropertyConfigurationHandlingStrategy } from '../../index';
+import { ChildComponentItemHandlingStrategy, IItemHandlingStrategy, ContentComponent, IConfigurationHandlingStrategy, TargetPropertyConfigurationHandlingStrategy } from '../../index';
 
 import { StackTokens } from './stack-tokens';
+import { AuStackItem } from './stack-item';
 
 @autoinject
 @customElement('stack')
@@ -21,6 +22,10 @@ export class AuStack extends ContentComponent<React.FunctionComponent<IStackProp
 
     getConfigurationHandlingStrategies(): IConfigurationHandlingStrategy[] {
         return [new TargetPropertyConfigurationHandlingStrategy(StackTokens, 'tokens')];
+    }
+
+    getItemHandlingStrategies(): IItemHandlingStrategy[] {
+        return [new ChildComponentItemHandlingStrategy(AuStackItem)];
     }
 }
 

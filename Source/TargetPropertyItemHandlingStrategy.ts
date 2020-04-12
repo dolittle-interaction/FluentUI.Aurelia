@@ -14,6 +14,10 @@ export class TargetPropertyItemHandlingStrategy implements IItemHandlingStrategy
         this.type = type;
     }
 
+    canHandle(item: UIElement): boolean {
+        return item.constructor === this.type;
+    }
+
     handle(target: IItemsComponent, item: UIElement): void {
         const targetAsAny = target as any;
         if (!targetAsAny[this.targetProperty]) {

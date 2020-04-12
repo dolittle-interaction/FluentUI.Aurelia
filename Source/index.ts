@@ -1,8 +1,9 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-
 export * from './CallbackItemHandlingStrategy';
+export * from './ChildComponentItemHandlingStrategy';
+export * from './ChildComponent';
 export * from './Component';
 export * from './ComponentConfiguration';
 export * from './ComponentProperties';
@@ -18,6 +19,7 @@ export * from './IItemHandlingStrategy';
 export * from './ItemsComponent';
 export * from './ITypeConverter';
 export * from './kebabCase';
+export * from './KeyValueTypeConverter';
 export * from './parseValue';
 export * from './PropertyConverter';
 export * from './TargetPropertyConfigurationHandlingStrategy';
@@ -57,6 +59,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/commands/navigation'),
         PLATFORM.moduleName('./components/commands/navigation-link'),
         PLATFORM.moduleName('./components/commands/navigation-link-group'),
+        PLATFORM.moduleName('./components/commands/pivot'),
+        PLATFORM.moduleName('./components/commands/pivot-item'),
 
         // Items
         PLATFORM.moduleName('./components/items/column'),

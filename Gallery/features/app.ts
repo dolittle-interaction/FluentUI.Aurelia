@@ -26,6 +26,9 @@ export class App {
             { route: '/components/basic/search-box', name: 'SearchBox', moduleId: PLATFORM.moduleName('./components/basic/search-box/index'), nav: true },
             { route: '/components/basic/slider', name: 'Slider', moduleId: PLATFORM.moduleName('./components/basic/slider/index'), nav: true },
 
+            // Commands
+            { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
+
             // Utilities
             { route: '/components/utilities/stack', name: 'stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true }
         ]);

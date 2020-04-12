@@ -2,7 +2,6 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
-import { Component } from '../../Component';
 
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';

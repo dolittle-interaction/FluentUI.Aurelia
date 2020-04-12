@@ -16,6 +16,10 @@ export class CallbackItemHandlingStrategy implements IItemHandlingStrategy {
         this.callback = callback;
     }
 
+    canHandle(item: UIElement): boolean {
+        return item.constructor === this.type;
+    }
+
     handle(target: IItemsComponent, item: UIElement): void {
         this.callback(target, item);
     }

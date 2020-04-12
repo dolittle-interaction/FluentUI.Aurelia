@@ -2,10 +2,11 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
+import * as ReactDom from 'react-dom';
 
 import { inlineView, autoinject } from 'aurelia-framework';
 
-import { Component } from './Component';
+import { Component } from './Component';
 import { Constructor } from './Constructor';
 import { IItemsComponent } from './IItemsComponent';
 import { IItemHandlingStrategy } from './IItemHandlingStrategy';
@@ -26,8 +27,17 @@ export class ItemsComponent<TProps, TComponent extends React.Component<TProps, a
         return [];
     }
 
+    beforeRender() {
+    }
+
+    render() {
+        if (this.actualElement) {
+            this.actualComponent = ReactDom.render(this.actualElement as any, this.container) as any;
+        }
+    }
+
     addChildItem(item: UIElement) {
-        const filtered = this._itemHandlingStrategies.filter(_ => _.type === item.constructor);
+        const filtered = this._itemHandlingStrategies.filter(_ => _.canHandle(item));
 
         if (filtered.length === 1) {
             filtered[0].handle(this, item);
@@ -36,5 +46,12 @@ export class ItemsComponent<TProps, TComponent extends React.Component<TProps, a
         if (!this.isRenderRoot) {
             this.renderRoot.childStateChanged();
         }
+    }
+
+    addChildComponent(child: UIElement) {
+        let children = this.state._childComponents || [];
+        children = [...children, child];
+        this.state._childComponents = children;
+        this.actualComponent?.setState({ _childComponents: children });
     }
 }
