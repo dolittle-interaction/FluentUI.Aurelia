@@ -19,7 +19,7 @@ export class ComponentInfo {
     dos: string = '';
 
     @bindable
-    hasDos: boolean = false
+    hasDos: boolean = false;
 
     @bindable
     donts: string = '';
