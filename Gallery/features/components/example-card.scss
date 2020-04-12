@@ -4,6 +4,7 @@
 @import '../app.scss';
 
 @import '~prismjs/themes/prism-tomorrow.css';
+@import '~prismjs/plugins/line-numbers/prism-line-numbers.css';
 
 .example-card {
     margin: 20px 0;

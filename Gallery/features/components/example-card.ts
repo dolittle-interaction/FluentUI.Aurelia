@@ -7,6 +7,18 @@ import { HttpClient } from 'aurelia-fetch-client';
 
 import Prism from 'prismjs';
 
+const NEW_LINE_EXP = /\n(?!$)/g;
+let lineNumbersWrapper: string;
+
+Prism.hooks.add('after-tokenize', function (env) {
+    const match = env.code.match(NEW_LINE_EXP);
+    const linesNum = match ? match.length + 1 : 1;
+    const lines = new Array(linesNum + 1).join('<span></span>');
+
+    lineNumbersWrapper = `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`;
+});
+
+
 @autoinject
 @customElement('example-card')
 export class ExampleCard {
@@ -35,13 +47,15 @@ export class ExampleCard {
             this._httpClient.fetch(markupCodePath)
                 .then(response => response.text())
                 .then(data => {
-                    this.markupCode = Prism.highlight(data, Prism.languages.markup, 'markup');
+                    const formatted = Prism.highlight(data, Prism.languages.markup, 'markup');
+                    this.markupCode = `${formatted}${lineNumbersWrapper}`;
                 });
 
             this._httpClient.fetch(typeScriptCodePath)
                 .then(response => response.text())
                 .then(data => {
-                    this.typeScriptCode = Prism.highlight(data, Prism.languages.typescript, 'typescript');
+                     const formatted = Prism.highlight(data, Prism.languages.typescript, 'typescript');
+                     this.typeScriptCode = `${formatted}${lineNumbersWrapper}`;
                 });
 
         }
