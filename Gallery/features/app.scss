@@ -73,7 +73,7 @@ $ms-color-white:                #2b2f34;
 @import '~office-ui-fabric-core/src/sass/Fabric.scss';
 
 $app_header-height: 3rem;
-$content-color: #282828;
+$content-color: darken($ms-color-white, 5%);
 
 body {
     background-color: $content-color;
@@ -85,20 +85,13 @@ html {
   padding: 0;
   height: 100%;
 }
-.loading {
-  align-items: center;
-  background-color: #212121;
-  border-top: 50px solid #000;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-}
+
 
 .navigation {
     display: flex;
     flex-direction: column;
     height: 100%;
-    background-color: #515151;
+    background-color: lighten($ms-color-white, 10%);
 }
 
 .content {

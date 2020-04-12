@@ -6,10 +6,19 @@
         <div class="header">
             <span class="ms-fontSize-20">${title}</span>
             <div class="buttons">
-                <action-button text="Show code" icon="Embed"></action-button>
+                <action-button text.to-view="codeSwitchString" icon="Embed" click.delegate="toggleShowingCode()">
+                </action-button>
             </div>
         </div>
     </div>
 
-    <slot></slot>
+
+    <div show.to-view="showingSample">
+        <slot></slot>
+    </div>
+
+    <div show.to-view="showingCode">
+        <pre><code class="language-typescript" innerhtml.bind="typeScriptCode"></code></pre>
+        <pre><code class="language-markup" innerhtml.bind="markupCode"></code></pre>
+    </div>
 </template>

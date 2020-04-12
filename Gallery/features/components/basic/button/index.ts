@@ -3,22 +3,11 @@
 
 import Globals from './globals';
 
-const overview = require('office-ui-fabric-react/src/components/Button/docs/ButtonOverview.md');
-const dos = require('office-ui-fabric-react/src/components/Button/docs/ButtonDos.md');
-const donts = require('office-ui-fabric-react/src/components/Button/docs/ButtonDonts.md');
-
 export class index {
     textForButton: string = 'Waiting for binding';
     globals: any;
 
-    overview: string;
-    dos: string;
-    donts: string;
-
     constructor() {
-        this.overview = overview;
-        this.dos = dos;
-        this.donts = donts;
         this.globals = Globals;
         let counter = 0;
         setInterval(() => {

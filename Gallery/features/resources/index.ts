@@ -38,6 +38,12 @@ const myTheme = createTheme({
 
 loadTheme(myTheme);
 
+import Prism from 'prismjs';
+require('prismjs/components/prism-typescript');
+
+window.Prism = Prism;
+
+
 export function configure(config: FrameworkConfiguration) {
 
 }
