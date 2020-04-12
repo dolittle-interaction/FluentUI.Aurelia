@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { autoinject, customElement, bindable } from 'aurelia-framework';
+import { autoinject, customElement, bindable, computedFrom } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { HttpClient } from 'aurelia-fetch-client';
 
@@ -27,6 +27,11 @@ export class ExampleCard {
 
     @bindable
     sample: string = '';
+
+    @computedFrom('sample')
+    get hasSample(): boolean {
+        return this.sample !== '';
+    }
 
     showingCode: boolean = false;
     showingSample: boolean = true;

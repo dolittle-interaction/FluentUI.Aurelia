@@ -6,7 +6,11 @@
         <div class="header">
             <span class="ms-fontSize-20">${title}</span>
             <div class="buttons">
-                <action-button text.to-view="codeSwitchString" icon="Embed" click.delegate="toggleShowingCode()">
+                <action-button
+                        show.to-view="hasSample"
+                        text.to-view="codeSwitchString" 
+                        icon="Embed" 
+                        click.delegate="toggleShowingCode()">
                 </action-button>
             </div>
         </div>
@@ -19,10 +23,10 @@
 
     <div show.to-view="showingCode">
         <pivot link-click.bind="languageSelected">
-            <pivot-item header-text="TypeScript">
+            <pivot-item header-text="TypeScript" item-icon="CSharp">
                 <pre class="line-numbers language-typescript"><code class="language-typescript" innerhtml.bind="typeScriptCode"></code></pre>
             </pivot-item>
-            <pivot-item header-text="HTML">
+            <pivot-item header-text="HTML" item-icon="FileHTML">
                 <pre class="line-numbers language-markup"><code class="language-markup" innerhtml.bind="markupCode"></code></pre>
             </pivot-item>
         </pivot>
