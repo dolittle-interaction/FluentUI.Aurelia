@@ -4,7 +4,7 @@
 import * as React from 'react';
 
 import { IPivotProps, Pivot, PivotLinkFormat, PivotLinkSize } from 'office-ui-fabric-react';
-import { customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { ChildComponentItemHandlingStrategy, IItemHandlingStrategy, ItemsComponent, KeyValueTypeConverter, PropertyConverter } from '../../index';
 import { AuPivotItem } from './pivot-item';
@@ -12,6 +12,12 @@ import { AuPivotItem } from './pivot-item';
 @autoinject
 @customElement('pivot')
 export class AuPivot extends ItemsComponent<IPivotProps, React.FunctionComponent<IPivotProps>> {
+
+    @bindable
+    size: string = 'normal';
+
+    @bindable
+    format: string = 'links';
 
     constructor(element: Element) {
         super(element, Pivot.prototype);
