@@ -1,0 +1,32 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <command-bar-button 
+        text="New item"
+        icon="Add"
+        disabled.bind="globals.disabled"
+        checked.bind="globals.checked">
+
+        <contextual-menu-item 
+            key="emailMessage"
+            icon="Mail"
+            text="Email message"
+            disabled.bind="globals.disabled"
+            checked.bind="globals.checked"
+            click.delegate="clicked()">        
+        </contextual-menu-item>
+
+        <contextual-menu-item
+            key="calendarItem"
+            icon="Calendar"
+            text="Calendar item"
+            disabled.bind="globals.disabled"
+            checked.bind="globals.checked"></contextual-menu-item>
+    </command-bar-button>
+
+    <command-bar-button
+        text="Send mail"
+        icon="Mail"
+        disabled.bind="globals.disabled"
+        checked.bind="globals.checked"
+        click.delegate="clicked()"></command-bar-button>
+</template>

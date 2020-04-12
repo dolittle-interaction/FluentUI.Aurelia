@@ -3,7 +3,7 @@
 
 import { ButtonSampleBase } from './ButtonSampleBase';
 
-export class CommandBarButtonSample extends ButtonSampleBase {
+export class CommandBar extends ButtonSampleBase {
     clicked() {
 
     }

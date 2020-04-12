@@ -1,22 +1,22 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-    <require from="./default-button-sample"></require>
-    <require from="./compound-button-sample"></require>
-    <require from="./command-bar-button-sample"></require>
+    <require from="./default"></require>
+    <require from="./compound"></require>
+    <require from="./command-bar"></require>
 
     <toggle label="Disable buttons" change.bind="disabledToggled"></toggle>
     <toggle label="Mark as checked" change.bind="checkedToggled"></toggle>
 
-    <example-card title="Default Button" sample="default-button-sample">
-        <default-button-sample></default-button-sample>
+    <example-card title="Default Button" sample="default">
+        <default></default>
     </example-card>
 
-    <example-card title="Compound Button">
-        <compound-button-sample></compound-button-sample>
+    <example-card title="Compound Button" sample="compound">
+        <compound></compound>
     </example-card>
 
-    <example-card title="Command Bar Button">
-        <command-bar-button-sample></command-bar-button-sample>
+    <example-card title="Command Bar Button" sample="command-bar">
+        <command-bar></command-bar>
     </example-card>
 
     <example-card title="Split Button"></example-card>
