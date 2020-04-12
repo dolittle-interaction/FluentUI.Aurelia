@@ -61,6 +61,9 @@ export class ExampleCard {
         }
     }
 
+    languageSelected(item: any, ev: any) {
+    }
+
     toggleShowingCode() {
         this.showingCode = !this.showingCode;
         this.showingSample = !this.showingCode;
