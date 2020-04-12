@@ -1,24 +1,8 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-    <stack horizontal="false">
-        <stack-tokens children-gap="5"></stack-tokens>
-        <span>Default vertical stack</span>
-        <stack horizontal="false">
-            <span>Item One</span>
-            <span>Item Two</span>
-            <span>Item Three</span>
-        </stack>
-        <span>Ordered stack</span>
-        <stack horizontal="false">
-            <stack-item order="2">
-                <span>Item One</span>
-            </stack-item>
-            <stack-item order="3">
-                <span>Item Two</span>
-            </stack-item>
-            <stack-item order="1">
-                <span>Item Three</span>
-            </stack-item>
-        </stack>
-    </stack>
+    <require from="./basic"></require>
+
+    <example-card title="Basic Vertical Stack" sample="basic">
+        <basic></basic>
+    </example-card>
 </template>
