@@ -1,0 +1,18 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <p>
+        When a link has an href,{' '}
+        <link href="http://dev.office.com/fabric/components/link">it renders as an anchor tag.</link> Without an
+        href,{' '}
+        <link>the link is rendered as a button</link>. You can also use the disabled attribute to create a{' '}
+        <link disabled={true} href="http://dev.office.com/fabric/components/link">
+        disabled link.
+        </link>
+    </p>
+    <p>
+        It's not recommended to use Links with imgs because Links are meant to render textual inline content.
+        Buttons
+        are inline-block or in the case of imgs, block. However, it is possible to create a linked image button by
+        making a button with an unstyled variant and adding the img content and href source to that.
+    </p>
+</template>
