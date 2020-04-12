@@ -1,14 +1,18 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-
     <choice-group default-selected-key="bar" label="Pick one image" required>
-        <choice-group-option key="bar" text="Clustered ba chart" image-alt="Bar chart icon"
+
+        <choice-group-option 
+            key="bar"
+            text="Clustered ba chart"
+            image-alt="Bar chart icon"
             image-src.one-time="choiceGroupBarUnselected"
             selected-image-src.one-time="choiceGroupBarSelected"></choice-group-option>
-        <choice-group-option key="pie" text="Pie char"
+
+        <choice-group-option 
+            key="pie" 
+            text="Pie char"
             image-src.one-time="choiceGroupPieUnselected"
             selected-image-src.one-time="choiceGroupPieSelected"></choice-group-option>
     </choice-group>
-
-
 </template>
