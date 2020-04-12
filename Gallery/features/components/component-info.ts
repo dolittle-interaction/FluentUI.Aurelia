@@ -39,7 +39,7 @@ export class ComponentInfo {
         this._httpClient.fetch(overviewPath)
             .then(response => response.text())
             .then(data => {
-                this.overview = data;
+                this.overview = marked.parse(data);
                 this.hasOverview = true;
             });
 
