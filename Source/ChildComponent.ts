@@ -22,25 +22,6 @@ export class ChildComponent<TComponent extends React.Component<TProps, any> | Re
     }
 
     createElement() {
-        return React.createElement(
-            this.componentType as any,
-            this.state,
-            React.createElement('span', {
-                id: this._reactUniqueIdentifier,
-                ref: (parent: HTMLElement | null) => {
-                    if (!this.visible) {
-                        return;
-                    }
-
-                    if (!parent) {
-                        parent = document.querySelector(`#${this._reactUniqueIdentifier}`);
-                    }
-
-                    if (parent) {
-                        DOMUtility.consolidateVisualTrees(parent, this.element, this._reactUniqueIdentifier, this.uniqueIdentifier);
-                    }
-                }
-            })
-        );
+        return DOMUtility.createElementWithChildren(this, this.componentType, this.state, this._reactUniqueIdentifier);
     }
 }
