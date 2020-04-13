@@ -27,7 +27,7 @@ export class ComponentState {
                 state[property.reactName] = (args: any) => frameworkElement.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: args }));
             } else if (property.isFunction) {
                 if (typeof targetValue === 'function') {
-                    state[property.reactName] = targetValue.bind(frameworkElement);
+                    state[property.reactName] = targetValue.bind(frameworkElement.bindingContext);
                 }
             } else if (targetValue) {
                 state[property.reactName] = parseValue(targetValue);
