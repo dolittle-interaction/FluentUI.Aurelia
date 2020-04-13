@@ -1,0 +1,14 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <require from="./navigation-structure.html"></require>
+    <stack>
+        <search-box underlined placeholder="Search Controls" change.bind="searchChanged"></search-box>
+        <navigation-structure show.to-view="!searching"></navigation-structure>
+        <stack show.to-view="searching">
+            <stack-tokens children-gap="20"></stack-tokens>
+            <div repeat.for="item of searchResult">
+                <flink href="${item.url}">${item.name}</flink>
+            </div>
+        </stack>
+    </stack>
+</template>

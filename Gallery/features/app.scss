@@ -91,6 +91,7 @@ html {
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding-top: 28px;
     background-color: lighten($ms-color-white, 10%);
 }
 

@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Basic inputs",
+        "items": [
+            { "name": "Button", "url": "/components/basic/button" },
+            { "name": "Checkbox", "url": "/components/basic/checkbox" },
+            { "name": "ChoiceGroup", "url": "/components/basic/choice-group" },
+            { "name": "ComboBox", "url": "/components/basic/combo-box" },
+            { "name": "Dropdown", "url": "/components/basic/dropdown" },
+            { "name": "Label", "url": "/components/basic/label" },
+            { "name": "Link", "url": "/components/basic/link" },
+            { "name": "Rating", "url": "/components/basic/rating" },
+            { "name": "SearchBox", "url": "/components/basic/search-box" },
+            { "name": "Slider", "url": "/components/basic/slider" }
+        ]
+    },
+    {
+        "name": "Commands, Menus & Navs",
+        "items": [
+            { "name": "Pivot", "url": "/components/commands/pivot" }
+        ]
+    },
+    {
+        "name": "Utilities",
+        "items": [
+            { "name": "Stack", "url": "/components/utilities/stack" }
+        ]
+    }
+]
