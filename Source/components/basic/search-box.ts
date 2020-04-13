@@ -2,21 +2,30 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
+import * as ReactDom from 'react-dom';
 
 import { bindable, customElement, autoinject } from 'aurelia-framework';
 
 import { ISearchBoxProps, SearchBox } from 'office-ui-fabric-react';
 
-import { ContentComponent, PropertyConverter, IconTypeConverter } from '../../index';
+import { Component, PropertyConverter, IconTypeConverter } from '../../index';
 
 @autoinject
 @customElement('search-box')
-export class AuSearchBox extends ContentComponent<React.FunctionComponent<ISearchBoxProps>, ISearchBoxProps> {
+export class AuSearchBox extends Component<React.FunctionComponent<ISearchBoxProps>, ISearchBoxProps> {
     @bindable
     icon: string = '';
 
     constructor(element: Element) {
         super(element, SearchBox.prototype);
+    }
+
+    createElement() {
+        return React.createElement(SearchBox, this.state);
+    }
+
+    render() {
+        this.actualComponent = ReactDom.render(this.actualElement as any, this.container) as any;
     }
 
     getPropertyConverters(): PropertyConverter[] {
