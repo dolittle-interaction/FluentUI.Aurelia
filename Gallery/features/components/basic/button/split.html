@@ -1,0 +1,62 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <stack horizontal>
+        <stack-tokens children-gap="40"></stack-tokens>
+
+        <default-button
+                text="Standard"
+                split
+                split-button-aria-label="See 2 options"
+                aria-role-description="split button"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked"
+                click.delegate="clicked()">
+
+            <contextual-menu-item 
+                key="emailMessage"
+                icon="Mail"
+                text="Email message"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked"
+                click.delegate="clicked()">        
+            </contextual-menu-item>
+    
+            <contextual-menu-item
+                key="calendarItem"
+                icon="Calendar"
+                text="Calendar item"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">
+            </contextual-menu-item>    
+        </default-button>
+
+        <default-button
+                text="Primary"
+                primary
+                split
+                split-button-aria-label="See 2 options"
+                aria-role-description="split button"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked"
+                click.delegate="clicked()">
+
+                <contextual-menu-item 
+                key="emailMessage"
+                icon="Mail"
+                text="Email message"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked"
+                click.delegate="clicked()">        
+            </contextual-menu-item>
+    
+            <contextual-menu-item
+                key="calendarItem"
+                icon="Calendar"
+                text="Calendar item"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">
+            </contextual-menu-item>    
+        </primary-button>
+    </stack>
+    
+</template>
