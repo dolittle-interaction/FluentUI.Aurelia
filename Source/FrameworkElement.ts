@@ -13,9 +13,16 @@ export class FrameworkElement {
     element: Element;
     parent: FrameworkElement | null = null;
     isRenderRoot: boolean = false;
+    bindingContext: any;
+    overrideContext: any;
 
     constructor(element: Element) {
         this.element = element;
+    }
+
+    bind(bindingContext: any, overrideContext: any) {
+        this.bindingContext = bindingContext;
+        this.overrideContext = overrideContext;
     }
 
     attached() {
