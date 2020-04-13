@@ -1,13 +1,16 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
     <p>
+        <h3>IMPORTANT: Due to HTML already having a node type called <b>link</b> - this is prefixed with <b>f</b> making it called <b>flink</b></h3>
+    </p>
+    <p>
         When a link has an href,{' '}
-        <link href="http://dev.office.com/fabric/components/link">it renders as an anchor tag.</link> Without an
+        <flink href="http://dev.office.com/fabric/components/link">it renders as an anchor tag.</flink> Without an
         href,{' '}
-        <link>the link is rendered as a button</link>. You can also use the disabled attribute to create a{' '}
-        <link disabled={true} href="http://dev.office.com/fabric/components/link">
+        <flink>the link is rendered as a button</flink>. You can also use the disabled attribute to create a{' '}
+        <flink disabled href="http://dev.office.com/fabric/components/link">
         disabled link.
-        </link>
+        </flink>
     </p>
     <p>
         It's not recommended to use Links with imgs because Links are meant to render textual inline content.
