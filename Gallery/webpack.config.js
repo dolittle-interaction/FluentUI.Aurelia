@@ -7,6 +7,7 @@ require('dotenv').config({ path: envPath });
 const originalComponentsPath = '../node_modules/office-ui-fabric-react/src/components';
 
 const CopyPlugin = require('copy-webpack-plugin');
+const NavigationGenerator = require('./NavigationGenerator');
 
 const webpack = require('@dolittle/typescript.webpack.aurelia').webpack
 const originalConfig = webpack(__dirname, path.resolve(__dirname, '..'));
@@ -49,6 +50,7 @@ module.exports = () => {
     };
 
     config.plugins = config.plugins || [];
+    config.plugins.push(new NavigationGenerator());
     config.plugins.push(
         new CopyPlugin([
             {
