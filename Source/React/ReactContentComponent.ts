@@ -4,6 +4,7 @@
 import * as React from 'react';
 
 import { UIElement } from '../UIElement';
+import { DOMUtility } from '../DOMUtility';
 
 import { uniqueIdentifier } from '../uniqueIdentifier';
 
@@ -23,33 +24,6 @@ export class ReactContentComponent extends React.Component {
     }
 
     render() {
-        return React.createElement(
-            this._type,
-            this.state,
-            React.createElement('span', {
-                id: this._uniqueIdentifier,
-                ref: (parent: HTMLElement | null) => {
-                    if (!this._uiElement.visible) {
-                        return;
-                    }
-
-                    const childrenToMove: ChildNode[] = [];
-
-                    // tslint:disable-next-line: prefer-for-of
-                    for (let i = 0; i < this._uiElement.element.childNodes.length; i++) {
-                        const child = this._uiElement.element.childNodes[i];
-                        if ((child as any).id === this._uiElement.uniqueIdentifier) {
-                            continue;
-                        }
-                        childrenToMove.push(child);
-                    }
-
-                    childrenToMove.forEach(child => {
-                        this._uiElement.element.removeChild(child);
-                        parent?.appendChild(child);
-                    });
-                }
-            })
-        );
+        return DOMUtility.createElementWithChildren(this._uiElement, this._type, this.state, this._uniqueIdentifier);
     }
 }
