@@ -20,7 +20,7 @@ export class Component<TComponent extends React.Component<TProps, any> | React.F
     constructor(private _element: Element, componentType?: Constructor<TComponent>, private _wrapperType?: any) {
         super(_element);
 
-        this.container = document.createElement('span');
+        this.container = _element;
         this.componentType = componentType;
 
         if (typeof componentType === 'object') {
