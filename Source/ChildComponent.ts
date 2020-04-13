@@ -9,6 +9,7 @@ import { Component } from './Component';
 import { Constructor } from './Constructor';
 
 import { uniqueIdentifier } from './uniqueIdentifier';
+import { DOMUtility } from './DOMUtility';
 
 @noView
 export class ChildComponent<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends Component<TComponent, TProps> {
@@ -30,33 +31,16 @@ export class ChildComponent<TComponent extends React.Component<TProps, any> | Re
                     if (!this.visible) {
                         return;
                     }
-                    const reactComponent = document.querySelector(`#${this._reactUniqueIdentifier}`);
-                    if (reactComponent && reactComponent?.childElementCount > 0) {
-                        this.moveElements(reactComponent, this.element, this._reactUniqueIdentifier);
-                    } else if (parent) {
-                        this.moveElements(this.element, parent, this.uniqueIdentifier);
+
+                    if (!parent) {
+                        parent = document.querySelector(`#${this._reactUniqueIdentifier}`);
+                    }
+
+                    if (parent) {
+                        DOMUtility.consolidateVisualTrees(parent, this.element, this._reactUniqueIdentifier, this.uniqueIdentifier);
                     }
                 }
             })
         );
-    }
-
-    moveElements(source: Element, destination: Element, skipId: string) {
-        const childrenToMove: ChildNode[] = [];
-
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < source.childNodes.length; i++) {
-            const child = source.childNodes[i];
-            if ((child as any).id === skipId) {
-                continue;
-            }
-            childrenToMove.push(child);
-        }
-
-        childrenToMove.forEach(child => {
-            source.removeChild(child);
-            destination.appendChild(child);
-        });
-
     }
 }
