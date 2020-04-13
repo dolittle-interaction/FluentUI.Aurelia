@@ -16,6 +16,7 @@ export class AuSearchBox extends Component<React.FunctionComponent<ISearchBoxPro
     @bindable
     icon: string = '';
 
+
     constructor(element: Element) {
         super(element, SearchBox.prototype);
     }
@@ -34,19 +35,19 @@ export class AuSearchBox extends Component<React.FunctionComponent<ISearchBoxPro
 }
 
 AuSearchBox.properties<ISearchBoxProps>({
-    placeholder: {} as any,
-    value: {} as any,
-    className: {} as any,
-    ariaLabel: {} as any,
-    clearButtonProps: {} as any,
-    iconProps: {} as any,
-    underlined: {} as any,
-    theme: {} as any,
-    styles: {} as any,
-    disableAnimation: {} as any,
+    placeholder: {} as any,
+    value: {} as any,
+    className: {} as any,
+    ariaLabel: {} as any,
+    clearButtonProps: {} as any,
+    iconProps: {} as any,
+    underlined: {} as any,
+    theme: {} as any,
+    styles: {} as any,
+    disableAnimation: {} as any,
 
-    onChange: () => {},
-    onSearch: () => {},
-    onClear: () => {},
-    onEscape: () => {}
+    onChange: () => { },
+    onSearch: () => { },
+    onClear: () => { },
+    onEscape: () => { }
 });

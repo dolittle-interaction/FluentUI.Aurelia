@@ -4,6 +4,7 @@
 import * as React from 'react';
 
 import { UIElement } from './UIElement';
+import { ReactStateWrapperComponent } from './React/ReactStateWrapperComponent';
 
 export class DOMUtility {
 
@@ -33,7 +34,15 @@ export class DOMUtility {
         });
     }
 
-    static createElementWithChildren(uiElement: UIElement, componentType: any, state: any, reactUniqueIdentifier: string) {
+    static createElementWithChildren(uiElement: UIElement, componentType: any, state: any) {
+        return React.createElement(ReactStateWrapperComponent, {
+            _uiElement: uiElement,
+            _componentType: componentType,
+            _state: state
+        });
+    }
+
+    static createElementWithContent(uiElement: UIElement, componentType: any, state: any, reactUniqueIdentifier: string) {
         return React.createElement(
             componentType,
             state,

@@ -24,6 +24,6 @@ export class ReactContentComponent extends React.Component {
     }
 
     render() {
-        return DOMUtility.createElementWithChildren(this._uiElement, this._type, this.state, this._uniqueIdentifier);
+        return DOMUtility.createElementWithContent(this._uiElement, this._type, this.state, this._uniqueIdentifier);
     }
 }

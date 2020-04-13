@@ -22,6 +22,6 @@ export class ChildComponent<TComponent extends React.Component<TProps, any> | Re
     }
 
     createElement() {
-        return DOMUtility.createElementWithChildren(this, this.componentType, this.state, this._reactUniqueIdentifier);
+        return DOMUtility.createElementWithContent(this, this.componentType, this.state, this._reactUniqueIdentifier);
     }
 }
