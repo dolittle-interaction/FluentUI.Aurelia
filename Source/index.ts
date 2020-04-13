@@ -11,6 +11,7 @@ export * from './ComponentProperty';
 export * from './ComponentState';
 export * from './ContentComponent';
 export * from './Constructor';
+export * from './DOMUtility';
 export * from './FrameworkElement';
 export * from './IConfigurationHandlingStrategy';
 export * from './IconTypeConverter';
@@ -39,6 +40,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/compound-button'),
         PLATFORM.moduleName('./components/basic/command-bar-button'),
         PLATFORM.moduleName('./components/basic/action-button'),
+        PLATFORM.moduleName('./components/basic/icon-button'),
         PLATFORM.moduleName('./components/basic/checkbox'),
         PLATFORM.moduleName('./components/basic/choice-group'),
         PLATFORM.moduleName('./components/basic/choice-group-option'),
