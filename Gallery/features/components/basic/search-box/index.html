@@ -1,15 +1,18 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-    <example-card title="SearchBox">
-        <search-box placeholder="Search"></search-box>
-        <search-box placeholder="Search with no animation" disable-animation></search-box>
+    <require from="./basic"></require>
+    <require from="./underlined"></require>
+    <require from="./icon"></require>
+
+    <example-card title="SearchBox" sample="basic">
+        <basic></basic>
+    </example-card>
+    
+    <example-card title="Underlined SearchBox" sample="underlined">
+        <underlined></underlined>
     </example-card>
 
-    <example-card title="Underlined SearchBox">
-        <search-box placeholder="Search" underlined></search-box>
-    </example-card>
-
-    <example-card title="SearchBox with custom icon">
-        <search-box placeholder="Search" icon="Filter"></search-box>
+    <example-card title="SearchBox with custom icon" sample="icon">
+        <icon></icon>
     </example-card>
 </template>
