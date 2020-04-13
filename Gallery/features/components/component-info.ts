@@ -25,7 +25,7 @@ export class ComponentInfo {
     donts: string = '';
 
     @bindable
-    hasDonts: boolean = false
+    hasDonts: boolean = false;
 
     constructor(private _router: Router, private _httpClient: HttpClient) {
     }
