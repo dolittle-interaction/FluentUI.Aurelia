@@ -1,14 +1,48 @@
 <template>
-    <slider vertical></slider>
-    <stack horizontal>
-        <stack-tokens children-gap="20"></stack-tokens>
-        <slider label="Snapping slider example" min="0" max="50" step="10" default-value="20" vertical show-value
-            snap-to-step></slider>
-        <slider label="Disabled example" min="50" max="500" step="50" default-value="300" show-value disabled vertical>
-        </slider>
-        <slider label="Controlled example" max="10" value.two-way="controlledValue" show-value vertical></slider>
-        <slider label="Example with formatted value" max="100" value-format.bind="formatValue" vertical></slider>
-        <slider label="Origin from zero" min="-5" max="5" step="1" default-value="2" show-value origin-from-zero
-            vertical></slider>
-    </stack>
+
+    <div style="height:200px;">
+        <stack horizontal style="height:200px;">
+            <stack-tokens children-gap="20"></stack-tokens>
+            <slider label="Snapping slider example"
+                    min="0"
+                    max="50"
+                    step="10"
+                    default-value="20"
+                    vertical
+                    show-value
+                    snap-to-step>
+            </slider>
+
+            <slider label="Disabled example"
+                    min="50"
+                    max="500"
+                    step="50"
+                    default-value="300"
+                    show-value disabled
+                    vertical>
+            </slider>
+
+            <slider label="Controlled example" 
+                    max="10" 
+                    value.two-way="controlledValue" 
+                    show-value vertical>
+            </slider>
+
+            <slider label="Example with formatted value"
+                    max="100"
+                    value-format.bind="formatValue"
+                    vertical>
+            </slider>
+
+            <slider label="Origin from zero"
+                    min="-5"
+                    max="5"
+                    step="1"
+                    default-value="2"
+                    show-value
+                    origin-from-zero
+                    vertical>
+            </slider>
+        </stack>
+    </div>
 </template>
