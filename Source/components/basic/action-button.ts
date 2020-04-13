@@ -10,9 +10,7 @@ import ButtonProps from './ButtonProps';
 
 @autoinject
 @customElement('action-button')
-export class AuActionButton extends ButtonBase<ActionButton> implements IButtonProps {
-    hidden: boolean = false;
-
+export class AuActionButton extends ButtonBase<ActionButton> {
     constructor(element: Element) {
         super(element, ActionButton);
     }
