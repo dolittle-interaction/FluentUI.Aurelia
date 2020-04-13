@@ -27,10 +27,14 @@ export class ComponentInfo {
     @bindable
     hasDonts: boolean = false;
 
+    name: string = '';
+
     constructor(private _router: Router, private _httpClient: HttpClient) {
     }
 
     attached() {
+        this.name = this._router.currentInstruction.config.name || '';
+
         const documentationPath = `/features${this._router.currentInstruction.fragment}`;
         const overviewPath = `${documentationPath}/overview.md`;
         const dosPath = `${documentationPath}/dos.md`;

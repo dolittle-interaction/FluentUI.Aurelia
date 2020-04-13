@@ -3,6 +3,8 @@
 <template>
     <require from="./component-info.scss"></require>
 
+    <h1>${name}</h1>
+
     <div class="section" style="transition-delay: 1s;" show.bind="hasOverview">
         <h2 class="ms-fontSize-24">Overview</h2>
         <div innerhtml.to-view="overview"></div>
