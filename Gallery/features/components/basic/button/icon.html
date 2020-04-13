@@ -1,0 +1,45 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <stack horizontal>
+        <stack-tokens children-gap="8"></stack-tokens>
+
+        <icon-button
+                title="Emoji"
+                icon="Emoji2"
+                airia-label="Emoji"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">
+
+        </icon-button>
+
+        <icon-button
+                title="Emoji"
+                icon="Emoji2"
+                airia-label="Emoji"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">
+
+                <contextual-menu-item 
+                key="emailMessage"
+                icon="Mail"
+                text="Email message"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">        
+            </contextual-menu-item>
+    
+            <contextual-menu-item
+                key="calendarItem"
+                icon="Calendar"
+                text="Calendar item"
+                disabled.bind="globals.disabled"
+                checked.bind="globals.checked">
+            </contextual-menu-item>    
+        </icon-button>
+    </stack>
+
+    <p>
+        For a list of Icons, visit the
+        <flink href="https://developer.microsoft.com/en-us/fabric#/styles/icons">Icon documentation</flink>.
+    </p>    
+    
+</template>
