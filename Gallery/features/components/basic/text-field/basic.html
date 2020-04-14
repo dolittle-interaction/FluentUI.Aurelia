@@ -1,0 +1,28 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <span style="width:650px;">
+        <stack horizontal>
+            <stack-tokens children-gap=" 50"></stack-tokens>
+            <stack>
+                <span style="width:300px;">
+                    <text-field label="Standard"></text-field>
+                    <text-field label="Disabled" disabled default-value="I am disabled"></text-field>
+                    <text-field label="Read-only" read-only default-value="I am read-only"></text-field>
+                    <text-field label="Required" required></text-field>
+                    <text-field aria-label="Required without visible label" required></text-field>
+                    <text-field label="With error message" error-message="Error message"></text-field>
+                </span>
+            </stack>
+
+
+            <stack>
+                <span style="width:300px;">
+                    <text-field label="With an icon" icon="Calendar"></text-field>
+                    <text-field label="With placeholder" placeholder="Please enter text here"></text-field>
+                    <text-field label="Disabled with placeholder" disabled placeholder="I am disabled"></text-field>
+                </span>
+            </stack>
+
+        </stack>
+    </span>
+</template>

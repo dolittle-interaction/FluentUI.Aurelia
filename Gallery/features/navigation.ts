@@ -12,6 +12,7 @@ export default [
    { route: '/components/basic/rating', name: 'Rating', moduleId: PLATFORM.moduleName('./components/basic/rating/index'), nav: true },
    { route: '/components/basic/search-box', name: 'SearchBox', moduleId: PLATFORM.moduleName('./components/basic/search-box/index'), nav: true },
    { route: '/components/basic/slider', name: 'Slider', moduleId: PLATFORM.moduleName('./components/basic/slider/index'), nav: true },
+   { route: '/components/basic/text-field', name: 'TextField', moduleId: PLATFORM.moduleName('./components/basic/text-field/index'), nav: true },
    { route: '/components/basic/toggle', name: 'Toggle', moduleId: PLATFORM.moduleName('./components/basic/toggle/index'), nav: true },
    { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
    { route: '/components/utilities/stack', name: 'Stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true },
