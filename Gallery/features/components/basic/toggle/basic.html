@@ -1,0 +1,58 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <stack>
+        <stack-tokens children-gap="10"></stack-tokens>
+        <toggle label="Enabled and checked"
+                default-checked
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="Enabled and unchecked"
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="Disabled and checked"
+                default-checked
+                disabled
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="Disabled and unchecked"
+                disabled
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="With inline label"
+                inline-label
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="Disabled with inline label"
+                disabled
+                inline-label
+                on-text="On"
+                off-text="Off">
+        </toggle>
+
+        <toggle label="With inline label and without on-text and off-text"
+                inline-label>
+        </toggle>
+
+        <toggle label="Disabled with inline label and without on-text and off-text"
+                disabled
+                inline-label>
+        </toggle>
+
+        <toggle label="Enabled and checked (ARIA 1.0 compatible)"
+                default-checked
+                on-text="On"
+                off-text="Off"
+                role="checkbox">
+        </toggle>
+    </stack>
+</template>

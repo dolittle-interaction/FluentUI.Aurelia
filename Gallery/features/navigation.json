@@ -11,7 +11,8 @@
             { "name": "Link", "url": "/components/basic/link" },
             { "name": "Rating", "url": "/components/basic/rating" },
             { "name": "SearchBox", "url": "/components/basic/search-box" },
-            { "name": "Slider", "url": "/components/basic/slider" }
+            { "name": "Slider", "url": "/components/basic/slider" },
+            { "name": "Toggle", "url": "/components/basic/toggle" }
         ]
     },
     {
