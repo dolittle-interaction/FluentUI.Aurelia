@@ -15,6 +15,7 @@ export default [
    { route: '/components/basic/spin-button', name: 'SpinButton', moduleId: PLATFORM.moduleName('./components/basic/spin-button/index'), nav: true },
    { route: '/components/basic/text-field', name: 'TextField', moduleId: PLATFORM.moduleName('./components/basic/text-field/index'), nav: true },
    { route: '/components/basic/toggle', name: 'Toggle', moduleId: PLATFORM.moduleName('./components/basic/toggle/index'), nav: true },
+   { route: '/components/items/card', name: 'Card', moduleId: PLATFORM.moduleName('./components/items/card/index'), nav: true },
    { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
    { route: '/components/utilities/stack', name: 'Stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true },
 ];

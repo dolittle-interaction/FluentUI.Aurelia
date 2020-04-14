@@ -18,6 +18,12 @@
         ]
     },
     {
+        "name": "Items & Lists",
+        "items": [
+            { "name": "Card", "url": "/components/items/card" }
+        ]
+    },
+    {
         "name": "Commands, Menus & Navs",
         "items": [
             { "name": "Pivot", "url": "/components/commands/pivot" }

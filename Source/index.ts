@@ -58,6 +58,11 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/masked-text-field'),
         PLATFORM.moduleName('./components/basic/toggle'),
 
+        // Items
+        PLATFORM.moduleName('./components/items/card'),
+        PLATFORM.moduleName('./components/items/card-item'),
+        PLATFORM.moduleName('./components/items/card-section'),
+
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/contextual-menu'),
         PLATFORM.moduleName('./components/commands/contextual-menu-item'),
