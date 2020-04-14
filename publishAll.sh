@@ -23,13 +23,11 @@ VERSION=
 
 echo "Publishing $PACKAGE_VERSION"
 
-for f in Generation/*; do
-    pushd $PWD > /dev/null
-    cd $f
-    echo "Publishing $f"
-    yarn publish --new-version $PACKAGE_VERSION --no-git-tag-version
-    popd > /dev/null
-done
+pushd $PWD > /dev/null
+cd Source
+echo "Publishing"
+yarn publish --new-version $PACKAGE_VERSION --no-git-tag-version
+popd > /dev/null
 
 echo "Committing changed files"
 git add .
