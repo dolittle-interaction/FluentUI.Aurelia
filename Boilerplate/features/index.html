@@ -1,0 +1,19 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+
+<template>
+    <require from="./index.scss"></require>
+
+    <card aria-label="Basic Horizontal card" horizontal click.bind="cardClicked">
+        <card-item>
+            <text>Basic horizontal card</text>
+        </card-item>
+    </card>
+
+    <details-list items.bind="items">
+        <column key="first" name="First Header" field-name="first" min-width="100" max-width="200" is-resizable="true">
+        </column>
+        <column key="second" name="Second header" field-name="second" min-width="100" max-width="200"
+            is-resizable="true"></column>
+    </details-list>
+
+</template>

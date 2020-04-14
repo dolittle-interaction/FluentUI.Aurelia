@@ -1,0 +1,11 @@
+{
+    "extends": "./node_modules/@dolittle/typescript.build/TSConfig/tsconfig.base.json",
+    "compilerOptions": {
+        "target": "es2015",
+        "experimentalDecorators": true,
+        "rootDir": ".",
+        "baseUrl": "./features",
+        "sourceRoot": "./features",
+        "declaration": false,
+    }
+}
