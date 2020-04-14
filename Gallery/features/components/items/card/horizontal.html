@@ -2,13 +2,12 @@
 <template>
     <stack>
         <stack-tokens children-gap="20"></stack-tokens>
-        <!--
-        <card aria-label="Basic Horizontal card" horizontal>
+        
+        <card aria-label="Basic Horizontal card" horizontal click.bind="cardClicked">
             <card-item>
                 <text>Basic horizontal card</text>
             </card-item>
         </card>
-        -->
 
         <card aria-label="Clickable horizontal card" click.bind="cardClicked">
             <card-item fill>
