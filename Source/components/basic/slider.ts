@@ -3,7 +3,7 @@
 
 import * as React from 'react';
 
-import { bindable, customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject } from 'aurelia-framework';
 
 import { ISliderProps, Slider } from 'office-ui-fabric-react';
 

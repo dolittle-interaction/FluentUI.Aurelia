@@ -1,0 +1,18 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <div style="width: 400px">
+        <spin-button label="SpinButton with custom implementation:"
+                    min="0"
+                    max="100"
+                    step="1"
+                    value.bind="currentValue"
+                    validate.bind="validate"
+                    increment.bind="increment"
+                    decrement.bind="decrement"
+                    focus.bind="focus"
+                    blur.bind="blur"
+                    increment-button-aria-label="Increase value by 1"
+                    decrement-button-aria-label="Decrease value by 1">
+        </spin-button>
+    </div>
+</template>

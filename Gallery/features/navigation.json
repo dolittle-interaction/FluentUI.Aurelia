@@ -12,6 +12,7 @@
             { "name": "Rating", "url": "/components/basic/rating" },
             { "name": "SearchBox", "url": "/components/basic/search-box" },
             { "name": "Slider", "url": "/components/basic/slider" },
+            { "name": "SpinButton", "url": "/components/basic/spin-button" },
             { "name": "TextField", "url": "/components/basic/text-field" },
             { "name": "Toggle", "url": "/components/basic/toggle" }
         ]

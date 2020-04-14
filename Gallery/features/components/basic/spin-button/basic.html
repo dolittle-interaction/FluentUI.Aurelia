@@ -1,0 +1,26 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <div style="width: 400px">
+        <stack>
+            <stack-tokens children-gap="10"></stack-tokens>
+                <spin-button default-value="0"
+                            label="Basic SpinButton:"
+                            min="0"
+                            max="100"
+                            step="1"
+                            icon="IncreaseIndentLegacy"
+                            increment-button-aria-label="Increase value by 1"
+                            decrement-button-aria-label="Decrease value by 1">
+                </spin-button>
+
+                <spin-button default-value="0"
+                            label="Decim,al SpinButton:"
+                            min="0"
+                            max="10"
+                            step="0.1"
+                            increment-button-aria-label="Increase value by 0.1"
+                            decrement-button-aria-label="Decrease value by 0.1">
+                </spin-button>
+        </stack>
+    </div>
+</template>
