@@ -54,6 +54,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/search-box'),
         PLATFORM.moduleName('./components/basic/slider'),
         PLATFORM.moduleName('./components/basic/text-field'),
+        PLATFORM.moduleName('./components/basic/masked-text-field'),
         PLATFORM.moduleName('./components/basic/toggle'),
 
         // Commands, Menus & Navs

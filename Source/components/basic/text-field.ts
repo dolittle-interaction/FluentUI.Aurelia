@@ -14,14 +14,16 @@ import {
     IconTypeConverter
 } from '../../index';
 
+import TextFieldProps from './TextFieldProps';
+
 @autoinject
 @customElement('text-field')
 export class AuTextField extends Component<React.FunctionComponent<ITextFieldProps>, ITextFieldProps> {
     @bindable
     icon: string = '';
 
-    constructor(element: Element) {
-        super(element, TextField.prototype);
+    constructor(element: Element, componentType?: any) {
+        super(element, componentType ?? TextField.prototype);
     }
 
     createElement() {
@@ -38,38 +40,4 @@ export class AuTextField extends Component<React.FunctionComponent<ITextFieldPro
     }
 }
 
-AuTextField.properties<ITextFieldProps>({
-    multiline: {} as any,
-    resizable: {} as any,
-    autoAdjustHeight: {} as any,
-    underlined: {} as any,
-    borderless: {} as any,
-    label: {} as any,
-    description: {} as any,
-    prefix: {} as any,
-    suffix: {} as any,
-    iconProps: {} as any,
-    defaultValue: {} as any,
-    value: {} as any,
-    disabled: {} as any,
-    readOnly: {} as any,
-    errorMessage: {} as any,
-    deferredValidationTime: {} as any,
-    className: {} as any,
-    inputClassName: {} as any,
-    ariaLabel: {} as any,
-    validateOnFocusIn: {} as any,
-    validateOnFocusOut: {} as any,
-    validateOnLoad: {} as any,
-    theme: {} as any,
-    styles: {} as any,
-    autoComplete: {} as any,
-    mask: {} as any,
-    maskChar: {} as any,
-    maskFormat: {} as any,
-    placeholder: {} as any,
-    required: {} as any,
-
-    onChange: () => {},
-    onNotifyValidationResult: () => {},
-});
+AuTextField.properties<ITextFieldProps>(TextFieldProps);
