@@ -53,6 +53,13 @@ The purpose of the components gallery is to enable a simple place to go to for r
 When working locally, it depends on the use of Yarn workspaces.
 For running the control gallery, just do the following from the folder called `Gallery`:
 
+First run the following:
+```shell
+$ yarn
+```
+
+Then run:
+
 ```shell
 $ yarn start
 ```
