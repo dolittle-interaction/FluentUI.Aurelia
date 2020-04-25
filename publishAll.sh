@@ -31,4 +31,4 @@ popd > /dev/null
 
 echo "Committing changed files"
 git add .
-git commit -m "Publishing version $1"
+git commit -m "Publishing version $PACKAGE_VERSION"
