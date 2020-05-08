@@ -13,11 +13,11 @@
         "test:clean": "gulp test-clean --gulpfile node_modules/@dolittle/typescript.build/Gulpfile.js"
     },
     "devDependencies": {
-        "@dolittle/typescript.build": "^5.0.0",
+        "@dolittle/typescript.build": "^5.3.5",
         "eslint": "^6.6.0",
-        "eslint-config-prettier": "^6.6.0",
-        "eslint-plugin-prettier": "^3.1.1",
-        "prettier": "^1.19.1"
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.3",
+        "prettier": "^2.0.5"
     },
     "dependencies": {
         "reflect-metadata": "^0.1.13"
