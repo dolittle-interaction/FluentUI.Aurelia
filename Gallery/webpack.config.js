@@ -48,6 +48,7 @@ module.exports = () => {
         historyApiFallback: true,
         port: 8080
     };
+    config.resolve.alias['aurelia-binding'] = path.resolve(path.join(__dirname,'../'), 'node_modules/aurelia-binding');
 
     config.plugins = config.plugins || [];
     config.plugins.push(new NavigationGenerator());
