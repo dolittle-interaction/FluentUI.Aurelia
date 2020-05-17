@@ -1,4 +1,15 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
+    <command-bar>
+        <command-bar-item key="newItem" text="New" cache-key="myCacheKey" icon="Add"></command-bar-item>
 
+        <overflow-items>
+
+        </overflow-items>
+
+        <far-items>
+            <command-bar-item key="tile" text="Grid view" icon-only="true" icon="Tiles" click.bind="tiles"></command-bar-item>
+            <command-bar-item key="info" text="Info" icon-only="true" icon="Info"></command-bar-item>
+        </far-items>
+    </command-bar-item>
 </template>

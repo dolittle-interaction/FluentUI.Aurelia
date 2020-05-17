@@ -5,7 +5,7 @@ import { ICommandBarItemProps } from 'office-ui-fabric-react';
 
 import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, ItemsComponent, PropertyConverter } from '../../index';
+import { IconTypeConverter, ItemsComponent, PropertyConverter, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
 
 @autoinject
 @noView

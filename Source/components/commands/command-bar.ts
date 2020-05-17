@@ -6,7 +6,7 @@ import * as React from 'react';
 import { CommandBar, ICommandBarProps } from 'office-ui-fabric-react';
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { ChildComponentItemHandlingStrategy, IItemHandlingStrategy, ItemsComponent } from '../../index';
+import { IItemHandlingStrategy, ItemsComponent, TargetPropertyItemHandlingStrategy } from '../../index';
 import { AuCommandBarItem } from './command-bar-item';
 
 @autoinject
@@ -18,7 +18,7 @@ export class AuCommandBar extends ItemsComponent<ICommandBarProps, React.Functio
     }
 
     getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new ChildComponentItemHandlingStrategy(AuCommandBarItem)];
+        return [new TargetPropertyItemHandlingStrategy(AuCommandBarItem, 'items')];
     }
 }
 
