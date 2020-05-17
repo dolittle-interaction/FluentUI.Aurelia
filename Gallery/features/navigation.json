@@ -26,6 +26,7 @@
     {
         "name": "Commands, Menus & Navs",
         "items": [
+            { "name": "CommandBar", "url": "/components/commands/command-bar" },
             { "name": "Pivot", "url": "/components/commands/pivot" }
         ]
     },

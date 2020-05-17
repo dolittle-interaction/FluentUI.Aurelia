@@ -64,6 +64,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/items/card-section'),
 
         // Commands, Menus & Navs
+        PLATFORM.moduleName('./components/commands/command-bar'),
+        PLATFORM.moduleName('./components/commands/command-bar-item'),
         PLATFORM.moduleName('./components/commands/contextual-menu'),
         PLATFORM.moduleName('./components/commands/contextual-menu-item'),
         PLATFORM.moduleName('./components/commands/navigation'),
