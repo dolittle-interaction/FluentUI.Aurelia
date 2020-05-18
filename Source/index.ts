@@ -63,6 +63,9 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/items/card-item'),
         PLATFORM.moduleName('./components/items/card-section'),
 
+        // Galleries & Pickers
+        PLATFORM.moduleName('./components/pickers/tag-picker'),
+
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/command-bar'),
         PLATFORM.moduleName('./components/commands/command-bar-item'),
@@ -78,10 +81,14 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/items/column'),
         PLATFORM.moduleName('./components/items/details-list'),
 
+        // Surfaces
+        PLATFORM.moduleName('./components/surfaces/dialog'),
+        PLATFORM.moduleName('./components/surfaces/dialog-footer'),
+
         // Utilities
         PLATFORM.moduleName('./components/utilities/stack'),
         PLATFORM.moduleName('./components/utilities/stack-tokens'),
-        PLATFORM.moduleName('./components/utilities/stack-item'),
+        PLATFORM.moduleName('./components/utilities/stack-item')
     ]);
 }
 
