@@ -1,0 +1,19 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>    
+    <checkbox label="Include persona details" default-checked change.bind="personaDetailsChanged"></checkbox>
+    <stack horizontal="false" repeat.for="item of items">
+        <stack-tokens children-gap="10"></stack-tokens>
+        
+        <label>${item.title}</label>
+
+        <persona image-url="${imageUrl}"
+                 image-initials=$"{initials}"
+                 text="${name}"
+                 secondary-text="${secondaryText}"
+                 teriary-text="${tertiaryText}"
+                 optional-text="${optionalText}"
+                 hide-persona-details="${!showDetails}"
+                 persona-presence="${item.presence}"
+                 persona-size="${item.size}"></persona>
+    </stack>
+</template>

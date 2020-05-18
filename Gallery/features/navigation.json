@@ -26,7 +26,8 @@
     {
         "name": "Items & Lists",
         "items": [
-            { "name": "Card", "url": "/components/items/card" }
+            { "name": "Card", "url": "/components/items/card" },
+            { "name": "Persona", "url": "/components/items/persona" }
         ]
     },
     {

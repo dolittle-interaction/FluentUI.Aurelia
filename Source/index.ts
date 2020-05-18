@@ -62,6 +62,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/items/card'),
         PLATFORM.moduleName('./components/items/card-item'),
         PLATFORM.moduleName('./components/items/card-section'),
+        PLATFORM.moduleName('./components/items/persona'),
 
         // Galleries & Pickers
         PLATFORM.moduleName('./components/pickers/tag-picker'),
