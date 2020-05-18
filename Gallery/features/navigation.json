@@ -18,6 +18,12 @@
         ]
     },
     {
+        "name": "Galleries & Pickers",
+        "items": [
+            { "name": "Pickers", "url": "/components/pickers/pickers" }
+        ]
+    },
+    {
         "name": "Items & Lists",
         "items": [
             { "name": "Card", "url": "/components/items/card" }
@@ -28,6 +34,12 @@
         "items": [
             { "name": "CommandBar", "url": "/components/commands/command-bar" },
             { "name": "Pivot", "url": "/components/commands/pivot" }
+        ]
+    },
+    {
+        "name": "Surfaces",
+        "items": [
+            { "name": "Dialog", "url": "/components/surfaces/dialog" }
         ]
     },
     {
