@@ -84,7 +84,7 @@ module.exports = () => {
                 }
             },
 
-            { from: './features/components/**/*.{html,ts}', to: './' }
+            { from: './features/components/**/*.{html,scss,ts}', to: './' }
         ])
     );
 

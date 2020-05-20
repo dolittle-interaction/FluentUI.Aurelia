@@ -40,6 +40,7 @@ loadTheme(myTheme);
 
 import Prism from 'prismjs';
 require('prismjs/components/prism-typescript');
+require('prismjs/components/prism-scss');
 require('prismjs/plugins/line-numbers/prism-line-numbers');
 
 window.Prism = Prism;

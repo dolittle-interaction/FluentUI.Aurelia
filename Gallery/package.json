@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@dolittle/fluentui.aurelia": "^1.0.0",
+    "@types/react": "^16.9.35",
     "@uifabric/example-data": "7.0.9",
     "@uifabric/icons": "^7.3.37",
     "aurelia-animator-css": "^1.0.4",

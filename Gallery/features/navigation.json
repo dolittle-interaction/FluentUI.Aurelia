@@ -46,6 +46,7 @@
     {
         "name": "Utilities",
         "items": [
+            { "name": "Icon", "url": "/components/utilities/icon" },
             { "name": "Stack", "url": "/components/utilities/stack" }
         ]
     }
