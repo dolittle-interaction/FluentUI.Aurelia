@@ -18,6 +18,7 @@ export default [
    { route: '/components/pickers/pickers', name: 'Pickers', moduleId: PLATFORM.moduleName('./components/pickers/pickers/index'), nav: true },
    { route: '/components/items/card', name: 'Card', moduleId: PLATFORM.moduleName('./components/items/card/index'), nav: true },
    { route: '/components/items/persona', name: 'Persona', moduleId: PLATFORM.moduleName('./components/items/persona/index'), nav: true },
+   { route: '/components/commands/app-bar', name: 'AppBar', moduleId: PLATFORM.moduleName('./components/commands/app-bar/index'), nav: true },
    { route: '/components/commands/command-bar', name: 'CommandBar', moduleId: PLATFORM.moduleName('./components/commands/command-bar/index'), nav: true },
    { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
    { route: '/components/surfaces/dialog', name: 'Dialog', moduleId: PLATFORM.moduleName('./components/surfaces/dialog/index'), nav: true },

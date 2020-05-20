@@ -68,6 +68,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/pickers/tag-picker'),
 
         // Commands, Menus & Navs
+        PLATFORM.moduleName('./components/commands/app-bar'),
         PLATFORM.moduleName('./components/commands/command-bar'),
         PLATFORM.moduleName('./components/commands/command-bar-item'),
         PLATFORM.moduleName('./components/commands/contextual-menu'),
