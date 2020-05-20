@@ -83,7 +83,7 @@ export class ExampleCard {
                 this._httpClient.fetch(codePath)
                     .then(response => response.text())
                     .then(data => {
-                        const formatted = Prism.highlight(data, Prism.languages.markup, 'markup');
+                        const formatted = this.highlight(data, fileType);
                         this.allFiles.push({
                             fileType: fileType,
                             content: `${formatted}${lineNumbersWrapper}`,
@@ -93,6 +93,30 @@ export class ExampleCard {
                     });
             }
         }
+    }
+
+    private highlight(data: string, fileType: string) {
+        let grammar = Prism.languages.markup;
+        let type = 'markup';
+
+        switch (fileType) {
+            case 'html': {
+                grammar = Prism.languages.markup;
+                type = 'markup';
+            } break;
+            case 'scss': {
+                grammar = Prism.languages.scss;
+                type = 'scss';
+            } break;
+            case 'ts': {
+                grammar = Prism.languages.typescript;
+                type = 'typescript';
+            } break;
+
+        }
+
+        const formatted = Prism.highlight(data, grammar, type);
+        return formatted;
     }
 
     languageSelected(item: any, ev: any) {
