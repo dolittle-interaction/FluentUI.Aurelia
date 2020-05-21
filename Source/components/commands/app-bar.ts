@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { customElement, children, autoinject, inlineView, processContent, metadata, HtmlBehaviorResource, useView } from 'aurelia-framework';
+import { customElement, children, autoinject, inlineView, processContent, metadata, HtmlBehaviorResource, useView, PLATFORM } from 'aurelia-framework';
 import { AuAppBarItem } from './app-bar-item';
 
 function childrenOf(selector: string) {
@@ -37,6 +37,7 @@ class ItemsComponent {
 
 @autoinject
 @customElement('app-bar')
+@useView(PLATFORM.moduleName('./app-bar.html'))
 export class AuAppBar extends ItemsComponent {
     @childrenOf('app-bar-item')
     items: AuAppBarItem[] = [];
