@@ -8,6 +8,8 @@
     "files": [
         "Distribution",
         "package.json",
+        "**/*.html",
+        "**/*.scss",
         "**/*.ts"
     ],
     "main": "Distribution/index.js",
