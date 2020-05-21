@@ -68,6 +68,8 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/pickers/tag-picker'),
 
         // Commands, Menus & Navs
+        PLATFORM.moduleName('./components/commands/app-bar'),
+        PLATFORM.moduleName('./components/commands/app-bar-item'),
         PLATFORM.moduleName('./components/commands/command-bar'),
         PLATFORM.moduleName('./components/commands/command-bar-item'),
         PLATFORM.moduleName('./components/commands/contextual-menu'),
@@ -94,8 +96,5 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/utilities/stack-tokens'),
         PLATFORM.moduleName('./components/utilities/stack-item')
     ]);
-
-    aurelia.globalResources([PLATFORM.moduleName('./components/commands/app-bar'), PLATFORM.moduleName('./components/commands/app-bar.html')]);
-    aurelia.globalResources(PLATFORM.moduleName('./components/commands/app-bar-item'));
 }
 
