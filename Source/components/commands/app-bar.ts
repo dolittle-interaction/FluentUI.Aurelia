@@ -37,7 +37,6 @@ class ItemsComponent {
 
 @autoinject
 @customElement('app-bar')
-@useView('./app-bar.html')
 export class AuAppBar extends ItemsComponent {
     @childrenOf('app-bar-item')
     items: AuAppBarItem[] = [];

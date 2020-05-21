@@ -31,7 +31,7 @@ export * from './uniqueIdentifier';
 import { FrameworkConfiguration } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
-export function configure(aurelia: any, config: any) {
+export function configure(aurelia: FrameworkConfiguration, config: any) {
     aurelia.globalResources([
 
         // Basic

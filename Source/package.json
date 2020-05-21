@@ -1,13 +1,16 @@
 {
     "name": "@dolittle/fluentui.aurelia",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "",
     "publishConfig": {
         "access": "public"
     },
     "files": [
         "Distribution",
-        "package.json"
+        "package.json",
+        "**/*.html",
+        "**/*.scss",
+        "**/*.ts"
     ],
     "main": "Distribution/index.js",
     "types": "Distribution/index.d.ts",
