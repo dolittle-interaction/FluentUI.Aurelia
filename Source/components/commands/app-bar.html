@@ -2,6 +2,20 @@
 <template>
     <require from="./app-bar.scss"></require>
 
-    Hello from app-bar
-
+    <nav class="app-bar font-size-14">
+        <ul>
+            <li>
+                <button>
+                    <font-icon icon-name="CompassNW" class-name="icon"></font-icon>
+                    <span class="text">Compass</span>
+                </button>
+            </li>
+            <li>
+                <button class="selected">
+                    <font-icon icon-name="Dictionary" class-name="icon"></font-icon>
+                    <span class="text">Dictionary</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
 </template>
