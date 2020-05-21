@@ -4,18 +4,13 @@
 
     <nav class="app-bar font-size-14">
         <ul>
-            <li>
-                <button>
-                    <font-icon icon-name="CompassNW" class-name="icon"></font-icon>
-                    <span class="text">Compass</span>
-                </button>
-            </li>
-            <li>
-                <button class="selected">
-                    <font-icon icon-name="Dictionary" class-name="icon"></font-icon>
-                    <span class="text">Dictionary</span>
+            <li repeat.for="item of items">
+                <button class.bind="item.selected ? 'selected': ''" click.delegate="selectedItemChanged(item)">
+                    <font-icon icon-name="${item.icon}" class-name="icon"></font-icon>
+                    <span class="text">${item.title}</span>
                 </button>
             </li>
         </ul>
     </nav>
+    <slot></slot>
 </template>

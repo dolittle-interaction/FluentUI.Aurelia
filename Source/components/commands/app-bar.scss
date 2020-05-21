@@ -71,7 +71,7 @@ $selectedAmbient: $ms-color-themeDarker;
         }
 
         button:focus {
-            border: none;
+            outline: none;
         }
 
         i::before::after {
@@ -100,6 +100,14 @@ $selectedAmbient: $ms-color-themeDarker;
             linear-gradient(315deg,rgba($selectedAmbient,.6) 33%,   rgba($selectedAmbient,0) 70%),
             linear-gradient(360deg,rgba($selectedAmbient,.6),       rgba($selectedAmbient,0) 33%),
             linear-gradient(90deg,rgba($selectedHighlight,.75) 6%,    rgba($selectedHighlight,0) 70%);
+
+        .icon {
+            margin-left: -0.250rem;
+        }  
+
+        .text {
+            margin-left: -0.250rem;
+        }  
     }
 
     .text {
