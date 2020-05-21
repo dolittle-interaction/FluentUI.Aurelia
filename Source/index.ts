@@ -31,7 +31,11 @@ export * from './uniqueIdentifier';
 import { FrameworkConfiguration } from 'aurelia-framework';
 import { PLATFORM } from 'aurelia-pal';
 
-export function configure(aurelia: FrameworkConfiguration, config: any) {
+export function configure(aurelia: any, config: any) {
+
+    aurelia.globalResources(PLATFORM.moduleName('./components/commands/app-bar'),PLATFORM.moduleName('./components/commands/app-bar.html'));
+    aurelia.globalResources(PLATFORM.moduleName('./components/commands/app-bar-item'));
+
     aurelia.globalResources([
 
         // Basic
@@ -68,8 +72,6 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/pickers/tag-picker'),
 
         // Commands, Menus & Navs
-        PLATFORM.moduleName('./components/commands/app-bar'),
-        PLATFORM.moduleName('./components/commands/app-bar-item'),
         PLATFORM.moduleName('./components/commands/command-bar'),
         PLATFORM.moduleName('./components/commands/command-bar-item'),
         PLATFORM.moduleName('./components/commands/contextual-menu'),
