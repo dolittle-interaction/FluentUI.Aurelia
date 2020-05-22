@@ -14,4 +14,7 @@ export class AuAppBarItem {
 
     @bindable
     selected: boolean = false;
+
+    @bindable
+    route: string = '';
 }
