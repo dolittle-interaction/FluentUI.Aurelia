@@ -70,6 +70,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/app-bar'),
         PLATFORM.moduleName('./components/commands/app-bar-item'),
+        PLATFORM.moduleName('./components/commands/breadcrumb'),
         PLATFORM.moduleName('./components/commands/command-bar'),
         PLATFORM.moduleName('./components/commands/command-bar-item'),
         PLATFORM.moduleName('./components/commands/contextual-menu'),

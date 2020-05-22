@@ -1,0 +1,20 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <label>With items rendered as buttons</label>
+    <breadcrumb items.bind="items"
+                max-displayed-items="3"
+                overflow-aria-label="More links">
+    </breadcrumb>
+
+    <label>With items rendered as links</label>
+    <breadcrumb items.bind="itemsWithHref"
+                max-displayed-items="3"
+                overflow-aria-label="More links">
+    </breadcrumb>
+
+    <label>With items rendered as heading</label>
+    <breadcrumb items.bind="itemsWithHeading"
+                max-displayed-items="3"
+                overflow-aria-label="More links">
+    </breadcrumb>
+</template>

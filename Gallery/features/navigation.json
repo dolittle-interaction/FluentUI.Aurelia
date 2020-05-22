@@ -34,6 +34,7 @@
         "name": "Commands, Menus & Navs",
         "items": [
             { "name": "AppBar", "url": "/components/commands/app-bar" },
+            { "name": "Breadcrumb", "url": "/components/commands/breadcrumb" },
             { "name": "CommandBar", "url": "/components/commands/command-bar" },
             { "name": "Pivot", "url": "/components/commands/pivot" }
         ]
