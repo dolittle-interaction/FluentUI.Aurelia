@@ -2,12 +2,34 @@
 
 <template>
     <require from="./layout.scss"></require>
+    <require from="../components-navigation"></require>
 
-    <div class="content">
-        <component-info></component-info>
+    <header class="app_header">
+        <a href="/" class="site_logo">
+            <img src="../../assets/logo.svg" alt="">
+        </a>
+    </header>
 
-        <div class="section">
-            <slot></slot>
+    <div class="navigation">
+        <components-navigation></components-navigation>
+    </div>
+
+    <div class="ms-Grid" dir="ltr">
+        <div class="ms-Grid-row">
+            <div class="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
+
+
+            </div>
+            <div class="ms-Grid-col ms-sm4 ms-md5 ms-lg8">
+                <div class="content">
+                    <component-info></component-info>
+
+                    <div class="section">
+                        <slot></slot>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
 </template>

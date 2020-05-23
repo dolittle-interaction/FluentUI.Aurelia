@@ -9,12 +9,13 @@ import * as navigation from './navigation';
 
 @autoinject
 export class App {
-    router: any;
+    router: Router | undefined;
 
     configureRouter(config: RouterConfiguration, router: Router) {
         config.options.pushState = true;
         config.map([
             { route: ['', '/'], name: 'Index', moduleId: PLATFORM.moduleName('index'), nav: true },
+            { route: ['test-bench'], name: 'TestBench', moduleId: PLATFORM.moduleName('test-bench'), nav: true, layoutView: PLATFORM.moduleName('layouts/empty.html') }
         ]);
 
         config.map(navigation.default);
