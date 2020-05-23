@@ -4,43 +4,12 @@
 import { customElement, autoinject, useView, PLATFORM } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { AuAppBarItem } from './app-bar-item';
-import { thProperties } from 'office-ui-fabric-react';
-
-function childrenOf(selector: string) {
-    return function (target: any, propertyKey: string) {
-        target.__metadata__ = target.__metadata__ || {};
-        target.__metadata__._children = target.__metadata__._children || [];
-        target.__metadata__._children.push({ 'property': propertyKey, 'selector': selector });
-    };
-}
-
-class ItemsComponent {
-    private _element: Element;
-
-    constructor(element: Element) {
-        this._element = element;
-    }
-
-    attached() {
-        if ((this as any).__metadata__?._children) {
-            const children = (this as any).__metadata__._children;
-            for (const child of children) {
-                const childElements = this._element.querySelectorAll(child.selector);
-                const childViewModels: any[] = (this as any)[child.property] || [];
-                childElements.forEach(childElement => {
-                    childViewModels.push(childElement.au.controller.viewModel);
-                });
-                (this as any)[child.property] = childViewModels;
-            }
-        }
-    }
-}
-
+import { CoreComponent, childrenOf } from '../../index';
 
 @autoinject
 @customElement('app-bar')
 @useView(PLATFORM.moduleName('./app-bar.html'))
-export class AuAppBar extends ItemsComponent {
+export class AuAppBar extends CoreComponent {
     @childrenOf('app-bar-item')
     items: AuAppBarItem[] = [];
 

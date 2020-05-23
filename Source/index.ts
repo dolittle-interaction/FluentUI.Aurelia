@@ -4,6 +4,7 @@
 export * from './CallbackItemHandlingStrategy';
 export * from './ChildComponentItemHandlingStrategy';
 export * from './ChildComponent';
+export * from './childrenOf';
 export * from './Component';
 export * from './ComponentConfiguration';
 export * from './ComponentProperties';
@@ -11,6 +12,7 @@ export * from './ComponentProperty';
 export * from './ComponentState';
 export * from './ContentComponent';
 export * from './Constructor';
+export * from './CoreComponent';
 export * from './DOMUtility';
 export * from './FrameworkElement';
 export * from './IConfigurationHandlingStrategy';
