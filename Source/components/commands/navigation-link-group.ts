@@ -1,25 +1,24 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { autoinject } from 'aurelia-framework';
+import { autoinject, noView, customElement } from 'aurelia-framework';
 
 import { INavLinkGroup, INavLink } from 'office-ui-fabric-react';
 
-import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
+import { childrenOf } from '../../ChildrenOf';
+import { ReactBase } from '../../React/ReactBase';
 
 import { NavigationLink } from './navigation-link';
 
 @autoinject
-export class NavigationLinkGroup extends ItemsComponent<INavLinkGroup> implements INavLinkGroup {
-    links: INavLink[] = [];
+@noView
+@customElement('navigation-link-group')
+export class NavigationLinkGroup extends ReactBase<INavLinkGroup> implements INavLinkGroup {
+    @childrenOf('navigation-link')
+    links: NavigationLink[] = [];
 
     constructor(element: Element) {
         super(element);
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-
-        return [new TargetPropertyItemHandlingStrategy(NavigationLink, 'links')];
     }
 }
 

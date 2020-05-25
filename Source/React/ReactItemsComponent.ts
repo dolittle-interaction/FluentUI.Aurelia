@@ -2,29 +2,24 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
-import { UIElement } from 'UIElement';
+import { Component } from '../Component';
 
 export class ReactItemsComponent extends React.Component {
     private _type: any;
 
-    constructor(private _properties: any) {
-        super(_properties);
+    constructor(private _props: any) {
+        super(_props);
 
-        this._type = _properties._componentType;
-        this.state = { ..._properties };
+        this._type = _props._componentType;
     }
 
     render() {
-        if (this._properties._uiElement.element.localName.toLowerCase().indexOf('stack') >= 0) {
-            debugger;
-        }
-
-        const childComponents = (this.state as any)._childComponents;
+        const childComponents = this._props._childComponents;
 
         if (childComponents) {
             const children: React.ReactNode[] = [];
 
-            childComponents.forEach((child: UIElement) => {
+            childComponents.forEach((child: Component) => {
                 const element = (child as any).actualElement;
                 if (element) {
                     children.push(element);
@@ -33,12 +28,12 @@ export class ReactItemsComponent extends React.Component {
 
             return React.createElement(
                 this._type,
-                this.state,
-                children);
+                this._props,
+                children) as any;
         } else {
             return React.createElement(
                 this._type,
-                this.state);
+                this._props) as any;
         }
     }
 }

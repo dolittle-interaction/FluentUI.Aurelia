@@ -4,12 +4,12 @@
 import { customElement, autoinject, useView, PLATFORM } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 import { AuAppBarItem } from './app-bar-item';
-import { CoreComponent, childrenOf } from '../../index';
+import { Component, childrenOf } from '../../index';
 
 @autoinject
 @customElement('app-bar')
 @useView(PLATFORM.moduleName('./app-bar.html'))
-export class AuAppBar extends CoreComponent {
+export class AuAppBar extends Component {
     @childrenOf('app-bar-item')
     items: AuAppBarItem[] = [];
 

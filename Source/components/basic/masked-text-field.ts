@@ -12,7 +12,11 @@ import TextFieldProps from './TextFieldProps';
 @customElement('masked-text-field')
 export class AuMaskedTextField extends AuTextField {
     constructor(element: Element) {
-        super(element, MaskedTextField.prototype);
+        super(element, MaskedTextField);
+    }
+
+    change(textField: AuTextField, value: string) {
+        super.change(textField, value);
     }
 }
 

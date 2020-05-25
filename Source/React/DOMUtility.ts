@@ -3,8 +3,8 @@
 
 import * as React from 'react';
 
-import { UIElement } from './UIElement';
-import { ReactStateWrapperComponent } from './React/ReactStateWrapperComponent';
+import { Component } from '../Component';
+import { ReactWrapperComponentWithChildren } from './ReactWrapperComponentWithChildren';
 
 export class DOMUtility {
 
@@ -34,22 +34,22 @@ export class DOMUtility {
         });
     }
 
-    static createElementWithChildren(uiElement: UIElement, componentType: any, state: any) {
-        return React.createElement(ReactStateWrapperComponent, {
-            _uiElement: uiElement,
+    static createElementWithChildren(component: Component, componentType: any, props: any) {
+        return React.createElement(ReactWrapperComponentWithChildren, {
+            _component: component,
             _componentType: componentType,
-            _state: state
+            _props: props
         });
     }
 
-    static createElementWithContent(uiElement: UIElement, componentType: any, state: any, reactUniqueIdentifier: string) {
+    static createElementWithContent(component: Component, componentType: any, props: any, reactUniqueIdentifier: string) {
         return React.createElement(
             componentType,
-            state,
+            props,
             React.createElement('span', {
                 id: reactUniqueIdentifier,
                 ref: (parent: HTMLElement | null) => {
-                    if (!uiElement.visible) {
+                    if (!component.visible) {
                         return;
                     }
 
@@ -58,7 +58,7 @@ export class DOMUtility {
                     }
 
                     if (parent) {
-                        this.consolidateVisualTrees(parent, uiElement.element, reactUniqueIdentifier, uiElement.uniqueIdentifier);
+                        this.consolidateVisualTrees(parent, component.element, reactUniqueIdentifier, component.uniqueIdentifier);
                     }
                 }
             })

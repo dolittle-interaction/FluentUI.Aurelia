@@ -3,16 +3,21 @@
 
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { IComboBoxOption } from 'office-ui-fabric-react';
+import { IComboBoxOption, SelectableOptionMenuItemType } from 'office-ui-fabric-react';
 
-import { ItemsComponent } from '../../index';
+import { ReactBase } from '../../React/ReactBase';
 
 import { PropertyConverter } from '../../PropertyConverter';
-import { SelectableOptionMenuItemTypeConverter } from './SelectableOptionMenuItemTypeConverter';
+import { KeyValueTypeConverter } from '../../index';
 
 @autoinject
 @customElement('combo-box-option')
-export class ComboBoxOption extends ItemsComponent<IComboBoxOption> {
+export class AuComboBoxOption extends ReactBase<IComboBoxOption> implements IComboBoxOption {
+    @bindable
+    key: string | number = '';
+
+    @bindable
+    text: string = '';
 
     @bindable
     type: string = 'normal';
@@ -22,21 +27,26 @@ export class ComboBoxOption extends ItemsComponent<IComboBoxOption> {
     }
 
     getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('type', 'itemType', new SelectableOptionMenuItemTypeConverter())];
+        return [new PropertyConverter('type', 'itemType', new KeyValueTypeConverter(
+            SelectableOptionMenuItemType.Divider, {
+            'divider': SelectableOptionMenuItemType.Divider,
+            'header': SelectableOptionMenuItemType.Header
+        }
+        ))];
     }
 }
 
-ComboBoxOption.properties<IComboBoxOption>({
-    key: {} as any,
-    id: {} as any,
-    text: {} as any,
-    title: {} as any,
-    itemType: {} as any,
-    index: {} as any,
-    ariaLabel: {} as any,
-    selected: {} as any,
-    disabled: {} as any,
-    hidden: {} as any,
-    data: {} as any,
-    styles: {} as any
+AuComboBoxOption.properties<IComboBoxOption>({
+    key: {} as any,
+    id: {} as any,
+    text: {} as any,
+    title: {} as any,
+    itemType: {} as any,
+    index: {} as any,
+    ariaLabel: {} as any,
+    selected: {} as any,
+    disabled: {} as any,
+    hidden: {} as any,
+    data: {} as any,
+    styles: {} as any
 });

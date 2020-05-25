@@ -5,13 +5,17 @@ import { IChoiceGroupOption } from 'office-ui-fabric-react';
 
 import { noView, autoinject, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, PropertyConverter, ItemsComponent } from '../../index';
+import { IconTypeConverter, PropertyConverter } from '../../index';
+import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
 @noView
 @customElement('choice-group-option')
-export class ChoiceGroupOption extends ItemsComponent<IChoiceGroupOption> implements IChoiceGroupOption {
+export class AuChoiceGroupOption extends ReactBase<IChoiceGroupOption> implements IChoiceGroupOption {
+    @bindable
     key: string = '';
+
+    @bindable
     text: string = '';
 
     @bindable
@@ -26,7 +30,7 @@ export class ChoiceGroupOption extends ItemsComponent<IChoiceGroupOption> implem
     }
 }
 
-ChoiceGroupOption.properties<IChoiceGroupOption>({
+AuChoiceGroupOption.properties<IChoiceGroupOption>({
     key: {} as any,
     text: {} as any,
     iconProps: {} as any,

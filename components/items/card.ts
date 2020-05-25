@@ -21,12 +21,9 @@ export class AuCard extends Component<React.FunctionComponent<ICardProps>, ICard
         this._reactUniqueIdentifier = uniqueIdentifier('react');
     }
 
-    createElement() {
-        return DOMUtility.createElementWithContent(this, Card, this.state, this._reactUniqueIdentifier);
-    }
-
     render() {
-        this.actualComponent = ReactDom.render(this.actualElement as any, this.container) as any;
+        const element = DOMUtility.createElementWithContent(this, Card, this.props, this._reactUniqueIdentifier);
+        this.actualComponent = ReactDom.render(element as any, this.container) as any;
     }
 
 }

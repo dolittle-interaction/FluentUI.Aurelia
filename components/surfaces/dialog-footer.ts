@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { DialogFooter, IDialogFooterProps, IDialogFooter } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
-import { ContentComponent } from '../../index';
+import { ContentComponent } from '../../Source/index';
 
 @autoinject
 @customElement('dialog-footer')

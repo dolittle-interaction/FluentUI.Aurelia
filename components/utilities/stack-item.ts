@@ -7,7 +7,7 @@ import { customElement, autoinject, containerless } from 'aurelia-framework';
 
 import { IStackItemProps, StackItem } from 'office-ui-fabric-react';
 
-import { ChildComponent } from '../../index';
+import { ChildComponent } from '../../Source/index';
 
 @autoinject
 @customElement('stack-item')

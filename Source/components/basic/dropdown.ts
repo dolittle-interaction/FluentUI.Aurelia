@@ -3,52 +3,68 @@
 
 import * as React from 'react';
 
-import { customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { Dropdown, IDropdownProps } from 'office-ui-fabric-react';
+import { Dropdown, IDropdownProps, IDropdown, IDropdownOption } from 'office-ui-fabric-react';
 
-import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
-import { DropdownOption } from './dropdown-option';
+import { AuDropdownOption } from './dropdown-option';
+import { childrenOf } from '../../index';
 
 @autoinject
 @customElement('dropdown')
-export class AuDropdown extends ItemsComponent<IDropdownProps, React.FunctionComponent<IDropdownProps>> {
+export class AuDropdown extends ReactComponent<React.FunctionComponent<IDropdownProps>, IDropdownProps> {
+    @childrenOf('dropdown-option')
+    options: AuDropdownOption[] = [];
+
+    @bindable
+    selectedKey: string | number = '';
+
+    @bindable
+    selected: AuDropdownOption | undefined;
+
     constructor(element: Element) {
-        super(element, Dropdown.prototype);
+        super(element, Dropdown);
     }
 
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(DropdownOption, 'options')];
+    change(event: React.FormEvent<IDropdown>, option?: IDropdownOption, index?: number, value?: string) {
+        if (index) {
+            this.selected = this.options[index];
+        } else {
+            this.selected = option as AuDropdownOption;
+        }
+        this.selectedKey = this.selected?.key || '';
+        this.handleRendering();
     }
 }
 
 AuDropdown.properties<IDropdownProps>({
-    label: {} as any,
-    ariaLabel: {} as any,
-    id: {} as any,
-    className: {} as any,
-    defaultSelectedKey: {} as any,
-    selectedKey: {} as any,
-    multiSelect: {} as any,
-    placeholder: {} as any,
-    options: {} as any,
-    dropdownWidth: {} as any,
-    responsiveMode: {} as any,
-    defaultSelectedKeys: {} as any,
-    multiSelectDelimiter: {} as any,
-    notifyOnReselect: {} as any,
-    isDisabled: {} as any,
-    keytipProps: {} as any,
-    theme: {} as any,
-    styles: {} as any,
-    disabled: {} as any,
-    required: {} as any,
-    calloutProps: {} as any,
-    panelProps: {} as any,
-    errorMessage: {} as any,
-    openOnKeyboardFocus: {} as any,
+    label: {} as any,
+    ariaLabel: {} as any,
+    id: {} as any,
+    className: {} as any,
+    defaultSelectedKey: {} as any,
+    selectedKey: {} as any,
+    multiSelect: {} as any,
+    placeholder: {} as any,
+    options: {} as any,
+    dropdownWidth: {} as any,
+    responsiveMode: {} as any,
+    defaultSelectedKeys: {} as any,
+    multiSelectDelimiter: {} as any,
+    notifyOnReselect: {} as any,
+    isDisabled: {} as any,
+    keytipProps: {} as any,
+    theme: {} as any,
+    styles: {} as any,
+    disabled: {} as any,
+    required: {} as any,
+    calloutProps: {} as any,
+    panelProps: {} as any,
+    errorMessage: {} as any,
+    openOnKeyboardFocus: {} as any,
 
-    onChange: () => {},
-    onDismiss: () => {}
+    onChange: () => { },
+    onDismiss: () => { }
 });

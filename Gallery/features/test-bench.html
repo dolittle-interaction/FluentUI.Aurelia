@@ -1,5 +1,23 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-    <details-list items.bind="items" columns.bind="fields">
-    </details-list>
+
+    <!--
+    <breadcrumb items.bind="items"
+                max-displayed-items="3"
+                overflow-aria-label="More links">
+    </breadcrumb>
+    -->
+
+    <dropdown placeholder="Select an option" label="Basic uncontrolled sample" selected.two-way="selectedOption">
+        <dropdown-option key="fruitsHeader" text="Fruits" type="Header"></dropdown-option>
+        <dropdown-option key="apple" text="Apple"></dropdown-option>
+        <dropdown-option key="banana" text="Banana"></dropdown-option>
+        <dropdown-option key="orange" text="Orange" disabled="true"></dropdown-option>
+        <dropdown-option key="divider_1" text="-" type="Divider"></dropdown-option>
+        <dropdown-option key="vegetablesHeader" text="Vegetables" type="Header"></dropdown-option>
+        <dropdown-option key="broccoli" text="Broccoli"></dropdown-option>
+        <dropdown-option key="carror" text="Carrot"></dropdown-option>
+        <dropdown-option key="lettuce" text="Lettuce"></dropdown-option>
+    </dropdown>
+
 </template>

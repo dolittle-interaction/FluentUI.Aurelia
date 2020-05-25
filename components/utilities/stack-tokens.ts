@@ -5,7 +5,7 @@ import { IStackTokens } from 'office-ui-fabric-react';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { ComponentConfiguration } from '../../index';
+import { ComponentConfiguration } from '../../Source/index';
 
 @autoinject
 @customElement('stack-tokens')

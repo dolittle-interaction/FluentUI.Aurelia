@@ -1,38 +1,26 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { autoinject } from 'aurelia-framework';
+import { autoinject, customElement, noView, bindable } from 'aurelia-framework';
 import { INavLink } from 'office-ui-fabric-react';
-
-import { IItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
+import { childrenOf } from '../../ChildrenOf';
+import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
-export class NavigationLink extends ItemsComponent<INavLink> implements INavLink {
+@noView
+@customElement('navigation-link')
+export class NavigationLink extends ReactBase<INavLink> implements INavLink {
+    @bindable
     url: string = '';
+
+    @bindable
     name: string = '';
-    links: INavLink[] = [];
 
-    constructor(private _thisElement: Element) {
-        super(_thisElement);
-    }
+    @childrenOf('navigation-link')
+    links: NavigationLink[] = [];
 
-    propertyChanged(property: string, newValue: any): void {
-        super.propertyChanged(property, newValue);
-
-        let parentElement = this._thisElement.parentElement;
-        while (parentElement && parentElement.tagName.toLowerCase() !== 'navigation') {
-            parentElement = parentElement.parentElement;
-        }
-
-        const parentViewModel = (parentElement as any)?.au?.controller?.viewModel as IItemsComponent;
-        if (parentViewModel) {
-            parentViewModel.propertyChanged('groups', [...(parentViewModel as any).groups]);
-        }
-    }
-
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(NavigationLink, 'links')];
+    constructor(element: Element) {
+        super(element);
     }
 }
 

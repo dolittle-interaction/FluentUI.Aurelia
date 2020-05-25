@@ -5,13 +5,13 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { ILabelProps, Label } from 'office-ui-fabric-react';
 
-import { ContentComponent } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('label')
-export class AuLabel extends ContentComponent<React.FunctionComponent<ILabelProps>, ILabelProps> {
+export class AuLabel extends ReactComponent<React.FunctionComponent<ILabelProps>, ILabelProps> {
     constructor(element: Element) {
-        super(element, Label.prototype);
+        super(element, Label);
     }
 }
 

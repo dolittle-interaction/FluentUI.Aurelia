@@ -7,7 +7,7 @@ import { autoinject, customElement } from 'aurelia-framework';
 
 import { ITagPickerProps, TagPicker, ITag, ValidationState } from 'office-ui-fabric-react';
 
-import { ItemsComponent } from '../../index';
+import { ItemsComponent } from '../../Source/index';
 
 @autoinject
 @customElement('tag-picker')

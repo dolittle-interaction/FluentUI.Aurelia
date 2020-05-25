@@ -5,7 +5,7 @@ import { IColumn } from 'office-ui-fabric-react';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { ItemsComponent } from '../../index';
+import { ItemsComponent } from '../../Source/index';
 
 @autoinject
 @customElement('column')

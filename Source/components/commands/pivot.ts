@@ -6,12 +6,13 @@ import * as React from 'react';
 import { IPivotProps, Pivot, PivotLinkFormat, PivotLinkSize } from 'office-ui-fabric-react';
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { ChildComponentItemHandlingStrategy, IItemHandlingStrategy, ItemsComponent, KeyValueTypeConverter, PropertyConverter } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 import { AuPivotItem } from './pivot-item';
+import { PropertyConverter, KeyValueTypeConverter, childrenOf } from '../../index';
 
 @autoinject
 @customElement('pivot')
-export class AuPivot extends ItemsComponent<IPivotProps, React.FunctionComponent<IPivotProps>> {
+export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>, IPivotProps> {
 
     @bindable
     size: string = 'normal';
@@ -20,7 +21,7 @@ export class AuPivot extends ItemsComponent<IPivotProps, React.FunctionComponent
     format: string = 'links';
 
     constructor(element: Element) {
-        super(element, Pivot.prototype);
+        super(element, Pivot);
     }
 
     getPropertyConverters(): PropertyConverter[] {
@@ -34,10 +35,6 @@ export class AuPivot extends ItemsComponent<IPivotProps, React.FunctionComponent
                 'tabs': PivotLinkFormat.tabs
             }))
         ];
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new ChildComponentItemHandlingStrategy(AuPivotItem)];
     }
 }
 
