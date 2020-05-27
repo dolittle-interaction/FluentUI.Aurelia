@@ -1,7 +1,7 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { bindable, observable } from 'aurelia-framework';
+import { bindable, observable, computedFrom } from 'aurelia-framework';
 import { IBreadcrumbItem } from 'office-ui-fabric-react';
 
 import { AuChoiceGroupOption } from '@dolittle/fluentui.aurelia';
@@ -26,6 +26,15 @@ export class TestBench {
     @bindable
     selectedOption: any;
 
+    @bindable
+    something: string = 'Emoji2';
+
+    @bindable
+    icon: string = 'Emoji2';
+
+    @computedFrom('icon')
+    get blah(): string { return this.icon; }
+
     constructor() {
         let counter = 0;
         setInterval(() => {
@@ -41,6 +50,10 @@ export class TestBench {
 
     changed() {
         debugger;
+    }
+
+    change() {
+        this.icon = 'Blah';
     }
 
     propertyChanged(property: any, newValue: any) {

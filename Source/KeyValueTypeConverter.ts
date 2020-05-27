@@ -4,13 +4,13 @@
 import { ITypeConverter } from './ITypeConverter';
 
 export class KeyValueTypeConverter implements ITypeConverter {
-    constructor(private _defaultValue: any, private _keyValues: any) {
+    constructor(private _keyValues: any) {
     }
 
     convert(value: any) {
         if (this._keyValues.hasOwnProperty(value)) {
             return this._keyValues[value];
         }
-        return this._defaultValue;
+        return undefined;
     }
 }

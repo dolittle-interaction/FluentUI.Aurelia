@@ -17,7 +17,7 @@ export class AuIcon extends ReactComponent<React.FunctionComponent<IIconProps>, 
     @bindable
     type: string = 'default';
 
-    @propertyConverter('type', new KeyValueTypeConverter(IconType.default, {
+    @propertyConverter('type', new KeyValueTypeConverter({
         'default': IconType.default,
         'image': IconType.image
     }))

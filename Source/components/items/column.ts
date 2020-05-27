@@ -3,13 +3,22 @@
 
 import { IColumn } from 'office-ui-fabric-react';
 
-import { autoinject, customElement } from 'aurelia-framework';
+import { autoinject, customElement, bindable } from 'aurelia-framework';
 
-import { ItemsComponent } from '../../Source/index';
+import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
 @customElement('column')
-export class Column extends ItemsComponent<IColumn> {
+export class Column extends ReactBase<IColumn> implements IColumn {
+    @bindable
+    key: string = '';
+
+    @bindable
+    name: string = '';
+
+    @bindable
+    minWidth: number = 0;
+
     constructor(element: Element) {
         super(element);
     }

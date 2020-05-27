@@ -7,19 +7,18 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { DetailsList, IDetailsListProps, IColumn } from 'office-ui-fabric-react';
 
-import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
-
-import { Column } from './column';
+import { childrenOf } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('details-list')
-export class AuDetailsList extends ItemsComponent<IDetailsListProps, React.FunctionComponent<IDetailsListProps>> {
+export class AuDetailsList extends ReactComponent<React.FunctionComponent<IDetailsListProps>, IDetailsListProps> {
+
+    @childrenOf('column')
+    columns?: IColumn[];
+
     constructor(element: Element) {
         super(element, DetailsList.prototype);
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return[new TargetPropertyItemHandlingStrategy(Column, 'columns')];
     }
 }
 

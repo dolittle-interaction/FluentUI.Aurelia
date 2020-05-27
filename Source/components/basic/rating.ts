@@ -24,8 +24,7 @@ export class AuRating extends ReactComponent<React.FunctionComponent<IRatingProp
     @bindable
     ratingSize: string = 'small';
 
-    @propertyConverter('raging-size', new KeyValueTypeConverter(
-            RatingSize.Small, {
+    @propertyConverter('raging-size', new KeyValueTypeConverter({
             'small': RatingSize.Small,
             'large': RatingSize.Large
         }))

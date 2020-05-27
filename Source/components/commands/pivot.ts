@@ -16,7 +16,7 @@ export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>
     @bindable
     size: string = 'normal';
 
-    @propertyConverter('size', new KeyValueTypeConverter(PivotLinkSize.normal, {
+    @propertyConverter('size', new KeyValueTypeConverter({
         'normal': PivotLinkSize.normal,
         'large': PivotLinkSize.large
     }))
@@ -25,7 +25,7 @@ export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>
     @bindable
     format: string = 'links';
 
-    @propertyConverter('format', new KeyValueTypeConverter(PivotLinkFormat.links, {
+    @propertyConverter('format', new KeyValueTypeConverter({
         'links': PivotLinkFormat.links,
         'tabs': PivotLinkFormat.tabs
     }))
