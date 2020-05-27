@@ -4,7 +4,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
-import { Constructor } from '../Constructor';
+import { Constructor } from '@dolittle/rudiments';
 import { Component } from '../Component';
 import { ComponentProperties } from './ComponentProperties';
 import { ComponentProperty } from './ComponentProperty';
@@ -60,7 +60,6 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
         const property = this.properties.find(_ => _.name === propertyName);
         if (property) {
             this.props[property.reactName] = newValue;
-            this.handlePropertyConvertersFor(property.name, newValue, this.props);
 
             this.handleRendering();
         }
@@ -73,12 +72,5 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
         children = [...children, child];
         this.props._childComponents = children;
         this.handleRendering();
-    }
-
-    private handlePropertyConvertersFor(property: string, value: any, props: any) {
-        const filtered = this.propertyConverters.filter((converter) => converter.propertyName === property);
-        if (filtered.length === 1) {
-            props[filtered[0].targetPropertyName] = filtered[0].typeConverter.convert(value);
-        }
     }
 }
