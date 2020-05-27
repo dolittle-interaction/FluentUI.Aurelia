@@ -7,11 +7,11 @@ import { autoinject, customElement } from 'aurelia-framework';
 
 import { Dialog, IDialogProps } from 'office-ui-fabric-react';
 
-import { ContentComponent } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('dialog')
-export class AuDialog extends ContentComponent<React.FunctionComponent<IDialogProps>, IDialogProps> {
+export class AuDialog extends ReactComponent<React.FunctionComponent<IDialogProps>, IDialogProps> {
     constructor(element: Element) {
         super(element, Dialog);
     }
