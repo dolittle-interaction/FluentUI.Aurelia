@@ -6,7 +6,7 @@ import { inlineView, bindable, Controller } from 'aurelia-framework';
 
 import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
-import { ChildrenOf } from './ChildrenOf';
+import { ChildSelectorForProperty } from './Children';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component {
@@ -55,6 +55,7 @@ export class Component {
 
     attached() {
         this.handleChildrenOf();
+        this.handleChildOf();
         this.handleRendering();
     }
 
@@ -76,8 +77,8 @@ export class Component {
     }
 
     private handleChildrenOf() {
-        if ((this as any).__metadata__?._children) {
-            const children = (this as any).__metadata__._children as ChildrenOf[];
+        if ((this as any).__metadata__?._childrenOf) {
+            const children = (this as any).__metadata__._childrenOf as ChildSelectorForProperty[];
             for (const childrenOf of children) {
                 const childElements = this.element.querySelectorAll(childrenOf.selector);
                 if (childElements.length > 0) {
@@ -96,4 +97,21 @@ export class Component {
             }
         }
     }
+
+    private handleChildOf() {
+        if ((this as any).__metadata__?._childOf) {
+            const children = (this as any).__metadata__._childOf as ChildSelectorForProperty[];
+            for (const childOf of children) {
+                const childElement = this.element.querySelector(childOf.selector);
+                if (childElement) {
+                    if (childOf.initialValue) {
+                        (this as any)[childOf.property] = childOf.initialValue;
+                    }
+
+                    childOf.setValueOn(this, (childElement as any).au.controller.viewModel);
+                }
+            }
+        }
+    }
+
 }
