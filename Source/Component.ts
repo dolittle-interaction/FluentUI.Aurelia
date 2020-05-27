@@ -2,16 +2,14 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 
-import { inlineView, bindable, Controller } from 'aurelia-framework';
+import { inlineView, bindable, metadata } from 'aurelia-framework';
 
-import { PropertyConverter } from './PropertyConverter';
 import { uniqueIdentifier } from './uniqueIdentifier';
 import { ChildSelectorForProperty } from './Children';
+import { PropertyConverters } from './PropertyConverters';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component {
-    private _propertyConverters: PropertyConverter[] = [];
-
     element: Element;
     uniqueIdentifier: string;
 
@@ -23,13 +21,9 @@ export class Component {
 
     constructor(element: Element) {
         this.element = element;
+        PropertyConverters.hookupConvertersFor(this);
 
         this.uniqueIdentifier = uniqueIdentifier();
-        this._propertyConverters = this.getPropertyConverters();
-    }
-
-    get propertyConverters(): PropertyConverter[] {
-        return this._propertyConverters;
     }
 
     get bindingContext() {
@@ -44,7 +38,6 @@ export class Component {
     }
 
     handleRendering() {
-        this.handlePropertyConverters();
         this.render();
     }
 
@@ -60,20 +53,6 @@ export class Component {
     }
 
     propertyChanged(propertyName: string, newValue: any) {
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [];
-    }
-
-    handlePropertyConverters() {
-        const thisAsAny = this as any;
-        this._propertyConverters.forEach((converter) => {
-            if (thisAsAny[converter.propertyName]) {
-                const converted = converter.typeConverter.convert(thisAsAny[converter.propertyName]);
-                thisAsAny[converter.targetPropertyName] = converted;
-            }
-        });
     }
 
     private handleChildrenOf() {
