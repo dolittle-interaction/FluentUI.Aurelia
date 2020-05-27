@@ -2,29 +2,23 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { ITypeConverter } from './ITypeConverter';
+import { PropertyConverters } from './PropertyConverters';
 
 export class PropertyConverter {
-    readonly propertyName: string;
-    readonly targetPropertyName: string;
+    readonly sourceProperty: string;
+    readonly targetProperty: string;
     readonly typeConverter: ITypeConverter;
 
-    constructor(propertyName: string, targetPropertyName: string, typeConverter: ITypeConverter) {
-        this.propertyName = propertyName;
-        this.targetPropertyName = targetPropertyName;
+    constructor(sourceProperty: string, targetProperty: string, typeConverter: ITypeConverter) {
+        this.sourceProperty = sourceProperty;
+        this.targetProperty = targetProperty;
         this.typeConverter = typeConverter;
     }
 }
 
-
-/*
-function propertyConverter() {
-    const bindingEngine = Container.instance.get<BindingEngine>(BindingEngine) as BindingEngine;
-
+export function propertyConverter(sourceProperty: string, converter: ITypeConverter) {
     return function (target: any, propertyKey: string) {
-        bindingEngine.propertyObserver(target, propertyKey).subscribe((value) => {
-            debugger;
-
-        });
+        PropertyConverters.addConverterFor(target.constructor.prototype, sourceProperty, propertyKey, converter);
     };
 }
-*/
+

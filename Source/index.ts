@@ -6,13 +6,13 @@ export * from './Component';
 export * from './React/ComponentProperties';
 export * from './React/ComponentProperty';
 export * from './React/DOMUtility';
-export * from './Constructor';
 export * from './IconTypeConverter';
 export * from './ITypeConverter';
 export * from './kebabCase';
 export * from './KeyValueTypeConverter';
 export * from './parseValue';
 export * from './PropertyConverter';
+export * from './PropertyConverters';
 export * from './uniqueIdentifier';
 
 export * from './components/basic/choice-group-option';
