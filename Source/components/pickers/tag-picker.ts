@@ -7,13 +7,13 @@ import { autoinject, customElement } from 'aurelia-framework';
 
 import { ITagPickerProps, TagPicker, ITag, ValidationState } from 'office-ui-fabric-react';
 
-import { ItemsComponent } from '../../Source/index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('tag-picker')
-export class AuTagPicker extends ItemsComponent<ITagPickerProps, React.FunctionComponent<ITagPickerProps>> {
+export class AuTagPicker extends ReactComponent<React.FunctionComponent<ITagPickerProps>, ITagPickerProps> {
     constructor(element: Element) {
-        super(element, TagPicker.prototype);
+        super(element, TagPicker);
     }
 }
 
