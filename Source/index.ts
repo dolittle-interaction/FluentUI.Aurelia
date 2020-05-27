@@ -1,12 +1,12 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-export * from './ChildrenOf';
+export * from './Children';
 export * from './Component';
 export * from './React/ComponentProperties';
 export * from './React/ComponentProperty';
-export * from './Constructor';
 export * from './React/DOMUtility';
+export * from './Constructor';
 export * from './IconTypeConverter';
 export * from './ITypeConverter';
 export * from './kebabCase';
