@@ -1,9 +1,9 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { bindable, children } from 'aurelia-framework';
+import { bindable, children, valueConverter, computedFrom, metadata, Container, BindingEngine } from 'aurelia-framework';
 
-import { IButtonProps, IContextualMenuProps, IButton } from 'office-ui-fabric-react';
+import { IButtonProps, IContextualMenuProps, IButton, IIconProps } from 'office-ui-fabric-react';
 
 import {
     PropertyConverter,
@@ -14,6 +14,7 @@ import {
 import { ReactComponent } from '../../React/ReactComponent';
 
 export class ButtonBase<TComponent extends React.Component<IButtonProps, any>> extends ReactComponent<TComponent, IButtonProps> implements IButtonProps {
+
     @bindable
     icon: string = '';
 

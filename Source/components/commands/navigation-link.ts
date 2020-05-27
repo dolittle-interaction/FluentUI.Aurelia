@@ -3,7 +3,7 @@
 
 import { autoinject, customElement, noView, bindable } from 'aurelia-framework';
 import { INavLink } from 'office-ui-fabric-react';
-import { childrenOf } from '../../ChildrenOf';
+import { childrenOf } from '../../Children';
 import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
@@ -17,7 +17,7 @@ export class NavigationLink extends ReactBase<INavLink> implements INavLink {
     name: string = '';
 
     @childrenOf('navigation-link')
-    links: NavigationLink[] = [];
+    links: INavLink[] = [];
 
     constructor(element: Element) {
         super(element);

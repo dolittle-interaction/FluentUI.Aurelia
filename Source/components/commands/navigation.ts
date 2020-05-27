@@ -6,10 +6,8 @@ import * as React from 'react';
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { childrenOf } from '../../ChildrenOf';
+import { childrenOf } from '../../Children';
 import { ReactComponent } from '../../React/ReactComponent';
-
-import { NavigationLinkGroup } from './navigation-link-group';
 
 @autoinject
 @customElement('navigation')
@@ -17,7 +15,7 @@ export class AuNavigation extends ReactComponent<React.FunctionComponent<INavPro
     hidden: boolean = false;
 
     @childrenOf('navigation-link-group')
-    groups: NavigationLinkGroup[] = [];
+    groups: INavLinkGroup[] = [];
 
     constructor(element: Element) {
         super(element, Nav);

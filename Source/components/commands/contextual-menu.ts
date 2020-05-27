@@ -7,8 +7,7 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { IContextualMenuProps, IContextualMenuItem, ContextualMenu } from 'office-ui-fabric-react';
 import { ReactComponent } from '../../React/ReactComponent';
-import { AuContextualMenuItem } from './contextual-menu-item';
-import { childrenOf } from '../../ChildrenOf';
+import { childrenOf } from '../../Children';
 
 @autoinject
 @customElement('contextual-menu')
@@ -16,7 +15,7 @@ export class AuContextualMenu extends ReactComponent<React.FunctionComponent<ICo
     hidden: boolean = false;
 
     @childrenOf('contextual-menu-item')
-    items: AuContextualMenuItem[] = [];
+    items: IContextualMenuItem[] = [];
 
     constructor(element: Element) {
         super(element, ContextualMenu);

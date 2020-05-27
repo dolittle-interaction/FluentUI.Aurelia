@@ -20,10 +20,10 @@ export class AuChoiceGroup extends ReactComponent<React.FunctionComponent<IChoic
     selectedKey: string = '';
 
     @childrenOf('choice-group-option', [])
-    options: AuChoiceGroupOption[] | undefined;
+    options: IChoiceGroupOption[] | undefined;
 
     @bindable
-    selected: AuChoiceGroupOption | undefined;
+    selected: IChoiceGroupOption | undefined;
 
     constructor(element: Element) {
         super(element, ChoiceGroup);

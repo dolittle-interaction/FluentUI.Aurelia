@@ -2,21 +2,32 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
-import * as ReactDom from 'react-dom';
 
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { IStackProps, Stack } from 'office-ui-fabric-react';
+import { IStackProps, Stack, IStackTokens, IStackItemProps } from 'office-ui-fabric-react';
 
-import { StackTokens } from './stack-tokens';
-import { AuStackItem } from './stack-item';
+import { ReactComponent } from '../../React/ReactComponent';
+import { childOf, childrenOf } from 'Children';
 
 
 @autoinject
 @customElement('stack')
 export class AuStack extends ReactComponent<React.FunctionComponent<IStackProps>, IStackProps> {
+
+    @childOf('stack-tokens')
+    tokens?: IStackTokens;
+
+    @childrenOf('stack-item')
+    items?: IStackItemProps[];
+
     constructor(element: Element) {
         super(element, Stack);
+    }
+
+    render() {
+        this.props.children = this.items;
+        super.render();
     }
 }
 

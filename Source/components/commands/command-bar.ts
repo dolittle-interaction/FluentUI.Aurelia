@@ -3,19 +3,18 @@
 
 import * as React from 'react';
 
-import { CommandBar, ICommandBarProps } from 'office-ui-fabric-react';
+import { CommandBar, ICommandBarProps, ICommandBarItemProps } from 'office-ui-fabric-react';
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { AuCommandBarItem } from './command-bar-item';
 import { ReactComponent } from '../../React/ReactComponent';
-import { childrenOf } from '../../ChildrenOf';
+import { childrenOf } from '../../Children';
 
 @autoinject
 @customElement('command-bar')
 export class AuCommandBar extends ReactComponent<React.FunctionComponent<ICommandBarProps>, ICommandBarProps> implements ICommandBarProps{
 
     @childrenOf('command-bar-item')
-    items: AuCommandBarItem[] = [];
+    items: ICommandBarItemProps[] = [];
 
     constructor(element: Element) {
         super(element, CommandBar);

@@ -16,13 +16,13 @@ import { childrenOf } from '../../index';
 @customElement('dropdown')
 export class AuDropdown extends ReactComponent<React.FunctionComponent<IDropdownProps>, IDropdownProps> {
     @childrenOf('dropdown-option')
-    options: AuDropdownOption[] = [];
+    options: IDropdownOption[] = [];
+
+    @bindable
+    selected: IDropdownOption | undefined;
 
     @bindable
     selectedKey: string | number = '';
-
-    @bindable
-    selected: AuDropdownOption | undefined;
 
     constructor(element: Element) {
         super(element, Dropdown);

@@ -13,13 +13,13 @@ import { ReactComponent } from '../../React/ReactComponent';
 @customElement('combo-box')
 export class AuComboBox extends ReactComponent<ComboBox, IComboBoxProps> implements IComboBoxProps {
     @childrenOf('combo-box-option')
-    options: AuComboBoxOption[] = [];
+    options: IComboBoxOption[] = [];
+
+    @bindable
+    selected: IComboBoxOption | undefined;
 
     @bindable
     selectedKey: string | number = '';
-
-    @bindable
-    selected: AuComboBoxOption | undefined;
 
     constructor(element: Element) {
         super(element, ComboBox);

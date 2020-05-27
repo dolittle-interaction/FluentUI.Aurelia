@@ -5,17 +5,15 @@ import { autoinject, noView, customElement } from 'aurelia-framework';
 
 import { INavLinkGroup, INavLink } from 'office-ui-fabric-react';
 
-import { childrenOf } from '../../ChildrenOf';
+import { childrenOf } from '../../Children';
 import { ReactBase } from '../../React/ReactBase';
-
-import { NavigationLink } from './navigation-link';
 
 @autoinject
 @noView
 @customElement('navigation-link-group')
 export class NavigationLinkGroup extends ReactBase<INavLinkGroup> implements INavLinkGroup {
     @childrenOf('navigation-link')
-    links: NavigationLink[] = [];
+    links: INavLink[] = [];
 
     constructor(element: Element) {
         super(element);

@@ -3,13 +3,12 @@
 
 import * as React from 'react';
 
-import { Breadcrumb, IBreadcrumbProps } from 'office-ui-fabric-react';
+import { Breadcrumb, IBreadcrumbProps, IBreadcrumbItem } from 'office-ui-fabric-react';
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 import { Router } from 'aurelia-router';
 
 import { ReactComponent } from '../../React/ReactComponent';
-import { childrenOf } from '../../ChildrenOf';
-import { AuBreadcrumbItem } from './breadcrumb-item';
+import { childrenOf } from '../../Children';
 
 @autoinject
 @customElement('breadcrumb')
@@ -18,7 +17,7 @@ export class AuBreadcrumb extends ReactComponent<React.FunctionComponent<IBreadc
     useRoute: boolean = false;
 
     @childrenOf('bread-crumb-item')
-    items: AuBreadcrumbItem[] = [];
+    items: IBreadcrumbItem[] = [];
 
     constructor(element: Element, private _router: Router) {
         super(element, Breadcrumb);
