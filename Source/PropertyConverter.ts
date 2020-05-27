@@ -14,3 +14,17 @@ export class PropertyConverter {
         this.typeConverter = typeConverter;
     }
 }
+
+
+/*
+function propertyConverter() {
+    const bindingEngine = Container.instance.get<BindingEngine>(BindingEngine) as BindingEngine;
+
+    return function (target: any, propertyKey: string) {
+        bindingEngine.propertyObserver(target, propertyKey).subscribe((value) => {
+            debugger;
+
+        });
+    };
+}
+*/
