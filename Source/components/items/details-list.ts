@@ -18,7 +18,7 @@ export class AuDetailsList extends ReactComponent<React.FunctionComponent<IDetai
     columns?: IColumn[];
 
     constructor(element: Element) {
-        super(element, DetailsList.prototype);
+        super(element, DetailsList);
     }
 }
 

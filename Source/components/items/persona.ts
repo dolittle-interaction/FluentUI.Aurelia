@@ -95,7 +95,7 @@ export class AuPersona extends ReactComponent<React.FunctionComponent<IPersonaPr
 
 
     constructor(element: Element) {
-        super(element, Persona.prototype);
+        super(element, Persona);
     }
 }
 

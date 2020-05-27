@@ -13,7 +13,7 @@ import { ContentComponent } from '../../index';
 @customElement('dialog')
 export class AuDialog extends ContentComponent<React.FunctionComponent<IDialogProps>, IDialogProps> {
     constructor(element: Element) {
-        super(element, Dialog.prototype);
+        super(element, Dialog);
     }
 }
 

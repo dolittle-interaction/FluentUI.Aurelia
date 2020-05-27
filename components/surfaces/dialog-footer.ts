@@ -11,7 +11,7 @@ import { ContentComponent } from '../../Source/index';
 @customElement('dialog-footer')
 export class AuDialogFooter extends ContentComponent<React.FunctionComponent<IDialogFooterProps>, IDialogFooterProps> {
     constructor(element: Element) {
-        super(element, DialogFooter.prototype);
+        super(element, DialogFooter);
     }
 }
 

@@ -13,7 +13,7 @@ import { ReactComponent } from '../../React/ReactComponent';
 @customElement('card')
 export class AuCard extends ReactComponent<React.FunctionComponent<ICardProps>, ICardProps> {
     constructor(element: Element) {
-        super(element, Card.prototype);
+        super(element, Card);
     }
 }
 

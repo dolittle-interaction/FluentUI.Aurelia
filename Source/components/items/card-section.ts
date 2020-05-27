@@ -13,7 +13,7 @@ import { ReactComponent } from '../../React/ReactComponent';
 @customElement('card-section')
 export class AuCardSection extends ReactComponent<React.FunctionComponent<ICardSectionProps>, ICardSectionProps> {
     constructor(element: Element) {
-        super(element, CardSection.prototype);
+        super(element, CardSection);
     }
 }
 
