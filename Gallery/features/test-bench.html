@@ -1,26 +1,22 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
 
-    <!--
-    <breadcrumb items.bind="items"
-                max-displayed-items="3"
-                overflow-aria-label="More links">
-    </breadcrumb>
-    -->
+    <!--<text-field></text-field>-->
 
-    <!--
-    <dropdown placeholder="Select an option" label="Basic uncontrolled sample" selected.two-way="selectedOption">
-        <dropdown-option key="fruitsHeader" text="Fruits" type="Header"></dropdown-option>
-        <dropdown-option key="apple" text="Apple"></dropdown-option>
-        <dropdown-option key="banana" text="Banana"></dropdown-option>
-        <dropdown-option key="orange" text="Orange" disabled="true"></dropdown-option>
-        <dropdown-option key="divider_1" text="-" type="Divider"></dropdown-option>
-        <dropdown-option key="vegetablesHeader" text="Vegetables" type="Header"></dropdown-option>
-        <dropdown-option key="broccoli" text="Broccoli"></dropdown-option>
-        <dropdown-option key="carror" text="Carrot"></dropdown-option>
-        <dropdown-option key="lettuce" text="Lettuce"></dropdown-option>
-    </dropdown>
-    -->
+    <primary-button text="Click me"></primary-button>
 
-    <icon-button title="Emoji" icon.bind="icon"></icon-button>
+    <pivot>
+        <pivot-item item-icon="Emoji2" item-key="first" header-text="My Files">
+            <label>Pivot #1</label>
+        </pivot-item>
+        <pivot-item item-key="second" header-text="Recent">
+            <label>Pivot #2</label>
+        </pivot-item>
+        <pivot-item item-key="third" header-text="Shared with me">
+            <label>Pivot #3</label>
+        </pivot-item>
+    </pivot>
+
+
+
 </template>

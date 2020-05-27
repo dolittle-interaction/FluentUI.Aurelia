@@ -15,9 +15,12 @@ export class ReactBase<TProps> extends Component {
         super(element);
     }
 
-    render() {
+    handleProperties() {
         ComponentProperties.setFor(this, this.props);
         this.handleVisibilityProperty();
+    }
+
+    render() {
     }
 
     protected handleVisibilityProperty() {

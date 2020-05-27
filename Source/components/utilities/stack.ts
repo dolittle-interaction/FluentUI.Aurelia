@@ -24,11 +24,6 @@ export class AuStack extends ReactComponent<React.FunctionComponent<IStackProps>
     constructor(element: Element) {
         super(element, Stack);
     }
-
-    render() {
-        this.props.children = this.items;
-        super.render();
-    }
 }
 
 AuStack.properties<IStackProps>({

@@ -7,7 +7,8 @@ import { IPivotProps, Pivot, PivotLinkFormat, PivotLinkSize } from 'office-ui-fa
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { ReactComponent } from '../../React/ReactComponent';
-import { propertyConverter, KeyValueTypeConverter } from '../../index';
+import { propertyConverter, KeyValueTypeConverter, childrenOf } from '../../index';
+import { AuPivotItem } from './pivot-item';
 
 @autoinject
 @customElement('pivot')
@@ -31,8 +32,15 @@ export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>
     }))
     get linkFormat(): PivotLinkFormat { return PivotLinkFormat.links; }
 
+    @childrenOf('pivot-item', [])
+    pivotItems: AuPivotItem[] = [];
+
     constructor(element: Element) {
         super(element, Pivot);
+    }
+
+    get children() {
+        return this.pivotItems;
     }
 }
 

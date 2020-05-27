@@ -4,28 +4,39 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
-import { Constructor } from '@dolittle/rudiments';
-import { Component } from '../Component';
+import { Constructor } from '@dolittle/rudiments';
 import { ComponentProperties } from './ComponentProperties';
 import { ComponentProperty } from './ComponentProperty';
 import { ReactWrapperComponentWithChildren } from './ReactWrapperComponentWithChildren';
 import { ReactBase } from './ReactBase';
+import { DOMUtility } from './DOMUtility';
+import { uniqueIdentifier } from '../uniqueIdentifier';
 
 export class ReactComponent<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase<TProps> {
     componentType: Constructor<TComponent> | React.FunctionComponent<TProps> | undefined;
     container: Element;
     properties: ComponentProperty[];
+    reactUniqueIdentifier: string;
+    aureliaContainer: Element | null;
 
-    constructor(element: Element, componentType?: Constructor<TComponent> | React.FunctionComponent<TProps>, private _wrapperType: any = ReactWrapperComponentWithChildren) {
+    constructor(element: Element, componentType?: Constructor<TComponent> | React.FunctionComponent<TProps>, private _wrapperType?: any) {
         super(element);
 
+        this.reactUniqueIdentifier = uniqueIdentifier('react');
         this.componentType = componentType;
+
+        if (!_wrapperType) {
+            this._wrapperType = componentType;
+            this.props.ref = DOMUtility.getReferenceCallbackFor(this);
+        }
 
         this.props._component = this;
         this.props._componentType = this.componentType;
+        this.props.id = this.reactUniqueIdentifier;
 
         this.container = element;
         this.properties = ComponentProperties.getFor(this.constructor);
+        this.aureliaContainer = element.querySelector(`#${this.uniqueIdentifier}`);
     }
 
     attached() {
@@ -42,16 +53,26 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
         ReactDom.unmountComponentAtNode(this.container);
     }
 
+    get children(): any[] { return []; }
+
+    createElement(): any {
+        let element: any;
+
+        this.handleProperties();
+
+        const childElements = this.children.map(_ => _.createElement());
+
+        if (this._wrapperType) {
+            element = React.createElement(this._wrapperType, this.props, childElements);
+        } else {
+            element = React.createElement('span', childElements) as any;
+        }
+        return element;
+    }
+
     render() {
         super.render();
-
-        let element: any;
-        if (this._wrapperType) {
-            element = React.createElement(this._wrapperType, this.props);
-        }
-        else {
-            element = React.createElement('span') as any;
-        }
+        const element = this.createElement();
         ReactDom.render(element as any, this.container) as any;
     }
 
@@ -65,12 +86,5 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
         }
 
         this.handleVisibilityProperty();
-    }
-
-    addChildComponent(child: Component) {
-        let children = this.props._childComponents || [];
-        children = [...children, child];
-        this.props._childComponents = children;
-        this.handleRendering();
     }
 }

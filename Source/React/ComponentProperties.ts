@@ -63,7 +63,6 @@ export class ComponentProperties {
 
         properties.forEach(property => {
             const targetValue = (component as any)[property.name];
-
             if (property.isFunction) {
                 target[property.reactName] = function () {
                     if (typeof targetValue === 'function') {

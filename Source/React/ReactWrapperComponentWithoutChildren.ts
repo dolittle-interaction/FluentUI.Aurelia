@@ -22,19 +22,7 @@ export class ReactWrapperComponentWithoutChildren extends React.Component {
     render() {
         return React.createElement('span', {
             id: this._uniqueIdentifier,
-            ref: (parent: HTMLElement | null) => {
-                if (!this._component.visible) {
-                    return;
-                }
-
-                if (!parent) {
-                    parent = document.querySelector(`#${this._uniqueIdentifier}`);
-                }
-
-                if (parent) {
-                    DOMUtility.consolidateVisualTrees(parent, this._component.element, this._uniqueIdentifier, this._component.uniqueIdentifier);
-                }
-            }
+            ref: DOMUtility.getReferenceCallbackFor(this._component)
         }, React.createElement(
             this._componentType,
             this.props)
