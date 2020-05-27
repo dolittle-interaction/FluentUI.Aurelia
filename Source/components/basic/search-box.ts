@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import { bindable, customElement, autoinject } from 'aurelia-framework';
 
-import { ISearchBoxProps, SearchBox } from 'office-ui-fabric-react';
+import { ISearchBoxProps, SearchBox, IIconProps } from 'office-ui-fabric-react';
 
-import { PropertyConverter, IconTypeConverter } from '../../index';
+import { propertyConverter, IconTypeConverter } from '../../index';
 import { ReactComponent } from '../../React/ReactComponent';
 import { ReactWrapperComponentWithoutChildren } from '../../React/ReactWrapperComponentWithoutChildren';
 
@@ -20,12 +20,11 @@ export class AuSearchBox extends ReactComponent<React.FunctionComponent<ISearchB
     @bindable
     icon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
+
     constructor(element: Element) {
         super(element, SearchBox, ReactWrapperComponentWithoutChildren);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
     }
 
     change(event?: React.ChangeEvent<HTMLInputElement>, newValue?: string) {

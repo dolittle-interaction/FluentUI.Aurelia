@@ -3,15 +3,14 @@
 
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { ISpinButtonProps, SpinButton } from 'office-ui-fabric-react';
+import { ISpinButtonProps, SpinButton, IIconProps } from 'office-ui-fabric-react';
 
 import {
-    PropertyConverter,
+    propertyConverter,
     IconTypeConverter
 } from '../../index';
 
 import { ReactComponent } from '../../React/ReactComponent';
-
 
 @autoinject
 @customElement('spin-button')
@@ -24,22 +23,24 @@ export class AuSpinButton extends ReactComponent<SpinButton, ISpinButtonProps> i
     @bindable
     icon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
+
     @bindable
     incrementIcon: string = '';
+
+    @propertyConverter('icon', new IconTypeConverter())
+    get incrementButtonIcon(): IIconProps { return {}; }
+
 
     @bindable
     decrementIcon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get decrementButtonIcon(): IIconProps { return {}; }
+
     constructor(element: Element) {
         super(element, SpinButton);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [
-            new PropertyConverter('icon', 'iconProps', new IconTypeConverter()),
-            new PropertyConverter('incrementIcon', 'incrementButtonIcon', new IconTypeConverter()),
-            new PropertyConverter('decrementIcon', 'decrementButtonIcon', new IconTypeConverter())
-        ];
     }
 
     /*

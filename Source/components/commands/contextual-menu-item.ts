@@ -1,10 +1,10 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { IContextualMenuItem } from 'office-ui-fabric-react';
+import { IContextualMenuItem, IIconProps } from 'office-ui-fabric-react';
 import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, PropertyConverter, Component } from '../../index';
+import { IconTypeConverter, propertyConverter } from '../../index';
 import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
@@ -16,12 +16,11 @@ export class AuContextualMenuItem extends ReactBase<IContextualMenuItem> impleme
     @bindable
     icon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
+
     constructor(element: Element) {
         super(element);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
     }
 }
 

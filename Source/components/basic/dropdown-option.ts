@@ -7,7 +7,7 @@ import { IDropdownOption, SelectableOptionMenuItemType } from 'office-ui-fabric-
 
 import { ReactBase } from '../../React/ReactBase';
 
-import { PropertyConverter } from '../../PropertyConverter';
+import { propertyConverter } from '../../PropertyConverter';
 import { KeyValueTypeConverter } from '../../index';
 
 @autoinject
@@ -22,17 +22,16 @@ export class AuDropdownOption extends ReactBase<IDropdownOption> implements IDr
     @bindable
     type: string = 'normal';
 
+    @propertyConverter('itemType', new KeyValueTypeConverter(
+        SelectableOptionMenuItemType.Divider, {
+        'divider': SelectableOptionMenuItemType.Divider,
+        'header': SelectableOptionMenuItemType.Header
+    }))
+    get itemType(): SelectableOptionMenuItemType { return SelectableOptionMenuItemType.Normal; }
+
+
     constructor(element: Element) {
         super(element);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('type', 'itemType', new KeyValueTypeConverter(
-            SelectableOptionMenuItemType.Divider, {
-            'divider': SelectableOptionMenuItemType.Divider,
-            'header': SelectableOptionMenuItemType.Header
-        }
-        ))];
     }
 }
 

@@ -7,7 +7,7 @@ import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { IRatingProps, Rating, RatingSize } from 'office-ui-fabric-react';
 
-import { PropertyConverter } from '../../PropertyConverter';
+import { propertyConverter } from '../../PropertyConverter';
 import { ReactComponent } from '../../React/ReactComponent';
 import { KeyValueTypeConverter } from '../../KeyValueTypeConverter';
 
@@ -21,14 +21,15 @@ export class AuRating extends ReactComponent<React.FunctionComponent<IRatingProp
         super(element, Rating);
     }
 
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('size', 'size', new KeyValueTypeConverter(
+    @bindable
+    ratingSize: string = 'small';
+
+    @propertyConverter('raging-size', new KeyValueTypeConverter(
             RatingSize.Small, {
             'small': RatingSize.Small,
             'large': RatingSize.Large
-        }
-        ))];
-    }
+        }))
+    get size(): RatingSize { return RatingSize.Small; }
 
     change(event: React.FocusEvent<HTMLElement>, rating?: number) {
         this.rating = rating || 0;

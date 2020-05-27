@@ -7,8 +7,7 @@ import { IPivotProps, Pivot, PivotLinkFormat, PivotLinkSize } from 'office-ui-fa
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { ReactComponent } from '../../React/ReactComponent';
-import { AuPivotItem } from './pivot-item';
-import { PropertyConverter, KeyValueTypeConverter, childrenOf } from '../../index';
+import { propertyConverter, KeyValueTypeConverter } from '../../index';
 
 @autoinject
 @customElement('pivot')
@@ -17,24 +16,23 @@ export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>
     @bindable
     size: string = 'normal';
 
+    @propertyConverter('size', new KeyValueTypeConverter(PivotLinkSize.normal, {
+        'normal': PivotLinkSize.normal,
+        'large': PivotLinkSize.large
+    }))
+    get linkSize(): PivotLinkSize { return PivotLinkSize.normal; }
+
     @bindable
     format: string = 'links';
 
+    @propertyConverter('format', new KeyValueTypeConverter(PivotLinkFormat.links, {
+        'links': PivotLinkFormat.links,
+        'tabs': PivotLinkFormat.tabs
+    }))
+    get linkFormat(): PivotLinkFormat { return PivotLinkFormat.links; }
+
     constructor(element: Element) {
         super(element, Pivot);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [
-            new PropertyConverter('size', 'linkSize', new KeyValueTypeConverter(PivotLinkSize.normal, {
-                'normal': PivotLinkSize.normal,
-                'large': PivotLinkSize.large
-            })),
-            new PropertyConverter('format', 'linkFormat', new KeyValueTypeConverter(PivotLinkFormat.links, {
-                'links': PivotLinkFormat.links,
-                'tabs': PivotLinkFormat.tabs
-            }))
-        ];
     }
 }
 

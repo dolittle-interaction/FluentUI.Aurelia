@@ -7,7 +7,7 @@ import { autoinject, customElement, bindable } from 'aurelia-framework';
 
 import { Icon, IIconProps, IconType } from 'office-ui-fabric-react';
 
-import { PropertyConverter, KeyValueTypeConverter } from '../../index';
+import { propertyConverter, KeyValueTypeConverter } from '../../index';
 import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
@@ -17,17 +17,14 @@ export class AuIcon extends ReactComponent<React.FunctionComponent<IIconProps>, 
     @bindable
     type: string = 'default';
 
+    @propertyConverter('type', new KeyValueTypeConverter(IconType.default, {
+        'default': IconType.default,
+        'image': IconType.image
+    }))
+    get iconType(): IconType { return IconType.Default; }
+
     constructor(element: Element) {
         super(element, Icon);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [
-            new PropertyConverter('type', 'iconType', new KeyValueTypeConverter(IconType.default, {
-                'default': IconType.default,
-                'image': IconType.image
-            }))
-        ];
     }
 }
 

@@ -5,14 +5,14 @@ import * as React from 'react';
 import * as ReactDom from 'react-dom';
 
 import { customElement, autoinject, bindable } from 'aurelia-framework';
-import { ITextFieldProps, TextField, ITextField } from 'office-ui-fabric-react';
+import { ITextFieldProps, TextField, ITextField, IIconProps } from 'office-ui-fabric-react';
 
 import { ReactWrapperComponentWithoutChildren } from '../../React/ReactWrapperComponentWithoutChildren';
 
 import { ReactComponent } from '../../React/ReactComponent';
 
 import {
-    PropertyConverter,
+    propertyConverter,
     IconTypeConverter,
 } from '../../index';
 
@@ -25,6 +25,9 @@ export class AuTextField extends ReactComponent<React.FunctionComponent<ITextFie
 
     @bindable
     icon: string = '';
+
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
 
     @bindable
     value: string | undefined;
@@ -49,10 +52,6 @@ export class AuTextField extends ReactComponent<React.FunctionComponent<ITextFie
         }
 
         super.propertyChanged(propertyName, newValue);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
     }
 
     focus() {
