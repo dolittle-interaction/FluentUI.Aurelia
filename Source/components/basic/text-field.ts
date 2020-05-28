@@ -36,7 +36,7 @@ export class AuTextField extends ReactComponent<React.FunctionComponent<ITextFie
     selectionEnd: number | null = null;
 
     constructor(element: Element, componentType?: any) {
-        super(element, componentType ?? TextField, ReactWrapperComponentWithoutChildren);
+        super(element, componentType ?? TextField);
     }
 
     change(textField: AuTextField, value: string) {
