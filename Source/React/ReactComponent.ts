@@ -7,7 +7,6 @@ import * as ReactDom from 'react-dom';
 import { Constructor } from '@dolittle/rudiments';
 import { ComponentProperties } from './ComponentProperties';
 import { ComponentProperty } from './ComponentProperty';
-import { ReactWrapperComponentWithChildren } from './ReactWrapperComponentWithChildren';
 import { ReactBase } from './ReactBase';
 import { DOMUtility } from './DOMUtility';
 import { uniqueIdentifier } from '../uniqueIdentifier';
