@@ -7,7 +7,8 @@ export class horizontal {
     @bindable
     controlledValue = 5;
 
-    controlledValueChanged() {
+    controlledValueChanged(newValue: number) {
+        console.log(`Value changed to '${newValue}'`);
     }
 
     formatValue(value: number) {
