@@ -78,13 +78,11 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
 
     propertyChanged(propertyName: string, newValue: any) {
         super.propertyChanged(propertyName, newValue);
+        this.handleVisibilityProperty();
         const property = this.properties.find(_ => _.name === propertyName);
         if (property) {
             this.props[property.reactName] = newValue;
-
-            this.handleRendering();
         }
-
-        this.handleVisibilityProperty();
+        this.handleRendering();
     }
 }
