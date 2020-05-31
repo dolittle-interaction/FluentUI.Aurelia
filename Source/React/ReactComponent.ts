@@ -62,7 +62,11 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
         const childElements = this.children.map(_ => _.createElement());
 
         if (this._wrapperType) {
-            element = React.createElement(this._wrapperType, this.props, childElements);
+            if (childElements && childElements.length > 0) {
+                element = React.createElement(this._wrapperType, this.props, childElements);
+            } else {
+                element = React.createElement(this._wrapperType, this.props);
+            }
         } else {
             element = React.createElement('span', childElements) as any;
         }
