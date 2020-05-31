@@ -23,7 +23,10 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
 
         if (!_wrapperType) {
             this._wrapperType = componentType;
-            this.props.ref = DOMUtility.getReferenceCallbackFor(this);
+
+            if (this._wrapperType.prototype.isReactComponent) {
+                this.props.ref = DOMUtility.getReferenceCallbackFor(this);
+            }
         }
 
         this.props._component = this;
