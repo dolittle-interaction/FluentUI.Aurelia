@@ -64,33 +64,40 @@ export class ComponentProperties {
         properties.forEach(property => {
             const targetValue = (component as any)[property.name];
             if (property.isFunction) {
-                target[property.reactName] = function () {
-                    let self = component;
-                    if (!property.hasOwnProperty) {
-                        self = component.bindingContext;
-                    }
-                    if (property.reactName.startsWith('on') && typeof (component as any)[property.reactName] === 'function' ) {
-                        ((component as any)[property.reactName] as Function).apply(component, arguments);
-                    }
-
-                    if (typeof targetValue === 'function') {
-                        (targetValue as Function).apply(self, arguments);
-                    }
-
-                    if (arguments.length > 0 &&
-                        arguments[0] &&
-                        arguments[0].constructor &&
-                        (arguments[0].constructor.toString().indexOf('SyntheticEvent') >= 0)) {
-                        const syntheticEvent = arguments[0] as SyntheticEvent;
-                        if (!syntheticEvent.isDefaultPrevented() && syntheticEvent.isPropagationStopped()) {
-                            component.element.dispatchEvent(syntheticEvent.nativeEvent);
+                if (typeof (component as any)[property.reactName] === 'function' || typeof targetValue === 'function') {
+                    target[property.reactName] = function () {
+                        let self = component;
+                        if (!property.hasOwnProperty) {
+                            self = component.bindingContext;
                         }
-                    } else if (arguments.length > 1) {
-                        component.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: arguments[1] }));
-                    }
-                };
+                        if (property.reactName.startsWith('on') && typeof (component as any)[property.reactName] === 'function') {
+                            ((component as any)[property.reactName] as Function).apply(component, arguments);
+                        }
+
+                        if (typeof targetValue === 'function') {
+                            (targetValue as Function).apply(self, arguments);
+                        }
+
+                        if (arguments.length > 0 &&
+                            arguments[0] &&
+                            arguments[0].constructor &&
+                            (arguments[0].constructor.toString().indexOf('SyntheticEvent') >= 0)) {
+                            const syntheticEvent = arguments[0] as SyntheticEvent;
+                            if (!syntheticEvent.isDefaultPrevented() && syntheticEvent.isPropagationStopped()) {
+                                component.element.dispatchEvent(syntheticEvent.nativeEvent);
+                            }
+                        } else if (arguments.length > 1) {
+                            component.element.dispatchEvent(new CustomEvent(property.name, { bubbles: true, detail: arguments[1] }));
+                        }
+                    };
+                }
+
+
             } else if (targetValue) {
-                target[property.reactName] = parseValue(targetValue);
+                const parsed = parseValue(targetValue);
+                if (parsed) {
+                    target[property.reactName] = parsed;
+                }
             } else {
                 if (attributesWithoutValue.some(_ => _ === property.attribute)) {
                     target[property.reactName] = true;
