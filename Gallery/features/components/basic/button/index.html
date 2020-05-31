@@ -6,8 +6,8 @@
     <require from="./split"></require>
     <require from="./icon"></require>
 
-    <toggle label="Disable buttons" change.bind="disabledToggled"></toggle>
-    <toggle label="Mark as checked" change.bind="checkedToggled"></toggle>
+    <toggle label="Disable buttons" checked.two-way="globals.disabled"></toggle>
+    <toggle label="Mark as checked" checked.two-way="globals.checked"></toggle>
 
     <example-card title="Default Button" sample="default">
         <default></default>
