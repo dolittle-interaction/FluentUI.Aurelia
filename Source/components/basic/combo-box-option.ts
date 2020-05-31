@@ -22,7 +22,7 @@ export class AuComboBoxOption extends ReactBase<IComboBoxOption> implements ICom
     @bindable
     type: string = 'normal';
 
-    @propertyConverter('itemType', new KeyValueTypeConverter({
+    @propertyConverter('type', new KeyValueTypeConverter({
         'divider': SelectableOptionMenuItemType.Divider,
         'header': SelectableOptionMenuItemType.Header
     }))

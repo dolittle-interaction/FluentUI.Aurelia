@@ -22,7 +22,7 @@ export class AuDropdownOption extends ReactBase<IDropdownOption> implements IDr
     @bindable
     type: string = 'normal';
 
-    @propertyConverter('itemType', new KeyValueTypeConverter({
+    @propertyConverter('type', new KeyValueTypeConverter({
         'divider': SelectableOptionMenuItemType.Divider,
         'header': SelectableOptionMenuItemType.Header
     }))
