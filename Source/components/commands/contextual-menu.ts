@@ -6,23 +6,19 @@ import * as React from 'react';
 import { customElement, autoinject } from 'aurelia-framework';
 
 import { IContextualMenuProps, IContextualMenuItem, ContextualMenu } from 'office-ui-fabric-react';
-
-import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
-
-import { ContextualMenuItem } from './contextual-menu-item';
+import { ReactComponent } from '../../React/ReactComponent';
+import { childrenOf } from '../../Children';
 
 @autoinject
 @customElement('contextual-menu')
-export class AuContextualMenu extends ItemsComponent<React.FunctionComponent<IContextualMenuProps>, IContextualMenuProps> implements IContextualMenuProps {
+export class AuContextualMenu extends ReactComponent<React.FunctionComponent<IContextualMenuProps>, IContextualMenuProps> implements IContextualMenuProps {
     hidden: boolean = false;
+
+    @childrenOf('contextual-menu-item')
     items: IContextualMenuItem[] = [];
 
     constructor(element: Element) {
-        super(element, ContextualMenu.prototype);
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(ContextualMenuItem, 'items')];
+        super(element, ContextualMenu);
     }
 }
 

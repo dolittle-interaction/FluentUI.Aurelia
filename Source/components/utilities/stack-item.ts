@@ -3,18 +3,20 @@
 
 import * as React from 'react';
 
-import { customElement, autoinject, containerless } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { IStackItemProps, StackItem } from 'office-ui-fabric-react';
+import { ReactComponent } from '../../React/ReactComponent';
 
-import { ChildComponent } from '../../index';
 
 @autoinject
 @customElement('stack-item')
-export class AuStackItem extends ChildComponent<React.FunctionComponent<IStackItemProps>, IStackItemProps> {
+export class AuStackItem extends ReactComponent<React.FunctionComponent<IStackItemProps>, IStackItemProps> implements IStackItemProps {
+    @bindable
+    className?: string;
 
     constructor(element: Element) {
-        super(element, StackItem.prototype);
+        super(element, StackItem);
     }
 }
 

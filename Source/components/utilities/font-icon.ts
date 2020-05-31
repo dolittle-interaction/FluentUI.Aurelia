@@ -7,14 +7,14 @@ import { autoinject, customElement, bindable } from 'aurelia-framework';
 
 import { FontIcon, IFontIconProps } from 'office-ui-fabric-react';
 
-import { ContentComponent } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('font-icon')
-export class AuFontIcon extends ContentComponent<React.FunctionComponent<IFontIconProps>, IFontIconProps> {
+export class AuFontIcon extends ReactComponent<React.FunctionComponent<IFontIconProps>, IFontIconProps> {
 
     constructor(element: Element) {
-        super(element, FontIcon.prototype);
+        super(element, FontIcon);
     }
 }
 

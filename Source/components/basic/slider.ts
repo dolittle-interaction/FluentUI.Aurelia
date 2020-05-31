@@ -3,17 +3,25 @@
 
 import * as React from 'react';
 
-import { customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { ISliderProps, Slider } from 'office-ui-fabric-react';
 
-import { ContentComponent, PropertyConverter, IconTypeConverter } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('slider')
-export class AuSlider extends ContentComponent<React.FunctionComponent<ISliderProps>, ISliderProps> {
+export class AuSlider extends ReactComponent<React.FunctionComponent<ISliderProps>, ISliderProps> implements ISliderProps {
+    @bindable
+    value?: number;
+
     constructor(element: Element) {
-        super(element, Slider.prototype);
+        super(element, Slider);
+    }
+
+    onChange(value: number) {
+        this.value = value;
+        this.handleRendering();
     }
 }
 

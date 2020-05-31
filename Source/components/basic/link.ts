@@ -8,27 +8,13 @@ import { customElement, autoinject } from 'aurelia-framework';
 
 import { ILinkProps, Link } from 'office-ui-fabric-react';
 
-import { Component, uniqueIdentifier, DOMUtility } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('flink')
-export class AuLink extends Component<React.FunctionComponent<ILinkProps>, ILinkProps> {
-    private _reactUniqueIdentifier: string;
-
+export class AuLink extends ReactComponent<React.FunctionComponent<ILinkProps>, ILinkProps> {
     constructor(element: Element) {
-        super(element, Link.prototype);
-
-        this._reactUniqueIdentifier = uniqueIdentifier('react');
-    }
-
-    createElement() {
-        delete this.state._componentType;
-        delete this.state._uiElement;
-        return DOMUtility.createElementWithContent(this, Link, this.state, this._reactUniqueIdentifier);
-    }
-
-    render() {
-        this.actualComponent = ReactDom.render(this.actualElement as any, this.container) as any;
+        super(element, Link);
     }
 }
 

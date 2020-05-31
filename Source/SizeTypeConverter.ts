@@ -3,14 +3,14 @@
 
 import { ITypeConverter } from './ITypeConverter';
 
-export class KeyValueTypeConverter implements ITypeConverter {
-    constructor(private _keyValues: any) {
+export class SizeTypeConverter implements ITypeConverter {
+    constructor(private _defaultValue?: any) {
     }
 
     convert(value: any) {
-        if (this._keyValues.hasOwnProperty(value)) {
-            return this._keyValues[value];
+        if (value && typeof value === 'string' && value !== '') {
+            return JSON.parse(value);
         }
-        return undefined;
+        return this._defaultValue;
     }
 }

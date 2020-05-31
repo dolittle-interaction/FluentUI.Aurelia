@@ -2,7 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import { customElement, autoinject, noView, bindable, child, processContent } from 'aurelia-framework';
-import { registerIcons, getIcon } from 'office-ui-fabric-react/lib/Styling';
+import { registerIcons } from 'office-ui-fabric-react/lib/Styling';
 
 const HtmlToReactParser = require('html-to-react').Parser;
 const parser = new HtmlToReactParser();

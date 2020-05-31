@@ -23,8 +23,12 @@ export class Default {
     ];
 
     resolveSuggestions(filterText: string) {
-        return this.tags.filter(_ => _.toLowerCase().indexOf(filterText.toLowerCase()) === 0)
-            .map((_: string) => { return { key: _, name: _ } as ITag; });
+        return this.tags.filter(_ => {
+            if (!filterText || filterText === '') {
+                return true;
+            }
+            return _.toLowerCase().indexOf(filterText.toLowerCase()) === 0;
+        }).map((_: string) => { return { key: _, name: _ } as ITag; });
     }
 
     getTextFromItem(item: ITag) {

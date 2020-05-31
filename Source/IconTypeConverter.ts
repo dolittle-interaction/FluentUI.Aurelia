@@ -7,9 +7,16 @@ import { ITypeConverter } from './ITypeConverter';
 
 export class IconTypeConverter implements ITypeConverter {
     convert(value: any): any {
+        if (!value || value === '') {
+            return undefined;
+        }
+
         const iconProperties: IIconProps = {
             iconName: value
         };
         return iconProperties;
     }
 }
+
+
+

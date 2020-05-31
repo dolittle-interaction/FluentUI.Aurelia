@@ -2,35 +2,34 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import * as React from 'react';
-import * as ReactDom from 'react-dom';
 
 import { bindable, customElement, autoinject } from 'aurelia-framework';
 
-import { ISearchBoxProps, SearchBox } from 'office-ui-fabric-react';
+import { ISearchBoxProps, SearchBox, IIconProps } from 'office-ui-fabric-react';
 
-import { Component, PropertyConverter, IconTypeConverter } from '../../index';
+import { propertyConverter, IconTypeConverter } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
+import { ReactWrapperComponentWithoutChildren } from '../../React/ReactWrapperComponentWithoutChildren';
 
 @autoinject
 @customElement('search-box')
-export class AuSearchBox extends Component<React.FunctionComponent<ISearchBoxProps>, ISearchBoxProps> {
+export class AuSearchBox extends ReactComponent<React.FunctionComponent<ISearchBoxProps>, ISearchBoxProps> implements ISearchBoxProps {
+    @bindable
+    value?: string;
+
     @bindable
     icon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
 
     constructor(element: Element) {
-        super(element, SearchBox.prototype);
+        super(element, SearchBox, ReactWrapperComponentWithoutChildren);
     }
 
-    createElement() {
-        return React.createElement(SearchBox, this.state);
-    }
-
-    render() {
-        this.actualComponent = ReactDom.render(this.actualElement as any, this.container) as any;
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
+    onChange(event?: React.ChangeEvent<HTMLInputElement>, newValue?: string) {
+        this.value = newValue;
+        this.handleRendering();
     }
 }
 

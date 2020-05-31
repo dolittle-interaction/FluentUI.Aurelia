@@ -6,38 +6,41 @@ import * as React from 'react';
 import { IPivotProps, Pivot, PivotLinkFormat, PivotLinkSize } from 'office-ui-fabric-react';
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { ChildComponentItemHandlingStrategy, IItemHandlingStrategy, ItemsComponent, KeyValueTypeConverter, PropertyConverter } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
+import { propertyConverter, KeyValueTypeConverter, childrenOf } from '../../index';
 import { AuPivotItem } from './pivot-item';
 
 @autoinject
 @customElement('pivot')
-export class AuPivot extends ItemsComponent<IPivotProps, React.FunctionComponent<IPivotProps>> {
+export class AuPivot extends ReactComponent<React.FunctionComponent<IPivotProps>, IPivotProps> {
 
     @bindable
     size: string = 'normal';
 
+    @propertyConverter('size', new KeyValueTypeConverter({
+        'normal': PivotLinkSize.normal,
+        'large': PivotLinkSize.large
+    }))
+    get linkSize(): PivotLinkSize { return PivotLinkSize.normal; }
+
     @bindable
     format: string = 'links';
 
+    @propertyConverter('format', new KeyValueTypeConverter({
+        'links': PivotLinkFormat.links,
+        'tabs': PivotLinkFormat.tabs
+    }))
+    get linkFormat(): PivotLinkFormat { return PivotLinkFormat.links; }
+
+    @childrenOf('pivot-item', [])
+    pivotItems: AuPivotItem[] = [];
+
     constructor(element: Element) {
-        super(element, Pivot.prototype);
+        super(element, Pivot);
     }
 
-    getPropertyConverters(): PropertyConverter[] {
-        return [
-            new PropertyConverter('size', 'linkSize', new KeyValueTypeConverter(PivotLinkSize.normal, {
-                'normal': PivotLinkSize.normal,
-                'large': PivotLinkSize.large
-            })),
-            new PropertyConverter('format', 'linkFormat', new KeyValueTypeConverter(PivotLinkFormat.links, {
-                'links': PivotLinkFormat.links,
-                'tabs': PivotLinkFormat.tabs
-            }))
-        ];
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new ChildComponentItemHandlingStrategy(AuPivotItem)];
+    get children() {
+        return this.pivotItems;
     }
 }
 

@@ -1,27 +1,38 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
 import { IChoiceGroupProps, ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
 
-import { IItemHandlingStrategy, ItemsComponent, TargetPropertyItemHandlingStrategy } from '../../index';
+import { childrenOf } from '../../index';
 
-import { ChoiceGroupOption } from './choice-group-option';
+import { ReactComponent } from '../../React/ReactComponent';
+import { AuChoiceGroupOption } from './choice-group-option';
 
 
 @autoinject
 @customElement('choice-group')
-export class AuChoiceGroup extends ItemsComponent<React.FunctionComponent<IChoiceGroupProps>, IChoiceGroupProps> implements IChoiceGroupProps {
+export class AuChoiceGroup extends ReactComponent<React.FunctionComponent<IChoiceGroupProps>, IChoiceGroupProps> implements IChoiceGroupProps {
     hidden: boolean = false;
-    options: IChoiceGroupOption[] = [];
+
+    @bindable
+    selectedKey: string = '';
+
+    @childrenOf('choice-group-option', [])
+    options?: IChoiceGroupOption[];
+
+    @bindable
+    selected?: IChoiceGroupOption;
 
     constructor(element: Element) {
-        super(element, ChoiceGroup.prototype);
+        super(element, ChoiceGroup);
     }
 
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(ChoiceGroupOption, 'options')];
+    onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) {
+        this.selected = option as AuChoiceGroupOption;
+        this.selectedKey = option?.key || '';
+        this.handleRendering();
     }
 }
 

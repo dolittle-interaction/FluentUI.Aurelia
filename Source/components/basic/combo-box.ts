@@ -1,23 +1,38 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { customElement, autoinject } from 'aurelia-framework';
+import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { IComboBoxProps, ComboBox } from 'office-ui-fabric-react';
+import { IComboBoxProps, ComboBox, IComboBox, IComboBoxOption } from 'office-ui-fabric-react';
 
-import { ItemsComponent, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
-
-import { ComboBoxOption } from './combo-box-option';
+import { AuComboBoxOption } from './combo-box-option';
+import { childrenOf } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('combo-box')
-export class AuComboBox extends ItemsComponent<IComboBoxProps, ComboBox> {
+export class AuComboBox extends ReactComponent<ComboBox, IComboBoxProps> implements IComboBoxProps {
+    @childrenOf('combo-box-option')
+    options: IComboBoxOption[] = [];
+
+    @bindable
+    selected: IComboBoxOption | undefined;
+
+    @bindable
+    selectedKey: string | number = '';
+
     constructor(element: Element) {
         super(element, ComboBox);
     }
 
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(ComboBoxOption, 'options')];
+    onChange(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) {
+        if (index) {
+            this.selected = this.options[index];
+        } else {
+            this.selected = option as AuComboBoxOption;
+        }
+        this.selectedKey = this.selected?.key || '';
+        this.handleRendering();
     }
 }
 

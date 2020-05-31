@@ -6,28 +6,19 @@ import * as React from 'react';
 import { Nav, INavProps, INavLinkGroup } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { IItemHandlingStrategy, TargetPropertyItemHandlingStrategy, ItemsComponent } from '../../index';
-
-import { NavigationLinkGroup } from './navigation-link-group';
+import { childrenOf } from '../../Children';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('navigation')
-export class AuNavigation extends ItemsComponent<INavProps, React.FunctionComponent<INavProps>> implements INavProps {
+export class AuNavigation extends ReactComponent<React.FunctionComponent<INavProps>, INavProps> implements INavProps {
     hidden: boolean = false;
-    groups: INavLinkGroup[] | null = null;
+
+    @childrenOf('navigation-link-group')
+    groups: INavLinkGroup[] = [];
 
     constructor(element: Element) {
-        super(element, Nav.prototype);
-    }
-
-    childStateChanged(): void {
-        if (this.groups) {
-            this.propertyChanged('groups', [...this.groups]);
-        }
-    }
-
-    getItemHandlingStrategies(): IItemHandlingStrategy[] {
-        return [new TargetPropertyItemHandlingStrategy(NavigationLinkGroup, 'groups')];
+        super(element, Nav);
     }
 }
 

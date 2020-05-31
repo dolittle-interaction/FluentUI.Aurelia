@@ -5,13 +5,13 @@ import * as React from 'react';
 
 import { DialogFooter, IDialogFooterProps, IDialogFooter } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
-import { ContentComponent } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('dialog-footer')
-export class AuDialogFooter extends ContentComponent<React.FunctionComponent<IDialogFooterProps>, IDialogFooterProps> {
+export class AuDialogFooter extends ReactComponent<React.FunctionComponent<IDialogFooterProps>, IDialogFooterProps> {
     constructor(element: Element) {
-        super(element, DialogFooter.prototype);
+        super(element, DialogFooter);
     }
 }
 

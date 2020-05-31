@@ -1,27 +1,28 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { ICommandBarItemProps } from 'office-ui-fabric-react';
+import { ICommandBarItemProps, IIconProps } from 'office-ui-fabric-react';
 
 import { autoinject, noView, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, ItemsComponent, PropertyConverter, IItemHandlingStrategy, TargetPropertyItemHandlingStrategy } from '../../index';
+import { IconTypeConverter, propertyConverter } from '../../index';
+import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
 @noView
 @customElement('command-bar-item')
-export class AuCommandBarItem extends ItemsComponent<ICommandBarItemProps> implements ICommandBarItemProps {
+export class AuCommandBarItem extends ReactBase<ICommandBarItemProps> implements ICommandBarItemProps {
+    @bindable
     key: string = '';
 
     @bindable
     icon: string = '';
 
+    @propertyConverter('icon', new IconTypeConverter())
+    get iconProps(): IIconProps { return {}; }
+
     constructor(element: Element) {
         super(element);
-    }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('icon', 'iconProps', new IconTypeConverter())];
     }
 }
 

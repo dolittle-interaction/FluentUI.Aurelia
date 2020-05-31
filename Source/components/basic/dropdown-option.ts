@@ -3,30 +3,38 @@
 
 import { customElement, autoinject, bindable } from 'aurelia-framework';
 
-import { IDropdownOption } from 'office-ui-fabric-react';
+import { IDropdownOption, SelectableOptionMenuItemType } from 'office-ui-fabric-react';
 
-import { ItemsComponent } from '../../index';
+import { ReactBase } from '../../React/ReactBase';
 
-import { PropertyConverter } from '../../PropertyConverter';
-import { SelectableOptionMenuItemTypeConverter } from './SelectableOptionMenuItemTypeConverter';
+import { propertyConverter } from '../../PropertyConverter';
+import { KeyValueTypeConverter } from '../../index';
 
 @autoinject
 @customElement('dropdown-option')
-export class DropdownOption extends ItemsComponent<IDropdownOption> {
+export class AuDropdownOption extends ReactBase<IDropdownOption> implements IDropdownOption {
+    @bindable
+    key: string | number = '';
+
+    @bindable
+    text: string = '';
 
     @bindable
     type: string = 'normal';
 
+    @propertyConverter('type', new KeyValueTypeConverter({
+        'divider': SelectableOptionMenuItemType.Divider,
+        'header': SelectableOptionMenuItemType.Header
+    }))
+    get itemType(): SelectableOptionMenuItemType { return SelectableOptionMenuItemType.Divider; }
+
+
     constructor(element: Element) {
         super(element);
     }
-
-    getPropertyConverters(): PropertyConverter[] {
-        return [new PropertyConverter('type', 'itemType', new SelectableOptionMenuItemTypeConverter())];
-    }
 }
 
-DropdownOption.properties<IDropdownOption>({
+AuDropdownOption.properties<IDropdownOption>({
     key: {} as any,
     id: {} as any,
     text: {} as any,

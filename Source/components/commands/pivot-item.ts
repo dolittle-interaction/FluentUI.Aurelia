@@ -5,11 +5,11 @@
 import { IPivotItemProps, PivotItem } from 'office-ui-fabric-react';
 import { customElement, autoinject } from 'aurelia-framework';
 
-import { ChildComponent } from '../../index';
+import { ReactChildComponent } from '../../React/ReactChildComponent';
 
 @autoinject
 @customElement('pivot-item')
-export class AuPivotItem extends ChildComponent<PivotItem, IPivotItemProps> {
+export class AuPivotItem extends ReactChildComponent<PivotItem, IPivotItemProps> {
 
     constructor(element: Element) {
         super(element, PivotItem);

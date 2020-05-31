@@ -1,108 +1,147 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
+import { inlineView, bindable } from 'aurelia-framework';
 
-import { inlineView } from 'aurelia-framework';
-
-import { Constructor } from './Constructor';
-import { ComponentState } from './ComponentState';
-import { UIElement } from './UIElement';
+import { uniqueIdentifier } from './uniqueIdentifier';
+import { ChildSelectorForProperty } from './Children';
+import { PropertyConverters } from './PropertyConverters';
 
 @inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
-export class Component<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends UIElement {
-    actualElement: React.CElement<any, React.Component<any, any, any>> | undefined;
-    actualComponent: React.Component<any, any, any> | undefined;
-    container: Element;
-    componentType: Constructor<TComponent> | undefined;
+export class Component {
+    private _bindingContext: any;
+    private _overrideContext: any;
+    private _childrenOfHandled: boolean = false;
+    private _childOfHandled: boolean = false;
 
-    constructor(private _element: Element, componentType?: Constructor<TComponent>, private _wrapperType?: any) {
-        super(_element);
 
-        this.container = _element;
-        this.componentType = componentType;
+    element: Element;
+    uniqueIdentifier: string;
 
-        if (typeof componentType === 'object') {
-            this.componentType = (componentType as any).constructor;
-        }
+    @bindable
+    visible: boolean = true;
 
-        if (!componentType) {
-            this.isRenderRoot = false;
-        } else {
-            this.isRenderRoot = true;
-        }
+    constructor(element: Element) {
+        this.element = element;
+        PropertyConverters.hookupConvertersFor(this);
+
+        this.uniqueIdentifier = uniqueIdentifier();
     }
 
-    beforeRender() {
+    get bindingContext() {
+        return this._bindingContext;
+    }
+
+    get overrideContext() {
+        return this._overrideContext;
     }
 
     render() {
     }
 
-    createElement() {
-        if (this._wrapperType) {
-            return React.createElement(this._wrapperType, this.state);
-        } else {
-            return React.createElement('span') as any;
-        }
+    handleRendering() {
+        this.render();
     }
 
-    afterRender() {
-    }
-
-    unbind() {
-        ReactDom.unmountComponentAtNode(this._element);
+    bind(bindingContext: any, overrideContext: any) {
+        this._bindingContext = bindingContext;
+        this._overrideContext = overrideContext;
     }
 
     attached() {
-        super.attached();
-        ReactDom.unmountComponentAtNode(this._element);
-        const container = this.element.querySelector(`#${this.uniqueIdentifier}`);
-        if (container) {
-            this.container = container;
-        }
-
-        ComponentState.updateFor(this, this.state);
-
-        this.beforeRender();
-        this.handlePropertyConverters();
-        this.handleVisibilityProperty(this.state);
-
-        this.state._uiElement = this;
-
-        if (this.isRenderRoot) {
-            this.state._componentType = this.componentType;
-            this.actualElement = this.createElement();
-        }
-
-        this.render();
-
-        if (this.parent && (this.parent as any).addChildItem) {
-            (this.parent as any).addChildItem(this);
-        }
-
-        if (this.renderRoot) {
-            this.renderRoot.childStateChanged();
-        }
-
-        this.afterRender();
+        this.handleChildrenOf();
+        this.handleChildOf();
+        this.handleRendering();
     }
 
-    propertyChanged(property: string, newValue: any) {
-        const state: any = {};
-        state[property] = newValue;
-        (this as any)[property] = newValue;
-        this.state[property] = newValue;
-        this.handleVisibilityProperty(state);
-        this.handlePropertyConvertersForState(property, newValue, state);
-        this.actualComponent?.setState(state);
+    propertyChanged(propertyName: string, newValue: any) {
     }
 
-    private handleVisibilityProperty(properties: any) {
-        if (properties.hasOwnProperty('visible')) {
-            delete properties.visible;
-        }
-        properties.hidden = !this.visible;
+    getChildRepresentation() {
+        return this;
     }
+
+    handleChildrenOf() {
+        if (this._childrenOfHandled) {
+            return;
+        }
+        if ((this as any).__metadata__?._childrenOf) {
+            const children = (this as any).__metadata__._childrenOf as ChildSelectorForProperty[];
+            for (const childrenOf of children) {
+                const childElements: Element[] = [];
+                const all = this.element.querySelectorAll(childrenOf.selector);
+                all.forEach(child => {
+                    let parentElement = child.parentElement;
+                    if (parentElement) {
+                        if (parentElement.localName === 'au-content' && parentElement.parentElement) {
+                            parentElement = parentElement.parentElement;
+                        }
+                        if (parentElement === this.element) {
+                            childElements.push(child);
+                        }
+                    }
+                });
+
+                if (childElements.length > 0) {
+
+                    if (childrenOf.initialValue) {
+                        (this as any)[childrenOf.property] = JSON.parse(JSON.stringify(childrenOf.initialValue));
+                    }
+
+                    const childViewModels = childrenOf.getValueFrom(this) || [];
+
+                    childElements.forEach((childElement: any) => {
+                        let childViewModel = childElement.au.controller.viewModel;
+                        if (typeof childViewModel.handleChildrenOf === 'function') {
+                            childViewModel.handleChildrenOf();
+                        }
+
+                        if (typeof childViewModel.getChildRepresentation === 'function') {
+                            childViewModel = childViewModel.getChildRepresentation();
+                        }
+
+                        /*
+                        for (const key of Object.keys(childViewModel)) {
+                            if (childViewModel[key] === undefined) {
+                                delete childViewModel[key];
+                            }
+                        }*/
+
+                        childViewModels.push(childViewModel);
+                    });
+
+                    childrenOf.setValueOn(this, childViewModels);
+                }
+            }
+        }
+
+        this._childrenOfHandled = true;
+    }
+
+    handleChildOf() {
+        if (this._childOfHandled) {
+            return;
+        }
+        if ((this as any).__metadata__?._childOf) {
+            const children = (this as any).__metadata__._childOf as ChildSelectorForProperty[];
+            for (const childOf of children) {
+                const childElement = this.element.querySelector(childOf.selector);
+                if (childElement) {
+                    if (childOf.initialValue) {
+                        (this as any)[childOf.property] = childOf.initialValue;
+                    }
+
+                    const childViewModel = (childElement as any).au.controller.viewModel;
+                    if (typeof childViewModel.handleChildOf === 'function') {
+                        childViewModel.handleChildOf();
+                    }
+
+                    childOf.setValueOn(this, childViewModel);
+                }
+            }
+        }
+
+        this._childOfHandled = true;
+    }
+
 }

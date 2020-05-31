@@ -31,7 +31,6 @@ export class ComponentsNavigation {
     }
 
     clearSearch() {
-        debugger;
         this.searchResult = [];
         this.searching = false;
     }

@@ -23,12 +23,4 @@ export class index {
     otherClicked() {
         alert('Other clicked');
     }
-
-    disabledToggled(sender: any, checked: boolean) {
-        Globals.disabled = checked;
-    }
-
-    checkedToggled(sender: any, checked: boolean) {
-        Globals.checked = checked;
-    }
 }

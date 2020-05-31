@@ -3,11 +3,5 @@
 
 export class TestBench {
 
-    fields: any[] = [{key:'Blah', name:'blah', fieldName: 'blah'}];
-    items: any[] = [{
-        blah: 'Something'
-    }];
 
-    constructor() {
-    }
 }

@@ -2,8 +2,8 @@
 <template>
     <stack>
         <stack-tokens children-gap="10"></stack-tokens>
-        <checkbox label="Unchecked checkbox (uncontrolled)"></checkbox>
-        <checkbox label="Checked checkbox (uncontrolled)" default-checked></checkbox>
+        <checkbox label="Unchecked checkbox (uncontrolled)" checked.bind="uncheckedUncontrolledChecked"></checkbox>
+        <checkbox label="Checked checkbox (uncontrolled)" checked.bind="checkedUncontrolledChecked" default-checked></checkbox>
         <checkbox label="Disabled checkbox" disabled></checkbox>
         <checkbox label="Disabled checked checkbox" disabled default-checked></checkbox>
     </stack>

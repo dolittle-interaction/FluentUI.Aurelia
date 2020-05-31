@@ -7,13 +7,13 @@ import { ICardSectionProps, CardSection } from '@uifabric/react-cards';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { ContentComponent } from '../../index';
+import { ReactComponent } from '../../React/ReactComponent';
 
 @autoinject
 @customElement('card-section')
-export class AuCardSection extends ContentComponent<React.FunctionComponent<ICardSectionProps>, ICardSectionProps> {
+export class AuCardSection extends ReactComponent<React.FunctionComponent<ICardSectionProps>, ICardSectionProps> {
     constructor(element: Element) {
-        super(element, CardSection.prototype);
+        super(element, CardSection);
     }
 }
 
