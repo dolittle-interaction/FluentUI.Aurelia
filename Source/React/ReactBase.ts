@@ -23,6 +23,11 @@ export class ReactBase<TProps> extends Component {
         this.handleVisibilityProperty();
     }
 
+    getChildRepresentation() {
+        this.handleProperties();
+        return this.props;
+    }
+
     render() {
     }
 

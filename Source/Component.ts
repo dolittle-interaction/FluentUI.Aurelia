@@ -57,6 +57,10 @@ export class Component {
     propertyChanged(propertyName: string, newValue: any) {
     }
 
+    getChildRepresentation() {
+        return this;
+    }
+
     handleChildrenOf() {
         if (this._childrenOfHandled) {
             return;
@@ -87,10 +91,22 @@ export class Component {
                     const childViewModels = childrenOf.getValueFrom(this) || [];
 
                     childElements.forEach((childElement: any) => {
-                        const childViewModel = childElement.au.controller.viewModel;
+                        let childViewModel = childElement.au.controller.viewModel;
                         if (typeof childViewModel.handleChildrenOf === 'function') {
                             childViewModel.handleChildrenOf();
                         }
+
+                        if (typeof childViewModel.getChildRepresentation === 'function') {
+                            childViewModel = childViewModel.getChildRepresentation();
+                        }
+
+                        /*
+                        for (const key of Object.keys(childViewModel)) {
+                            if (childViewModel[key] === undefined) {
+                                delete childViewModel[key];
+                            }
+                        }*/
+
                         childViewModels.push(childViewModel);
                     });
 
