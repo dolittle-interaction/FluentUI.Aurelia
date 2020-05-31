@@ -1,10 +1,50 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
+    <primary-button text="Hello"></primary-button>
+
+    <stack horizontal="false">
+        <stack-tokens children-gap="5"></stack-tokens>
+
+        <span>Default vertical stack</span>
+        <stack horizontal="false">
+            <span>Item One</span>
+            <span>Item Two</span>
+            <span>Item Three</span>
+        </stack>
+        <span>Ordered stack</span>
+        <stack horizontal="false">
+            <stack-item order="2">
+                <span>Item One</span>
+            </stack-item>
+            <stack-item order="3">
+                <span>Item Two</span>
+            </stack-item>
+            <stack-item order="1">
+                <span>Item Three</span>
+            </stack-item>
+        </stack>
+        
+    </stack>
+
+    <!--
+    <default-button text="Standard" split split-button-aria-label="See 2 options" aria-role-description="split button"
+        disabled.bind="globals.disabled" checked.bind="globals.checked">
+
+        <contextual-menu-item key="emailMessage" icon="Mail" text="Email message" disabled.bind="globals.disabled"
+            checked.bind="globals.checked" click.delegate="clicked()">
+        </contextual-menu-item>
+
+        <contextual-menu-item key="calendarItem" icon="Calendar" text="Calendar item" disabled.bind="globals.disabled"
+            checked.bind="globals.checked">
+        </contextual-menu-item>
+    </default-button>-->
+
+    <!--
     <choice-group default-selected-key="B" label="Pick one" required>
         <choice-group-option key="A" text="Option A"></choice-group-option>
         <choice-group-option key="B" text="Option B"></choice-group-option>
         <choice-group-option key="C" text="Option C" disabled></choice-group-option>
         <choice-group-option key="D" text="Option D"></choice-group-option>
     </choice-group>
-
+-->
 </template>
