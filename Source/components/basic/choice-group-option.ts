@@ -21,7 +21,7 @@ export class AuChoiceGroupOption extends ReactBase<IChoiceGroupOption> implement
     @bindable
     icon?: string;
 
-    @propertyConverter('size', new SizeTypeConverter({ width: 32, height: 32 }))
+    @propertyConverter('size', new SizeTypeConverter())
     get imageSize(): any { return {}; }
 
     @propertyConverter('icon', new IconTypeConverter())
