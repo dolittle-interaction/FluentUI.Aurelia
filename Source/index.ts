@@ -7,6 +7,7 @@ export * from './React/ComponentProperties';
 export * from './React/ComponentProperty';
 export * from './React/DOMUtility';
 export * from './IconTypeConverter';
+export * from './SizeTypeConverter';
 export * from './ITypeConverter';
 export * from './kebabCase';
 export * from './KeyValueTypeConverter';
