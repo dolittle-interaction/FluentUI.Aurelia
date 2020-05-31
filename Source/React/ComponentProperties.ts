@@ -78,6 +78,7 @@ export class ComponentProperties {
                     }
 
                     if (arguments.length > 0 &&
+                        arguments[0] &&
                         arguments[0].constructor &&
                         (arguments[0].constructor.toString().indexOf('SyntheticEvent') >= 0)) {
                         const syntheticEvent = arguments[0] as SyntheticEvent;
