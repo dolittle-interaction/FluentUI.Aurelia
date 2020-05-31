@@ -65,12 +65,16 @@ export class ComponentProperties {
             const targetValue = (component as any)[property.name];
             if (property.isFunction) {
                 target[property.reactName] = function () {
+                    let self = component;
+                    if (!property.hasOwnProperty) {
+                        self = component.bindingContext;
+                    }
+                    if (property.reactName.startsWith('on') && typeof (component as any)[property.reactName] === 'function' ) {
+                        ((component as any)[property.reactName] as Function).apply(component, arguments);
+                    }
+
                     if (typeof targetValue === 'function') {
-                        if (property.hasOwnProperty) {
-                            (targetValue as Function).apply(component, arguments);
-                        } else {
-                            (targetValue as Function).apply(component.bindingContext, arguments);
-                        }
+                        (targetValue as Function).apply(self, arguments);
                     }
 
                     if (arguments.length > 0 &&
