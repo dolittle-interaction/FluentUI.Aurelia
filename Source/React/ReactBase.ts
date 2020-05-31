@@ -3,16 +3,19 @@
 
 import { Component } from '../Component';
 import { ComponentProperties } from './ComponentProperties';
+import { uniqueIdentifier } from '../uniqueIdentifier';
 
 export class ReactBase<TProps> extends Component {
     static properties<TProps>(properties: TProps) {
         ComponentProperties.configureFor(this, properties);
     }
 
+    reactUniqueIdentifier: string;
     props: any = {};
 
     constructor(element: Element) {
         super(element);
+        this.reactUniqueIdentifier = uniqueIdentifier('react');
     }
 
     handleProperties() {

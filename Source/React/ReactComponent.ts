@@ -9,19 +9,16 @@ import { ComponentProperties } from './ComponentProperties';
 import { ComponentProperty } from './ComponentProperty';
 import { ReactBase } from './ReactBase';
 import { DOMUtility } from './DOMUtility';
-import { uniqueIdentifier } from '../uniqueIdentifier';
 
 export class ReactComponent<TComponent extends React.Component<TProps, any> | React.FunctionComponent<TProps>, TProps> extends ReactBase<TProps> {
     componentType: Constructor<TComponent> | React.FunctionComponent<TProps> | undefined;
     container: Element;
     properties: ComponentProperty[];
-    reactUniqueIdentifier: string;
     aureliaContainer: Element | null;
 
     constructor(element: Element, componentType?: Constructor<TComponent> | React.FunctionComponent<TProps>, private _wrapperType?: any) {
         super(element);
 
-        this.reactUniqueIdentifier = uniqueIdentifier('react');
         this.componentType = componentType;
 
         if (!_wrapperType) {
