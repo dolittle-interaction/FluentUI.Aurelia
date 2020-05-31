@@ -57,14 +57,10 @@ export class Component {
     propertyChanged(propertyName: string, newValue: any) {
     }
 
-    prepare() {
-    }
-
     handleChildrenOf() {
         if (this._childrenOfHandled) {
             return;
         }
-        this.prepare();
         if ((this as any).__metadata__?._childrenOf) {
             const children = (this as any).__metadata__._childrenOf as ChildSelectorForProperty[];
             for (const childrenOf of children) {
@@ -110,7 +106,6 @@ export class Component {
         if (this._childOfHandled) {
             return;
         }
-        this.prepare();
         if ((this as any).__metadata__?._childOf) {
             const children = (this as any).__metadata__._childOf as ChildSelectorForProperty[];
             for (const childOf of children) {
