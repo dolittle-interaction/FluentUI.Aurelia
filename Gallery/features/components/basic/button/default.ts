@@ -6,5 +6,6 @@ import { ButtonSampleBase } from './ButtonSampleBase';
 export class Default extends ButtonSampleBase {
 
     clicked() {
+        alert('hello');
     }
 }
