@@ -25,7 +25,7 @@ export class AuComboBox extends ReactComponent<ComboBox, IComboBoxProps> impleme
         super(element, ComboBox);
     }
 
-    change(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) {
+    onChange(event: React.FormEvent<IComboBox>, option?: IComboBoxOption, index?: number, value?: string) {
         if (index) {
             this.selected = this.options[index];
         } else {

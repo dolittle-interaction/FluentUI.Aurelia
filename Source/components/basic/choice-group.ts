@@ -29,7 +29,7 @@ export class AuChoiceGroup extends ReactComponent<React.FunctionComponent<IChoic
         super(element, ChoiceGroup);
     }
 
-    change(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) {
+    onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) {
         this.selected = option as AuChoiceGroupOption;
         this.selectedKey = option?.key || '';
         this.handleRendering();

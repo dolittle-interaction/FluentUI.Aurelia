@@ -19,7 +19,7 @@ export class AuCheckbox extends ReactComponent<React.FunctionComponent<ICheckbox
         super(element, Checkbox);
     }
 
-    change(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean) {
+    onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean) {
         this.checked = checked || false;
         this.handleRendering();
     }

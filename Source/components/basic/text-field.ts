@@ -39,7 +39,7 @@ export class AuTextField extends ReactComponent<React.FunctionComponent<ITextFie
         super(element, componentType ?? TextField);
     }
 
-    change(textField: AuTextField, value: string) {
+    onChange(textField: AuTextField, value: string) {
         this._suspendPropertyChanged = true;
         this.value = value;
         this.handleRendering();

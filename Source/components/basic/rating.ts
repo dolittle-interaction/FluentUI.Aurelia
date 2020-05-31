@@ -30,7 +30,7 @@ export class AuRating extends ReactComponent<React.FunctionComponent<IRatingProp
         }))
     get size(): RatingSize { return RatingSize.Small; }
 
-    change(event: React.FocusEvent<HTMLElement>, rating?: number) {
+    onChange(event: React.FocusEvent<HTMLElement>, rating?: number) {
         this.rating = rating || 0;
         this.handleRendering();
     }

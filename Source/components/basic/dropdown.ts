@@ -28,7 +28,7 @@ export class AuDropdown extends ReactComponent<React.FunctionComponent<IDropdown
         super(element, Dropdown);
     }
 
-    change(event: React.FormEvent<IDropdown>, option?: IDropdownOption, index?: number, value?: string) {
+    onChange(event: React.FormEvent<IDropdown>, option?: IDropdownOption, index?: number, value?: string) {
         if (index) {
             this.selected = this.options[index];
         } else {

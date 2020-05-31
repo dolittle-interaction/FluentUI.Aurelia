@@ -15,8 +15,8 @@ export class AuMaskedTextField extends AuTextField {
         super(element, MaskedTextField);
     }
 
-    change(textField: AuTextField, value: string) {
-        super.change(textField, value);
+    onChange(textField: AuTextField, value: string) {
+        super.onChange(textField, value);
     }
 }
 

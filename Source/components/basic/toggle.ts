@@ -19,7 +19,7 @@ export class AuToggle extends ReactComponent<React.FunctionComponent<IToggleProp
         super(element, Toggle);
     }
 
-    change(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean) {
+    onChange(ev?: React.FormEvent<HTMLElement | HTMLInputElement>, checked?: boolean) {
         this.checked = checked || false;
         this.handleRendering();
     }

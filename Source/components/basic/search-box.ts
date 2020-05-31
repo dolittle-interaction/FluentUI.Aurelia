@@ -27,7 +27,7 @@ export class AuSearchBox extends ReactComponent<React.FunctionComponent<ISearchB
         super(element, SearchBox, ReactWrapperComponentWithoutChildren);
     }
 
-    change(event?: React.ChangeEvent<HTMLInputElement>, newValue?: string) {
+    onChange(event?: React.ChangeEvent<HTMLInputElement>, newValue?: string) {
         this.value = newValue;
         this.handleRendering();
     }

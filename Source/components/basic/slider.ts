@@ -19,7 +19,7 @@ export class AuSlider extends ReactComponent<React.FunctionComponent<ISliderProp
         super(element, Slider);
     }
 
-    change(value: number) {
+    onChange(value: number) {
         this.value = value;
         this.handleRendering();
     }
