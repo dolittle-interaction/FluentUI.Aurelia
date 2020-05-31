@@ -49,8 +49,6 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/basic/toggle'),
         PLATFORM.moduleName('./components/basic/text-field'),
 
-        /*
-
         // Items
         PLATFORM.moduleName('./components/items/card'),
         PLATFORM.moduleName('./components/items/card-item'),
@@ -59,7 +57,6 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
 
         // Galleries & Pickers
         PLATFORM.moduleName('./components/pickers/tag-picker'),
-        */
 
         // Commands, Menus & Navs
         PLATFORM.moduleName('./components/commands/app-bar'),
@@ -74,7 +71,6 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/commands/pivot'),
         PLATFORM.moduleName('./components/commands/pivot-item'),
 
-        /*
         // Items
         PLATFORM.moduleName('./components/items/column'),
         PLATFORM.moduleName('./components/items/details-list'),
@@ -82,17 +78,14 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         // Surfaces
         PLATFORM.moduleName('./components/surfaces/dialog'),
         PLATFORM.moduleName('./components/surfaces/dialog-footer'),
-        */
 
         // Utilities
         PLATFORM.moduleName('./components/utilities/font-icon'),
         PLATFORM.moduleName('./components/utilities/icon'),
         PLATFORM.moduleName('./components/utilities/named-icon'),
-        /*
         PLATFORM.moduleName('./components/utilities/stack'),
         PLATFORM.moduleName('./components/utilities/stack-tokens'),
         PLATFORM.moduleName('./components/utilities/stack-item')
-        */
     ]);
 }
 
