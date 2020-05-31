@@ -35,8 +35,15 @@ export class PropertyConverters {
                     configurable: true,
                     enumerable: true,
                     get() {
-                        const value = (this as any)[converter.sourceProperty];
-                        return converter.typeConverter.convert(value);
+                        let value = (this as any)[converter.sourceProperty];
+                        if (typeof value === 'string' && value === '') {
+                            value = undefined;
+                        }
+                        const converted = converter.typeConverter.convert(value);
+                        if (!converted && !value) {
+                            return value;
+                        }
+                        return converted;
                     }
                 });
         }
