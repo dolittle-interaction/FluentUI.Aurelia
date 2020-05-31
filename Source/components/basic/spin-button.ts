@@ -15,8 +15,6 @@ import { ReactComponent } from '../../React/ReactComponent';
 @autoinject
 @customElement('spin-button')
 export class AuSpinButton extends ReactComponent<SpinButton, ISpinButtonProps> implements ISpinButtonProps {
-    private _suspendPropertyChanged: boolean = false;
-
     @bindable
     value?: string;
 
@@ -32,7 +30,6 @@ export class AuSpinButton extends ReactComponent<SpinButton, ISpinButtonProps> i
     @propertyConverter('icon', new IconTypeConverter())
     get incrementButtonIcon(): IIconProps { return {}; }
 
-
     @bindable
     decrementIcon: string = '';
 
@@ -41,30 +38,6 @@ export class AuSpinButton extends ReactComponent<SpinButton, ISpinButtonProps> i
 
     constructor(element: Element) {
         super(element, SpinButton);
-    }
-
-    /*
-    increment(value: string): string {
-        this._suspendPropertyChanged = true;
-        this.value = value + 1;
-        this.handleRendering();
-        return this.value;
-    }
-
-    decrement(value: string): string {
-        this._suspendPropertyChanged = true;
-        this.value = parseInt(value) - 1;
-        this.handleRendering();
-        return this.value;
-    }*/
-
-    propertyChanged(propertyName: string, newValue: any) {
-        if (this._suspendPropertyChanged) {
-            this._suspendPropertyChanged = false;
-            return;
-        }
-
-        super.propertyChanged(propertyName, newValue);
     }
 }
 
@@ -99,9 +72,8 @@ AuSpinButton.properties<ISpinButtonProps>({
     inputProps: {} as any,
     iconButtonProps: {} as any,
 
+    onChange: () => { },
     onValidate: () => { },
-    onIncrement: () => { },
-    onDecrement: () => { },
     onFocus: () => { },
     onBlur: () => { }
 });
