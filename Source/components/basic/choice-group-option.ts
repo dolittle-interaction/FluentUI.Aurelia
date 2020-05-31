@@ -5,7 +5,7 @@ import { IChoiceGroupOption, IIconProps } from 'office-ui-fabric-react';
 
 import { noView, autoinject, customElement, bindable } from 'aurelia-framework';
 
-import { IconTypeConverter, propertyConverter } from '../../index';
+import { IconTypeConverter, SizeTypeConverter, propertyConverter } from '../../index';
 import { ReactBase } from '../../React/ReactBase';
 
 @autoinject
@@ -19,10 +19,13 @@ export class AuChoiceGroupOption extends ReactBase<IChoiceGroupOption> implement
     text: string = '';
 
     @bindable
-    icon: string = '';
+    icon?: string;
+
+    @propertyConverter('size', new SizeTypeConverter({ width: 32, height: 32 }))
+    get imageSize(): any { return {}; }
 
     @propertyConverter('icon', new IconTypeConverter())
-    get iconProps(): IIconProps { return {}; }
+    get iconProps(): IIconProps { return {}; }
 
     constructor(element: Element) {
         super(element);
@@ -30,16 +33,16 @@ export class AuChoiceGroupOption extends ReactBase<IChoiceGroupOption> implement
 }
 
 AuChoiceGroupOption.properties<IChoiceGroupOption>({
-    key: {} as any,
-    text: {} as any,
-    iconProps: {} as any,
-    imageSrc: {} as any,
-    imageAlt: {} as any,
-    selectedImageSrc: {} as any,
-    imageSize: {} as any,
-    disabled: {} as any,
-    checked: {} as any,
-    id: {} as any,
-    labelId: {} as any,
-    ariaLabel: {} as any
+    key: {} as any,
+    text: {} as any,
+    iconProps: {} as any,
+    imageSrc: {} as any,
+    imageAlt: {} as any,
+    selectedImageSrc: {} as any,
+    imageSize: {} as any,
+    disabled: {} as any,
+    checked: {} as any,
+    id: {} as any,
+    labelId: {} as any,
+    ariaLabel: {} as any
 });
