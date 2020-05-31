@@ -62,7 +62,7 @@ export class Component {
                 const childElements = this.element.querySelectorAll(childrenOf.selector);
                 if (childElements.length > 0) {
                     if (childrenOf.initialValue) {
-                        (this as any)[childrenOf.property] = childrenOf.initialValue;
+                        (this as any)[childrenOf.property] = JSON.parse(JSON.stringify(childrenOf.initialValue));
                     }
 
                     const childViewModels = childrenOf.getValueFrom(this) || [];
