@@ -10,5 +10,9 @@ export class ReactChildComponent<TComponent extends React.Component<TProps, any>
         ((element as any)?.style as CSSStyleDeclaration).display = 'none';
     }
 
-    render() {}
+    render() { }
+
+    getChildRepresentation() {
+        return this;
+    }
 }
