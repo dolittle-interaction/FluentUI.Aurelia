@@ -1,6 +1,6 @@
 {
     "name": "@dolittle/fluentui.aurelia",
-    "version": "1.0.16",
+    "version": "2.0.0",
     "description": "",
     "publishConfig": {
         "access": "public"
@@ -36,8 +36,8 @@
     },
     "homepage": "https://github.com/dolittle-interaction/fluentui.aurelia#readme",
     "dependencies": {
-        "@dolittle/typescript.build": "^5.3.6",
         "@dolittle/rudiments": "2.0.16",
+        "@dolittle/typescript.build": "^5.3.6",
         "@uifabric/react-cards": "^0.109.53",
         "aurelia-framework": "^1.3.1",
         "aurelia-pal": "^1.8.2",
