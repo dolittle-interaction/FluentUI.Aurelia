@@ -1,23 +1,17 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
+    <default-button text="Open Dialog" click.bind="openDialog"></default-button>
 
-    <text-field></text-field>
+    <dialog title="Missing Subject" 
+            sub-text="Do you want to send this message without a subject?"
+            is-blocking="false" 
+            visible.bind="showDialog">
+    </dialog>
 
     <!--
-    <primary-button text="Click me"></primary-button>
-
-    <pivot>
-        <pivot-item item-icon="Emoji2" item-key="first" header-text="My Files">
-            <label>Pivot #1</label>
-        </pivot-item>
-        <pivot-item item-key="second" header-text="Recent">
-            <label>Pivot #2</label>
-        </pivot-item>
-        <pivot-item item-key="third" header-text="Shared with me">
-            <label>Pivot #3</label>
-        </pivot-item>
-    </pivot>
-    -->
-
+    <dialog-footer>
+        <primary-button text="Send" click.bind="closeDialog"></primary-button>
+        <default-button text="Don't send" click.bind="closeDialog"></default-button>
+    </dialog-footer>-->
 
 </template>
