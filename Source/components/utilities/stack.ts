@@ -8,7 +8,7 @@ import { customElement, autoinject } from 'aurelia-framework';
 import { IStackProps, Stack, IStackTokens, IStackItemProps } from 'office-ui-fabric-react';
 
 import { ReactComponent } from '../../React/ReactComponent';
-import { childOf, childrenOf } from 'Children';
+import { childOf, childrenOf } from '../../Children';
 
 
 @autoinject
