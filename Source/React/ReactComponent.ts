@@ -27,10 +27,11 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
             if (this._wrapperType.prototype.isReactComponent) {
                 this.props.ref = DOMUtility.getReferenceCallbackFor(this);
             }
+        } else {
+            this.props._component = this;
+            this.props._componentType = this.componentType;
         }
 
-        this.props._component = this;
-        this.props._componentType = this.componentType;
         this.props.id = this.reactUniqueIdentifier;
 
         this.container = element;
