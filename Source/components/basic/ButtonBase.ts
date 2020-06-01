@@ -23,4 +23,6 @@ export class ButtonBase<TComponent extends React.Component<IButtonProps, any>> e
 
     @childrenOf('contextual-menu-item', { items: [] }, 'items')
     menuProps: IContextualMenuProps | undefined;
+
+    onClick() {}
 }
