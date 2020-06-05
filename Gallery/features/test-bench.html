@@ -1,4 +1,14 @@
 <!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
 <template>
-    <flink href="https://developer.microsoft.com/en-us/fabric#/styles/icons">Icon documentation</flink>.
+    <default-button text="Open Dialog" click.bind="openDialog"></default-button>
+
+    <dialog title="Missing Subject" 
+            sub-text="Do you want to send this message without a subject?"
+            is-blocking="false" 
+            visible.bind="showDialog">
+        <dialog-footer>
+            <primary-button text="Send" click.bind="closeDialog"></primary-button>
+            <default-button text="Don't send" click.bind="closeDialog"></default-button>
+        </dialog-footer>
+    </dialog>
 </template>
