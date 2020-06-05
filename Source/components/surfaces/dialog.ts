@@ -5,15 +5,24 @@ import * as React from 'react';
 
 import { autoinject, customElement } from 'aurelia-framework';
 
-import { Dialog, IDialogProps } from 'office-ui-fabric-react';
+import { Dialog, IDialogProps, IDialogFooterProps } from 'office-ui-fabric-react';
 
 import { ReactComponent } from '../../React/ReactComponent';
+import { childOf } from '../../Children';
 
 @autoinject
 @customElement('dialog')
 export class AuDialog extends ReactComponent<React.FunctionComponent<IDialogProps>, IDialogProps> {
+
+    @childOf('dialog-footer')
+    footer?: IDialogFooterProps;
+
     constructor(element: Element) {
         super(element, Dialog);
+    }
+
+    get children() {
+        return [this.footer];
     }
 }
 
