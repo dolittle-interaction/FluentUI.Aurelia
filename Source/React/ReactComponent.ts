@@ -14,8 +14,9 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     componentType: Constructor<TComponent> | React.FunctionComponent<TProps> | undefined;
     container: Element;
     properties: ComponentProperty[];
-    aureliaContainer: Element | null;
-    renderedComponent: Element | null = null;
+    aureliaContainer?: Element;
+
+    private _readyToConsolidateBackCallback?: Function;
 
     constructor(element: Element, componentType?: Constructor<TComponent> | React.FunctionComponent<TProps>, private _wrapperType?: any) {
         super(element);
@@ -26,7 +27,6 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
 
         if (!_wrapperType) {
             this._wrapperType = componentType;
-
             if (this._wrapperType.prototype.isReactComponent) {
                 this.props.ref = DOMUtility.getReferenceCallbackFor(this);
             }
@@ -37,10 +37,30 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
 
         this.container = element;
         this.properties = ComponentProperties.getFor(this.constructor);
-        this.aureliaContainer = element.querySelector(`#${this.uniqueIdentifier}`);
+    }
+
+    getSourceElementToConsolidateFrom(): Element {
+        return this.element;
+    }
+
+    onReadyToConsolidateBack(callback: Function): void {
+        const delayed = this.properties.some((_: ComponentProperty) => _.reactName === 'onDismissed');
+        if (delayed) {
+            this._readyToConsolidateBackCallback = callback;
+        } else {
+            callback();
+        }
+    }
+
+    onDismissed() {
+        if (this._readyToConsolidateBackCallback) {
+            this._readyToConsolidateBackCallback();
+            this._readyToConsolidateBackCallback = undefined;
+        }
     }
 
     attached() {
+        this.aureliaContainer = this.element.querySelector(`#${this.uniqueIdentifier}`) || undefined;
         ReactDom.unmountComponentAtNode(this.container);
         const container = this.element.querySelector(`#${this.uniqueIdentifier}`);
         if (container) {
@@ -78,11 +98,11 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     render() {
         super.render();
         const element = this.createElement();
-        this.renderedComponent = ReactDom.render(element as any, this.container) as any;
+        ReactDom.render(element as any, this.container) as any;
     }
 
-    propertyChanged(propertyName: string, newValue: any) {
-        super.propertyChanged(propertyName, newValue);
+    propertyChanged(propertyName: string, newValue: any, prevValue: any) {
+        super.propertyChanged(propertyName, newValue, prevValue);
         this.handleVisibilityProperty();
         const property = this.properties.find(_ => _.name === propertyName);
         if (property) {

@@ -1,29 +1,36 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 import * as React from 'react';
+import { ComponentProperty } from './ComponentProperty';
 
 export class DOMUtility {
 
-    static getReferenceCallbackFor(component: any) {
+    static getReferenceCallbackFor(component: any, reactUniqueIdentifier?: string) {
         return function (parent: HTMLElement | null) {
-            if (!component.visible) {
+            if (!parent) {
                 return;
             }
 
-            const reactElement = document.querySelector(`#${component.reactUniqueIdentifier}`);
+            if (!reactUniqueIdentifier) {
+                reactUniqueIdentifier = component.reactUniqueIdentifier;
+            }
+
+            const reactElement = document.querySelector(`#${reactUniqueIdentifier}`);
 
             if (reactElement) {
-                DOMUtility.consolidateVisualTrees(reactElement, component.element, component.uniqueIdentifier, component.uniqueIdentifier);
+                DOMUtility.consolidateVisualTrees(component, reactElement, reactUniqueIdentifier || component.uniqueIdentifier);
             }
         };
     }
 
-
-    static consolidateVisualTrees(reactParent: Element, aureliaParent: Element, reactUniqueIdentifier: string, aureliaUniqueIdentifier: string) {
+    static consolidateVisualTrees(component: any, reactParent: Element, reactUniqueIdentifier: string) {
+        const aureliaParent = component?.getSourceElementToConsolidateFrom() || component.aureliaParent;
         if (reactParent.childElementCount > 0 && DOMUtility.hasNonReactChildren(reactParent)) {
-            this.moveElements(reactParent, aureliaParent, reactUniqueIdentifier, false);
+            component.onReadyToConsolidateBack(() => {
+                this.moveElements(reactParent, aureliaParent, reactUniqueIdentifier);
+            });
         } else {
-            this.moveElements(aureliaParent, reactParent, aureliaUniqueIdentifier, true);
+            this.moveElements(aureliaParent, reactParent, component.uniqueIdentifier);
         }
     }
 
@@ -46,7 +53,7 @@ export class DOMUtility {
         return Object.keys(node).filter(_ => _.indexOf('__reactInternal') === 0).length > 0;
     }
 
-    static moveElements(source: Element, destination: Element, skipId: string, visibleInDestination: boolean) {
+    static moveElements(source: Element, destination: Element, skipId: string) {
         const childrenToMove: ChildNode[] = [];
 
         // tslint:disable-next-line: prefer-for-of
