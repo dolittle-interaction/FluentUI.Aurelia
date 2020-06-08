@@ -14,4 +14,17 @@ export class TestBench {
     hideModal() {
         this.modalVisible = false;
     }
+
+
+    @observable
+    showDialog: boolean = false;
+
+    openDialog() {
+        this.showDialog = true;
+    }
+
+    closeDialog() {
+        this.showDialog = false;
+    }
+
 }
