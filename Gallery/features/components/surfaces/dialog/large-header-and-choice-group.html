@@ -1,0 +1,21 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <toggle label="Is draggable" change.bind="draggableToggled"></toggle>
+    <default-button text="Open Dialog" click.bind="openDialog"></default-button>
+
+    <dialog title="All emails together" 
+            sub-text="Your Inbox has changed. No longer does it include favorites, it is a singular destination for your emails."
+            is-blocking="false" 
+            visible.bind="showDialog">
+        <choice-group>
+            <choice-group-option key="A" text="Option A"></choice-group-option>
+            <choice-group-option key="B" text="Option C" checked="true"></choice-group-option>
+            <choice-group-option key="C" text="Option B" disabled="true"></choice-group-option>        
+        </choice-group>
+        <dialog-footer>
+            <primary-button text="Save" click.bind="closeDialog"></primary-button>
+            <default-button text="Cancel" click.bind="closeDialog"></default-button>
+        </dialog-footer>
+    </dialog>
+
+</template>
