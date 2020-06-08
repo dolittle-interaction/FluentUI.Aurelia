@@ -53,7 +53,7 @@ export class Component {
         this.handleRendering();
     }
 
-    propertyChanged(propertyName: string, newValue: any) {
+    propertyChanged(propertyName: string, newValue: any, prevValue: any) {
     }
 
     getChildRepresentation() {
