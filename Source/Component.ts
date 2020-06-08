@@ -1,13 +1,12 @@
 // Copyright (c) Dolittle. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-import { inlineView, bindable } from 'aurelia-framework';
+import { bindable } from 'aurelia-framework';
 
 import { uniqueIdentifier } from './uniqueIdentifier';
 import { ChildSelectorForProperty } from './Children';
 import { PropertyConverters } from './PropertyConverters';
 
-@inlineView('<template><span id.bind="uniqueIdentifier"></span><slot></slot></template>')
 export class Component {
     private _bindingContext: any;
     private _overrideContext: any;
