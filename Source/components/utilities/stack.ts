@@ -9,6 +9,7 @@ import { IStackProps, Stack, IStackTokens, IStackItemProps } from 'office-ui-fab
 
 import { ReactComponent } from '../../React/ReactComponent';
 import { childOf, childrenOf } from '../../Children';
+import { ReactComponentWithContent } from '../../React/ReactComponentWithContent';
 
 
 @autoinject
@@ -22,7 +23,7 @@ export class AuStack extends ReactComponent<React.FunctionComponent<IStackProps>
     items?: IStackItemProps[];
 
     constructor(element: Element) {
-        super(element, Stack);
+        super(element, Stack, ReactComponentWithContent);
     }
 }
 
