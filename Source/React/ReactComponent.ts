@@ -15,11 +15,14 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     container: Element;
     properties: ComponentProperty[];
     aureliaContainer: Element | null;
+    renderedComponent: Element | null = null;
 
     constructor(element: Element, componentType?: Constructor<TComponent> | React.FunctionComponent<TProps>, private _wrapperType?: any) {
         super(element);
 
         this.componentType = componentType;
+
+        this.props.id = this.reactUniqueIdentifier;
 
         if (!_wrapperType) {
             this._wrapperType = componentType;
@@ -31,8 +34,6 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
             this.props._component = this;
             this.props._componentType = this.componentType;
         }
-
-        this.props.id = this.reactUniqueIdentifier;
 
         this.container = element;
         this.properties = ComponentProperties.getFor(this.constructor);
@@ -77,7 +78,7 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     render() {
         super.render();
         const element = this.createElement();
-        ReactDom.render(element as any, this.container) as any;
+        this.renderedComponent = ReactDom.render(element as any, this.container) as any;
     }
 
     propertyChanged(propertyName: string, newValue: any) {

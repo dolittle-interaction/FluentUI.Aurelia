@@ -1,0 +1,28 @@
+@import './theme.scss';
+
+.modalIconButton {
+    color: $ms-color-neutralPrimary;
+    margin-left: 'auto';
+    margin-top: 4px;
+    margin-right: 2px;
+}
+
+.modalHeader {
+    @extend .ms-fontSize-24;
+    flex: 1 1 auto;
+    border-top: 4px solid $ms-color-themePrimary;
+    color: $ms-color-neutralPrimary;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    padding: 12px 12px 14px 24px;
+}
+
+.modalBody {
+    flex: '4 4 auto';
+    padding: 0 24px 24px 24px;
+    overflow-y: hidden;
+    p: { margin: 14px 0 }
+    p:first-child { margin-top: 0 }
+    p:last-child { margin-bottom: 0 }
+}

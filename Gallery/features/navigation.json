@@ -42,7 +42,8 @@
     {
         "name": "Surfaces",
         "items": [
-            { "name": "Dialog", "url": "/components/surfaces/dialog" }
+            { "name": "Dialog", "url": "/components/surfaces/dialog" },
+            { "name": "Modal", "url": "/components/surfaces/modal" }
         ]
     },
     {

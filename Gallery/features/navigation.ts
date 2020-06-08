@@ -23,6 +23,7 @@ export default [
    { route: '/components/commands/command-bar', name: 'CommandBar', moduleId: PLATFORM.moduleName('./components/commands/command-bar/index'), nav: true },
    { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
    { route: '/components/surfaces/dialog', name: 'Dialog', moduleId: PLATFORM.moduleName('./components/surfaces/dialog/index'), nav: true },
+   { route: '/components/surfaces/modal', name: 'Modal', moduleId: PLATFORM.moduleName('./components/surfaces/modal/index'), nav: true },
    { route: '/components/utilities/icon', name: 'Icon', moduleId: PLATFORM.moduleName('./components/utilities/icon/index'), nav: true },
    { route: '/components/utilities/stack', name: 'Stack', moduleId: PLATFORM.moduleName('./components/utilities/stack/index'), nav: true },
 ];
