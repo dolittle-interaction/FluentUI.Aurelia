@@ -3,26 +3,31 @@
 
 import * as React from 'react';
 
-import { autoinject, customElement } from 'aurelia-framework';
+import { autoinject, customElement, inlineView } from 'aurelia-framework';
 
 import { Modal, IModalProps } from 'office-ui-fabric-react';
 
 import { ReactComponent } from '../../React/ReactComponent';
-import { ReactWrapperComponent } from '../../React/ReactWrapperComponent';
+import { ReactComponentWithInnerSpan } from '../../React/ReactComponentWithInnerSpan';
+import { DOMUtility } from '../../React/DOMUtility';
 
 @autoinject
 @customElement('modal')
+@inlineView('<template><span id.bind="uniqueIdentifier" style="display:none;"></span><slot></slot></template>')
 export class AuModal extends ReactComponent<React.FunctionComponent<IModalProps>, IModalProps> {
     constructor(element: Element) {
-        super(element, Modal, ReactWrapperComponent);
+        super(element, Modal, ReactComponentWithInnerSpan);
     }
 
-    isOpenChanged(open: boolean) {
-        if (this.renderedComponent) {
-            // 'ms-Modal-scrollableContent'
-            debugger;
-
+    attached() {
+        super.attached();
+        if (this.aureliaContainer) {
+            DOMUtility.moveElements(this.element, this.aureliaContainer, this.uniqueIdentifier);
         }
+    }
+
+    getSourceElementToConsolidateFrom() {
+        return this.aureliaContainer || this.element;
     }
 }
 
