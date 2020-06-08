@@ -9,6 +9,7 @@ import { Dialog, IDialogProps, IDialogFooterProps } from 'office-ui-fabric-react
 
 import { ReactComponent } from '../../React/ReactComponent';
 import { childOf } from '../../Children';
+import { ReactComponentWithInnerSpan } from '../../React/ReactComponentWithInnerSpan';
 
 @autoinject
 @customElement('dialog')
@@ -18,7 +19,7 @@ export class AuDialog extends ReactComponent<React.FunctionComponent<IDialogProp
     footer?: IDialogFooterProps;
 
     constructor(element: Element) {
-        super(element, Dialog);
+        super(element, Dialog, ReactComponentWithInnerSpan);
     }
 
     get children() {
