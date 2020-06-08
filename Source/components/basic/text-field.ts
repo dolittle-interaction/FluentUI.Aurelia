@@ -45,13 +45,13 @@ export class AuTextField extends ReactComponent<React.FunctionComponent<ITextFie
         this.handleRendering();
     }
 
-    propertyChanged(propertyName: string, newValue: any) {
+    propertyChanged(propertyName: string, newValue: any, previousValue: any) {
         if (this._suspendPropertyChanged) {
             this._suspendPropertyChanged = false;
             return;
         }
 
-        super.propertyChanged(propertyName, newValue);
+        super.propertyChanged(propertyName, newValue, previousValue);
     }
 
     focus() {
