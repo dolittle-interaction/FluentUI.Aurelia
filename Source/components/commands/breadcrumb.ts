@@ -27,6 +27,10 @@ export class AuBreadcrumb extends ReactComponent<React.FunctionComponent<IBreadc
     attached() {
         super.attached();
     }
+
+    itemsChanged() {
+        this.handleRendering();
+    }
 }
 
 AuBreadcrumb.properties<IBreadcrumbProps>({
