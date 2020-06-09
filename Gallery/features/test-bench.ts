@@ -4,27 +4,16 @@
 import { observable } from 'aurelia-framework';
 
 export class TestBench {
-    @observable
-    modalVisible: boolean = false;
+    items: any[] = [{
+        first: 'First column',
+        second: 'Second column',
+    }, {
+        first: 'First column - second',
+        second: 'Second column',
+    }];
 
-    showModal() {
-        this.modalVisible = true;
+
+    activeItemChanged(item: any) {
+        console.log('changed : ' + item.first);
     }
-
-    hideModal() {
-        this.modalVisible = false;
-    }
-
-
-    @observable
-    showDialog: boolean = false;
-
-    openDialog() {
-        this.showDialog = true;
-    }
-
-    closeDialog() {
-        this.showDialog = false;
-    }
-
 }
