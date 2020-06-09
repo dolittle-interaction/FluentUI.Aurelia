@@ -17,6 +17,7 @@ export class AuBreadcrumb extends ReactComponent<React.FunctionComponent<IBreadc
     useRoute: boolean = false;
 
     @childrenOf('bread-crumb-item')
+    @bindable
     items: IBreadcrumbItem[] = [];
 
     constructor(element: Element, private _router: Router) {
