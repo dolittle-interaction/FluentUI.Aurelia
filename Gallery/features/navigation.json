@@ -40,6 +40,12 @@
         ]
     },
     {
+        "name": "Progress",
+        "items": [
+            { "name": "Spinner", "url": "/components/progress/spinner" }
+        ]
+    },
+    {
         "name": "Surfaces",
         "items": [
             { "name": "Dialog", "url": "/components/surfaces/dialog" },

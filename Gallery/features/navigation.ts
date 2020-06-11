@@ -22,6 +22,7 @@ export default [
    { route: '/components/commands/breadcrumb', name: 'Breadcrumb', moduleId: PLATFORM.moduleName('./components/commands/breadcrumb/index'), nav: true },
    { route: '/components/commands/command-bar', name: 'CommandBar', moduleId: PLATFORM.moduleName('./components/commands/command-bar/index'), nav: true },
    { route: '/components/commands/pivot', name: 'Pivot', moduleId: PLATFORM.moduleName('./components/commands/pivot/index'), nav: true },
+   { route: '/components/progress/spinner', name: 'Spinner', moduleId: PLATFORM.moduleName('./components/progress/spinner/index'), nav: true },
    { route: '/components/surfaces/dialog', name: 'Dialog', moduleId: PLATFORM.moduleName('./components/surfaces/dialog/index'), nav: true },
    { route: '/components/surfaces/modal', name: 'Modal', moduleId: PLATFORM.moduleName('./components/surfaces/modal/index'), nav: true },
    { route: '/components/utilities/icon', name: 'Icon', moduleId: PLATFORM.moduleName('./components/utilities/icon/index'), nav: true },

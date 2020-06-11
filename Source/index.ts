@@ -71,6 +71,9 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/commands/pivot'),
         PLATFORM.moduleName('./components/commands/pivot-item'),
 
+        // Progress
+        PLATFORM.moduleName('./components/progress/spinner'),
+
         // Items
         PLATFORM.moduleName('./components/items/column'),
         PLATFORM.moduleName('./components/items/details-list'),
