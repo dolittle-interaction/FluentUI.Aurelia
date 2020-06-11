@@ -4,16 +4,16 @@
 import { observable } from 'aurelia-framework';
 
 export class TestBench {
-    items: any[] = [{
-        first: 'First column',
-        second: 'Second column',
-    }, {
-        first: 'First column - second',
-        second: 'Second column',
-    }];
 
+    @observable
+    showDialog: boolean = false;
 
-    activeItemChanged(item: any) {
-        console.log('changed : ' + item.first);
+    openDialog() {
+        this.showDialog = true;
     }
+
+    closeDialog() {
+        this.showDialog = false;
+    }
+
 }
