@@ -15,6 +15,7 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     container: Element;
     properties: ComponentProperty[];
     aureliaContainer?: Element;
+    reactComponent?: any;
 
     private _readyToConsolidateBackCallback?: Function;
 
@@ -98,7 +99,7 @@ export class ReactComponent<TComponent extends React.Component<TProps, any> | Re
     render() {
         super.render();
         const element = this.createElement();
-        ReactDom.render(element as any, this.container) as any;
+        this.reactComponent = ReactDom.render(element as any, this.container);
     }
 
     propertyChanged(propertyName: string, newValue: any, prevValue: any) {
