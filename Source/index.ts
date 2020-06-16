@@ -82,6 +82,7 @@ export function configure(aurelia: FrameworkConfiguration, config: any) {
         PLATFORM.moduleName('./components/surfaces/dialog'),
         PLATFORM.moduleName('./components/surfaces/dialog-footer'),
         PLATFORM.moduleName('./components/surfaces/modal'),
+        PLATFORM.moduleName('./components/surfaces/panel'),
 
         // Utilities
         PLATFORM.moduleName('./components/utilities/font-icon'),

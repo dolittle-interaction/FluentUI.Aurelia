@@ -1,0 +1,40 @@
+<!-- Copyright (c) Dolittle.  All Rights Reserved.  Licensed under the MIT License. See LICENSE file in the project root for full license information. -->
+<template>
+    <require from="./sizes.scss"></require>
+
+    <div class="size-dropdown">
+        <dropdown label="Choose a panel size:" selected-key.bind="selectedSize">
+            <dropdown-option text="Small (default)" key="smallFixedFar"></dropdown-option>
+            <dropdown-option text="Small, near side" key="smallFixedNear"></dropdown-option>
+            <dropdown-option text="Medium" key="medium"></dropdown-option>
+            <dropdown-option text="Large" key="large"></dropdown-option>
+            <dropdown-option text="Large fixed-width" key="largeFixed"></dropdown-option>
+            <dropdown-option text="Extra large" key="extraLarge"></dropdown-option>
+            <dropdown-option text="Full-width (fluid)" key="smallFluid"></dropdown-option>
+            <dropdown-option text="Custom (example: 888px)" key="custom"></dropdown-option>
+            <dropdown-option text="Custom (example: 888px) near side" key="customNear"></dropdown-option>        
+        </dropdown>
+    </div>
+
+    <p class="first-paragraph">
+        See the{' '}
+        <flink href="https://developer.microsoft.com/en-us/fluentui#/controls/web/panel#PanelType">
+            PanelType documentation
+        </flink>
+        for details on how each option affects panel sizing at different screen widths.
+    </p>
+    <p>
+        All panels are anchored to the far side of the screen (right in LTR, left in RTL) unless otherwise specified.
+    </p>
+
+    <default-button text="Open panel" click.bind="showPanel"></default-button>
+
+    <panel header-text="Sample panel"
+           panel-type.bind="selectedSize"
+           is-open.bind="panelVisible"
+           dismiss.bind="hidePanel"
+           close-button-aria-label="Close">
+        <p>Content goes here.</p>
+    </panel>
+
+</template>
